@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
 
 const MyPage = () => {
@@ -7,7 +6,6 @@ const MyPage = () => {
 
   return (
     <>
-      <Header />
       <StWrap>
         <div class='row row-cols-1 row-cols-md-4 g-3'>
           <MusicCard />
