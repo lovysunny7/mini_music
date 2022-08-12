@@ -23,7 +23,7 @@ function Header() {
               navigate('/');
             }}
           >
-            MUSIC PICKY
+            MUSIC 🌈 PICKY
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
           <Navbar.Collapse id='responsive-navbar-nav'>
