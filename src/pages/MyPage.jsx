@@ -21,7 +21,7 @@ const MyPage = () => {
 
 const StWrap = styled.div`
   /* border: 1px solid rebeccapurple; */
-  margin: 50px 100px;
+  margin: 5% 15%;
 `;
 
 const StDiv = styled.div`
