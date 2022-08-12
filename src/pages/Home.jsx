@@ -1,6 +1,7 @@
 // import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MusicCard from '../components/MusicCard';
+import WriteFixedBtn from '../components/WriteFixedBtn';
 
 const Home = () => {
   // const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const Home = () => {
           <MusicCard />
         </div>
       </StWrap>
+      <WriteFixedBtn/>
     </>
   );
 };
