@@ -1,9 +1,9 @@
 ## Library that we used
 
-yarn add react-bootstrap bootstrap
-yarn add react-router-dom
-yarn add axios
-yarn add react-redux @reduxjs/toolkit
+- yarn add react-bootstrap bootstrap
+- yarn add react-router-dom
+- yarn add axios
+- yarn add react-redux @reduxjs/toolkit
 
 ## Naming Convention
 Component 파일명은 pascal case 
