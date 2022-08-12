@@ -1,9 +1,12 @@
 ## Library that we used
-
 - yarn add react-bootstrap bootstrap
 - yarn add react-router-dom
 - yarn add axios
 - yarn add react-redux @reduxjs/toolkit
+- yarn add styled-component
+ <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
+  <img src="https://img.shields.io/badge/fontawesome-339AF0?style=for-the-badge&logo=fontawesome&logoColor=white">
+  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> 
 
 ## Naming Convention
 Component 파일명은 pascal case 
@@ -33,5 +36,6 @@ https://www.jondjones.com/frontend/react/react-tutorials/react-coding-standards-
 - 혹은 Issue 관계가 없을 경우 그냥
 - Docs: Docs 수정
 *****
+
 
 
