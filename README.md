@@ -27,11 +27,10 @@ https://www.jondjones.com/frontend/react/react-tutorials/react-coding-standards-
 - Refactor : 코드 리팩토링에 대한 커밋
 - Test : 테스트 코드 수정에 대한 커밋
 ***
-Issue tracking을 위해, #1 해당 Isuue 넣어서, subject에 작성
-subject 첫 글자 영어로 시작할 경우 대문자
-ex)
-Docs: #6 Docs 수정
-혹은 Issue 관계가 없을 경우 그냥
-Docs: Docs 수정
+-Issue tracking을 위해, #1 해당 Isuue 넣어서, subject에 작성
+-subject 첫 글자 영어로 시작할 경우 대문자
+- ex) Docs: #6 Docs 수정
+- 혹은 Issue 관계가 없을 경우 그냥
+- Docs: Docs 수정
 
 
