@@ -48,7 +48,7 @@ const SignUp = ({ signup, handleCloseSignup }) => {
             Close
           </Button>
           <Button variant='primary' onClick={handleCloseSignup}>
-            Submit
+            Sign Up
           </Button>
         </Modal.Footer>
       </Modal>

@@ -32,7 +32,7 @@ const Login = ({ login, handleCloseLogin }) => {
             Close
           </Button>
           <Button variant='primary' onClick={handleCloseLogin}>
-            Submit
+            Log In
           </Button>
         </Modal.Footer>
       </Modal>
