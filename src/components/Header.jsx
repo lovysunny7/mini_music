@@ -16,7 +16,7 @@ function Header() {
   const navigate = useNavigate();
   return (
     <>
-      <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
+      <Navbar collapseOnSelect expand='lg' style={{backgroundColor:'#564592'}} variant='dark'>
         <Container>
           <Navbar.Brand
             onClick={() => {

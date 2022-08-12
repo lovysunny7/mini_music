@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Container } from 'react-bootstrap';
+import { Card, Col, Container, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import ReactPlayer from 'react-player/youtube'
@@ -47,13 +47,21 @@ const ViewModal = () => {
         <Container>
         <Card>
         <Card.Body >
-            글작성자: {username}               작성시간: {createdAt} 
+        <Row>
+        <Col xs={12} md={8}>
+        글작성자: {username}
+        </Col>
+        <Col xs={6} md={4}>
+        작성시간: {createdAt} 
+        </Col>
+      </Row>
+                           
         </Card.Body>
         </Card>
         <Card>
         <Card.Body>
             감상평/추천이유:
-            ##############################################################
+            ######################################################################################################
             ##############################################################
             ##############################################################
             ##############################################################

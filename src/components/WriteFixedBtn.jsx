@@ -8,17 +8,19 @@ const WriteFixedBtn = () => {
     <div>
       <Button
         style={{
-          display: 'scroll',
+          display: '',
           position: 'fixed',
-          bottom: '15px',
-          right: '15px',
-          borderRadius: '10px',
+          bottom: '75px',
+          right: '75px',
+          borderRadius: '15px',
           backgroundColor:'#ca7df9',
-          border: 'none'
+          border: 'none',
+          padding: '15px 20px',
+          cursor:PointerEvent,
         }}
         onClick={()=>{navigate('/postWrite')}}
       >
-       <span className='material-icons'>add_circle</span>
+       <span style={{fontSize:'36px'}}className='material-icons'>add_circle</span>
       </Button>
     </div>
   );
