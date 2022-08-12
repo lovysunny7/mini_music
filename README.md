@@ -32,5 +32,6 @@ https://www.jondjones.com/frontend/react/react-tutorials/react-coding-standards-
 - ex) Docs: #6 Docs 수정
 - 혹은 Issue 관계가 없을 경우 그냥
 - Docs: Docs 수정
+*****
 
 
