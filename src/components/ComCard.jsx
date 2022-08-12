@@ -13,9 +13,9 @@ function ComCard() {
     const Heart = () =>{
        return(
         heart?
-        (<span onClick={handleHeart} style={{color:'red'}} class="material-icons">favorite</span>)
+        (<span onClick={handleHeart} style={{color:'red'}} className="material-icons">favorite</span>)
         :
-        (<span onClick={handleHeart} class="material-icons">favorite_border</span>)
+        (<span onClick={handleHeart} className="material-icons">favorite_border</span>)
        )
     }
     

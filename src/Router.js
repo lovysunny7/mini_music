@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header.jsx';
 import Home from './pages/Home.jsx';
 import MyPage from './pages/MyPage.jsx';
+import PostUpdate from './pages/PostUpdate.jsx';
 import PostView from './pages/PostView.jsx';
 import PostWrite from './pages/PostWrite.jsx';
 
@@ -15,7 +16,7 @@ const Router = () => {
         <Route exact path='/mypage' element={<MyPage />} />
         <Route exact path='/postView' element={<PostView />} />
         <Route exact path='/postWrite' element={<PostWrite/>} />
-        <Route exact path='/postUpdate' element={<PostWrite/>} />
+        <Route exact path='/postUpdate' element={<PostUpdate/>} />
       </Routes>
     </BrowserRouter>
   );

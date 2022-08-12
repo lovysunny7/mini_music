@@ -18,8 +18,8 @@ const ViewModal = () => {
   const [artisit, setArtisit] =  useState('');
   const [genre, setGenre] = useState('');
   const [contents, setContents] = useState('');
-  const [image, setImage] = useState('');
-  const [viedo, setVideo] = useState('');
+  const [imageURL, setImage] = useState('');
+  const [viedoURL, setVideo] = useState('');
   const [likeCnt, setLikeCnt] = useState('');
   const [commentList, setCommentList] = useState('');
   const [createdAt, setCreatedAt] = useState('');

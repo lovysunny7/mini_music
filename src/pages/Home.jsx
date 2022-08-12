@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 import MusicCard from '../components/MusicCard';
 import { useNavigate } from 'react-router-dom';
+import WriteFixedBtn from '../components/WriteFixedBtn';
 
 const Home = () => {
   // const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const Home = () => {
         </div>
       </StWrap>
       <StPosting onClick={()=>{navigate('/postWrite')}}>+</StPosting>
+      {/* <WriteFixedBtn/> */}
     </>
   );
 };
