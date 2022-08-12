@@ -21,8 +21,8 @@ const Home = () => {
           <MusicCard />
         </div>
       </StWrap>
-      <StPosting onClick={()=>{navigate('/postWrite')}}>+</StPosting>
-      {/* <WriteFixedBtn/> */}
+      {/* <StPosting onClick={()=>{navigate('/postWrite')}}>+</StPosting> */}
+      <WriteFixedBtn />
     </>
   );
 };
