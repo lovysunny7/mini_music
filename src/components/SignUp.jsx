@@ -17,10 +17,18 @@ const SignUp = ({ signup, handleCloseSignup }) => {
       [event.target.name]: event.target.value,
     });
   };
-
+  const handleClose = () => {
+    handleCloseSignup(); // 실제 모달 닫는 함수
+    setState({
+      signupId: '',
+      signupName: '',
+      signupPw1: '',
+      signupPw2: '',
+    }); // 인풋 초기화
+  };
   return (
     <>
-      <Modal show={signup} onHide={handleCloseSignup}>
+      <Modal show={signup} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>회원 가입</Modal.Title>
         </Modal.Header>
@@ -73,10 +81,10 @@ const SignUp = ({ signup, handleCloseSignup }) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' onClick={handleCloseSignup}>
+          <Button variant='secondary' onClick={handleClose}>
             Close
           </Button>
-          <Button variant='primary' onClick={handleCloseSignup}>
+          <Button variant='primary' onClick={handleClose}>
             Sign Up
           </Button>
         </Modal.Footer>
