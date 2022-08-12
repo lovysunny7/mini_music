@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import ModalDetail from "../components/ModalDetail";
+import ViewModal from "../components/ViewModal";
 
 const Post = () => {
 //   const reviewList = useSelector((state) => state.review.reviewList);
 
   return (
     <div>
-        <ModalDetail/>
+        <ViewModal/>
     </div>
   );
 };
