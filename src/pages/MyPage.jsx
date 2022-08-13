@@ -10,7 +10,7 @@ const MyPage = () => {
         <StDiv>
           <p>My Posting 💖</p>
         </StDiv>
-        <div className='row row-cols-1 row-cols-md-4 g-3'>
+        <div className='row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-xxl-4 g-4'>
           <MusicCard />
           <MusicCard />
         </div>
@@ -26,6 +26,6 @@ const StWrap = styled.div`
 
 const StDiv = styled.div`
   font-size: 22px;
-`
+`;
 
 export default MyPage;
