@@ -3,10 +3,10 @@ import { Button, Form, Modal } from 'react-bootstrap';
 
 const SignUp = ({ signup, handleCloseSignup }) => {
   const [state, setState] = useState({
-    signupId: '',
-    signupName: '',
-    signupPw1: '',
-    signupPw2: '',
+    username: '',
+    // signupName: '',
+    password: '',
+    passwordConfirm: '',
   });
 
   const handleChangeState = (event) => {
@@ -20,10 +20,10 @@ const SignUp = ({ signup, handleCloseSignup }) => {
   const handleClose = () => {
     handleCloseSignup(); // 실제 모달 닫는 함수
     setState({
-      signupId: '',
-      signupName: '',
-      signupPw1: '',
-      signupPw2: '',
+      username: '',
+      // signupName: '',
+      password: '',
+      passwordConfirm: '',
     }); // 인풋 초기화
   };
   return (
@@ -34,19 +34,19 @@ const SignUp = ({ signup, handleCloseSignup }) => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className='mb-3' controlId='signupId'>
+            <Form.Group className='mb-3' controlId='username'>
               <Form.Label>아이디</Form.Label>
               <Form.Control
                 type='text'
-                placeholder='아이디를 입력하세요.'
+                placeholder='영어로 시작하며 소문자와 숫자만 사용이 가능합니다'
                 autoFocus
                 required
-                name='signupId'
-                value={state.signupId}
+                name='username'
+                value={state.username}
                 onChange={handleChangeState}
               />
             </Form.Group>
-            <Form.Group className='mb-3' controlId='signupName'>
+            {/* <Form.Group className='mb-3' controlId='signupName'>
               <Form.Label>사용자명</Form.Label>
               <Form.Control
                 type='text'
@@ -57,28 +57,28 @@ const SignUp = ({ signup, handleCloseSignup }) => {
                 value={state.signupName}
                 onChange={handleChangeState}
               />
-            </Form.Group>
-            <Form.Group className='mb-3' controlId='signupPw1'>
+            </Form.Group> */}
+            <Form.Group className='mb-3' controlId='password'>
               <Form.Label>비밀번호</Form.Label>
               <Form.Control
                 type='password'
                 placeholder='비밀번호 조건 어쩌구'
                 autoFocus
                 required
-                name='signupPw1'
-                value={state.signupPw1}
+                name='password'
+                value={state.password}
                 onChange={handleChangeState}
               />
             </Form.Group>
-            <Form.Group className='mb-3' controlId='signupPw2'>
+            <Form.Group className='mb-3' controlId='passwordConfirm'>
               <Form.Label>비밀번호 확인</Form.Label>
               <Form.Control
                 type='password'
                 placeholder='비밀번호를 동일하게 한 번 더 입력하세요.'
                 autoFocus
                 required
-                name='signupPw2'
-                value={state.signupPw2}
+                name='passwordConfirm'
+                value={state.passwordConfirm}
                 onChange={handleChangeState}
               />
             </Form.Group>
