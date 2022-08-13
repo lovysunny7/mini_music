@@ -1,29 +1,35 @@
-import React from 'react'
-import { Button } from 'react-bootstrap'
-import {useNavigate} from 'react-router-dom'
+import React from 'react';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const WriteFixedBtn = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div>
       <Button
         style={{
-          display: '',
+          display: 'flex',
           position: 'fixed',
-          bottom: '75px',
-          right: '75px',
+          bottom: '8%',
+          right: '8%',
           borderRadius: '15px',
-          backgroundColor:'#ca7df9',
+          backgroundColor: '#ca7df9',
           border: 'none',
-          padding: '15px 20px',
-          cursor:PointerEvent,
+          padding: '20px',
+          justifyContent: 'center',
+          alignItems: 'center',
+          cursor: PointerEvent,
         }}
-        onClick={()=>{navigate('/postWrite')}}
+        onClick={() => {
+          navigate('/postWrite');
+        }}
       >
-       <span style={{fontSize:'36px'}}className='material-icons'>add_circle</span>
+        <span style={{ fontSize: '36px' }} className='material-icons'>
+          add_circle
+        </span>
       </Button>
     </div>
   );
-}
+};
 
-export default WriteFixedBtn
+export default WriteFixedBtn;
