@@ -28,17 +28,18 @@ const StTop = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-const StTitle = styled.div`
+
+export const StTitle = styled.div`
   font-size: 22px;
 `;
 
-const StArtist = styled.div`
+export const StArtist = styled.div`
   font-size: 16px;
   font-style: italic;
   margin-right: 10px;
 `;
 
-const StContent = styled.p`
+export const StContent = styled.p`
   margin: 10px auto;
   /* border: 1px solid rebeccapurple; */
 `;

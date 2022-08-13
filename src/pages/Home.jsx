@@ -26,7 +26,6 @@ const Home = () => {
           ))}
         </div>
       </StWrap>
-      {/* <StPosting onClick={()=>{navigate('/postWrite')}}>➕</StPosting> */}
       <WriteFixedBtn />
     </>
   );
@@ -36,18 +35,5 @@ const StWrap = styled.div`
   margin: 5% 15%;
   display: flex;
 `;
-
-// const StPosting = styled.button`
-//   position: fixed;
-//   padding: 25px 25px;
-//   bottom: 10%;
-//   right: 5%;
-//   z-index: 999;
-//   border: none;
-//   border-radius: 100%;
-//   background-color: #564592;
-//   color: #fff;
-//   cursor: pointer;
-// `;
 
 export default Home;
