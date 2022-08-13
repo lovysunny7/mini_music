@@ -1,15 +1,21 @@
-const MusicCard = () => {
+import styled from 'styled-components';
+
+const MusicCard = ({ post }) => {
   return (
     <div className='col'>
       <div className='card'>
         <img
-          src='https://w.namu.la/s/a5cb942717e4f4fe8c00b62622d9694398a2ce19b7ca7bba7f51dab7651a6ff060352acd01bdc704952fd8aeaf07a53b91728595c1ec8f002ae57a66180786fd731069c278995fa168663fa45df495231c343763be48aebd9748141f074c697b'
+          src={post.imageUrl}
           className='card-img-top'
           alt='앨범 이미지 설명글'
         />
         <div className='card-body'>
-          <h5 className='card-title'>Card title</h5>
-          <p className='card-text'>This is a longer card with supporting text...</p>
+          <p className='card-text'>{post.username}님의 Pick!</p>
+          {/* <StTop> */}
+          <StTitle>{post.title}</StTitle>
+          <StArtist>{post.artist}</StArtist>
+          {/* </StTop> */}
+          <StContent className='card-text'>{post.content}</StContent>
         </div>
       </div>
     </div>
@@ -17,3 +23,22 @@ const MusicCard = () => {
 };
 
 export default MusicCard;
+const StTop = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const StTitle = styled.div`
+  font-size: 22px;
+`;
+
+const StArtist = styled.div`
+  font-size: 16px;
+  font-style: italic;
+  margin-right: 10px;
+`;
+
+const StContent = styled.p`
+  margin: 10px auto;
+  /* border: 1px solid rebeccapurple; */
+`;
