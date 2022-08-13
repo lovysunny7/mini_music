@@ -37,9 +37,10 @@ const SignUp = ({ signup, handleCloseSignup }) => {
             <Form.Group className='mb-3' controlId='signupId'>
               <Form.Label>아이디</Form.Label>
               <Form.Control
-                type='id'
+                type='text'
                 placeholder='아이디를 입력하세요.'
                 autoFocus
+                required
                 name='signupId'
                 value={state.signupId}
                 onChange={handleChangeState}
@@ -48,9 +49,10 @@ const SignUp = ({ signup, handleCloseSignup }) => {
             <Form.Group className='mb-3' controlId='signupName'>
               <Form.Label>사용자명</Form.Label>
               <Form.Control
-                type='name'
+                type='text'
                 placeholder='닉네임'
                 autoFocus
+                required
                 name='signupName'
                 value={state.signupName}
                 onChange={handleChangeState}
@@ -62,6 +64,7 @@ const SignUp = ({ signup, handleCloseSignup }) => {
                 type='password'
                 placeholder='비밀번호 조건 어쩌구'
                 autoFocus
+                required
                 name='signupPw1'
                 value={state.signupPw1}
                 onChange={handleChangeState}
@@ -73,6 +76,7 @@ const SignUp = ({ signup, handleCloseSignup }) => {
                 type='password'
                 placeholder='비밀번호를 동일하게 한 번 더 입력하세요.'
                 autoFocus
+                required
                 name='signupPw2'
                 value={state.signupPw2}
                 onChange={handleChangeState}
@@ -84,7 +88,7 @@ const SignUp = ({ signup, handleCloseSignup }) => {
           <Button variant='secondary' onClick={handleClose}>
             Close
           </Button>
-          <Button variant='primary' onClick={handleClose}>
+          <Button variant='primary' onClick={() => {}}>
             Sign Up
           </Button>
         </Modal.Footer>
