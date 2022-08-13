@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 
 const MusicCard = ({ post }) => {
+  const 생략 = (sentence) => {
+    if (sentence.length > 15) {
+      return sentence + ' ...';
+    } else {
+      return sentence;
+    }
+  };
+
   return (
     <div className='col'>
       <div className='card'>
@@ -15,7 +23,9 @@ const MusicCard = ({ post }) => {
           <StTitle>{post.title}</StTitle>
           <StArtist>{post.artist}</StArtist>
           {/* </StTop> */}
-          <StContent className='card-text'>{post.content}</StContent>
+          <StContent className='card-text'>
+            {생략(post.content.slice(0, 16))}
+          </StContent>
         </div>
       </div>
     </div>
