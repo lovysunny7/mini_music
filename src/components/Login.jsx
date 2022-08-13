@@ -3,8 +3,8 @@ import { Button, Form, Modal } from 'react-bootstrap';
 
 const Login = ({ login, handleCloseLogin }) => {
   const [state, setState] = useState({
-    loginId: '',
-    loginPw: '',
+    username: '',
+    password: '',
   });
 
   const handleChangeState = (event) => {
@@ -19,8 +19,8 @@ const Login = ({ login, handleCloseLogin }) => {
   const handleClose = () => {
     handleCloseLogin(); // 실제 모달 닫는 함수
     setState({
-      loginId: '',
-      loginPw: '',
+      username: '',
+      password: '',
     }); // 인풋 초기화
   };
   return (
@@ -31,25 +31,25 @@ const Login = ({ login, handleCloseLogin }) => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className='mb-3' controlId='loginId'>
+            <Form.Group className='mb-3' controlId='username'>
               <Form.Label>아이디</Form.Label>
               <Form.Control
-                type='id'
+                type='text'
                 placeholder='아이디를 입력하세요.'
                 autoFocus
-                name='loginId'
-                value={state.loginId}
+                name='username'
+                value={state.username}
                 onChange={handleChangeState}
               />
             </Form.Group>
-            <Form.Group className='mb-3' controlId='loginPw'>
+            <Form.Group className='mb-3' controlId='password'>
               <Form.Label>비밀번호</Form.Label>
               <Form.Control
                 type='password'
                 placeholder='비밀번호를 입력하세요.'
                 autoFocus
-                name='loginPw'
-                value={state.loginPw}
+                name='password'
+                value={state.password}
                 onChange={handleChangeState}
               />
             </Form.Group>
