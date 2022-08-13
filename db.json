@@ -1,0 +1,42 @@
+{
+  "posts": [
+    {
+      "postId": 1,
+      "title": "epliogue",
+      "username": "cocobang",
+      "artist": "IU",
+      "genre": "Ballad",
+      "content": "퇴사할 즈음에 많이 들었어요",
+      "imageUrl": "https://w.namu.la/s/db95e8529db90e3ad7c75b6d7ea8506b7a4a6f0d547810cc6ab1aa8c7f063f848a56c4f93636c7fa53e81f5fe00a3374df82f3d4b38372669e466cad41c3ea9f6d8599a7e1cc92e480151edd39e8d11f9fe8f557a20aca3229ccf1ece31b874b",
+      "videoUrl": "https://youtu.be/c9E2IT1jHQY",
+      "createdAt": 1659311283308,
+      "modifiedAt": null
+    },
+    {
+      "postId": 2,
+      "title": "주저하는 연인들을 위해",
+      "username": "oohlala",
+      "artist": "잔나비",
+      "genre": "Ballad",
+      "content": "들으면 몽글몽글해져요!",
+      "imageUrl": "https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2528/image/gAQwYrfgzrdhkL4odG7BDoaIHu8",
+      "videoUrl": "https://youtu.be/5g4KsIizYhQ",
+      "createdAt": 1659341238308,
+      "modifiedAt": null
+    }
+  ],
+  "comments": [
+    {
+      "commentId": 1,
+      "comment": "맞아요 이노래 진짜 좋아요",
+      "username": "cocobang",
+      "createdAt": 1659341238308
+    }
+  ],
+  "users": {
+    "id": 1,
+    "username": "tester",
+    "createdAt": 1653341288308,
+    "modifiedAt": null
+  }
+}
