@@ -8,18 +8,20 @@ import PostView from './pages/PostView';
 import PostWrite from './pages/PostWrite';
 import NotFound from './pages/NotFound';
 import Detail from './pages/Detail';
+import Home2 from './pages/Home2';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route exact path='/' element={<Home />} />
+        {/* <Route exact path='/' element={<Home />} /> */}
+        <Route exact path='/' element={<Home2 />} />
         <Route exact path='/mypage' element={<MyPage />} />
         {/* <Route path='/posts/:id' element={<Detail />} /> */}
-        <Route exact path='/postView' element={<PostView />} />
-        <Route exact path='/postWrite' element={<PostWrite />} />
-        <Route exact path='/postUpdate' element={<PostUpdate />} />
+        <Route exact path='/postview' element={<PostView />} />
+        <Route exact path='/postwrite' element={<PostWrite />} />
+        <Route exact path='/postupdate' element={<PostUpdate />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>

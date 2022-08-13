@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Card, InputGroup, ListGroup } from 'react-bootstrap';
+import { Button, Card, Form, InputGroup, ListGroup } from 'react-bootstrap';
 
-function ComCard() {
+const ComCard = ({post}) => {
   const [username, setUsername] = useState('');
   const [likeCnt, setLikeCnt] = useState('');
   const [heart, setHeart] = useState(false);
@@ -12,7 +12,7 @@ function ComCard() {
   const Heart = () => {
     return heart ? (
       <span
-        style={{ cursor: 'pointer', color: 'red' }}
+        style={{ cursor: 'pointer', color: 'red', marginLeft:'5px' }}
         onClick={handleHeart}
         className='material-icons'
       >
@@ -20,7 +20,7 @@ function ComCard() {
       </span>
     ) : (
       <span
-        style={{ cursor: 'pointer' }}
+        style={{ cursor: 'pointer', marginLeft:'5px' }}
         onClick={handleHeart}
         className='material-icons'
       >
@@ -28,22 +28,30 @@ function ComCard() {
       </span>
     );
   };
-
+  // console.log(post);
   return (
     <>
       <Card size='lg'>
         <Card.Header style={{ display: 'flex', justifyContent: 'end' }}>
-          하트수: {likeCnt} <Heart />{' '}
+         {post.likeCnt}     <Heart />
         </Card.Header>
         <ListGroup variant='flush'>
-          <ListGroup.Item>{username} 댓 1</ListGroup.Item>
-          <ListGroup.Item>댓 2</ListGroup.Item>
-          <ListGroup.Item>댓 3</ListGroup.Item>
+          {(post.commentList).map((cmt,idx) =>(
+            <ListGroup.Item key={idx}>{cmt}</ListGroup.Item>
+          ))
+          }
         </ListGroup>
       </Card>
-      <Card size='lg'>
-        <InputGroup></InputGroup>
-      </Card>
+      {/* <Card size='lg'> */}
+        <InputGroup>
+        <Form.Control      
+          aria-describedby="comAdd"
+        />
+        <Button id="comAdd">
+          댓글등록
+        </Button>
+        </InputGroup>
+      {/* </Card> */}
     </>
   );
 }

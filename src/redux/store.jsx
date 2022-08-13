@@ -3,12 +3,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import post from './modules/post';
 import comment from './modules/comment';
 import user from './modules/user';
-
+import postReducer from './modules/postSlice';
 const store = configureStore({
   reducer: {
-    user,
-    post,
-    comment,
+      post: postReducer
+    // user,
+    // comment,
   },
 });
 
