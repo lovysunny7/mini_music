@@ -6,6 +6,7 @@ import MyPage from './pages/MyPage.jsx';
 import PostUpdate from './pages/PostUpdate.jsx';
 import PostView from './pages/PostView.jsx';
 import PostWrite from './pages/PostWrite.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 const Router = () => {
   return (
@@ -15,8 +16,9 @@ const Router = () => {
         <Route exact path='/' element={<Home />} />
         <Route exact path='/mypage' element={<MyPage />} />
         <Route exact path='/postView' element={<PostView />} />
-        <Route exact path='/postWrite' element={<PostWrite/>} />
-        <Route exact path='/postUpdate' element={<PostUpdate/>} />
+        <Route exact path='/postWrite' element={<PostWrite />} />
+        <Route exact path='/postUpdate' element={<PostUpdate />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
