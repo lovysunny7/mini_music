@@ -1,9 +1,10 @@
-import styled from 'styled-components';
 import MusicCard from '../components/MusicCard';
 import WriteFixedBtn from '../components/WriteFixedBtn';
+import StLayout from '../components/layout/Layout';
+import { StSecTitle } from './MyPage';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { StSecTitle } from './MyPage';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -18,23 +19,27 @@ const Home = () => {
   }, []);
   console.log(posts);
 
+  const navigate = useNavigate();
+
   return (
     <>
-      <StWrap>
-      <StSecTitle>All Genre 🎂</StSecTitle>
+      <StLayout>
+        <StSecTitle>All Genre 🎂</StSecTitle>
         <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
           {posts.map((post) => (
-            <MusicCard key={post.postId} post={post} />
+            <MusicCard
+              key={post.postId}
+              post={post}
+              onClick={() => {
+                navigate(`/posts/${post.postId}`);
+              }}
+            />
           ))}
         </div>
-      </StWrap>
+      </StLayout>
       <WriteFixedBtn />
     </>
   );
 };
-
-const StWrap = styled.div`
-  margin: 5% 15%;
-`;
 
 export default Home;
