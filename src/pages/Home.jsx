@@ -1,12 +1,11 @@
 // import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MusicCard from '../components/MusicCard';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import WriteFixedBtn from '../components/WriteFixedBtn';
 
 const Home = () => {
   // const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   return (
     <>
@@ -27,22 +26,21 @@ const Home = () => {
 };
 
 const StWrap = styled.div`
-  /* border: 1px solid rebeccapurple; */
   margin: 5% 15%;
   display: flex;
 `;
 
-const StPosting = styled.button`
-  position: fixed;
-  padding: 25px 25px;
-  bottom: 10%;
-  right: 5%;
-  z-index: 999;
-  border: none;
-  border-radius: 100%;
-  background-color: #564592;
-  color: #fff;
-  cursor: pointer;
-`;
+// const StPosting = styled.button`
+//   position: fixed;
+//   padding: 25px 25px;
+//   bottom: 10%;
+//   right: 5%;
+//   z-index: 999;
+//   border: none;
+//   border-radius: 100%;
+//   background-color: #564592;
+//   color: #fff;
+//   cursor: pointer;
+// `;
 
 export default Home;
