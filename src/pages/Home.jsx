@@ -3,6 +3,7 @@ import MusicCard from '../components/MusicCard';
 import WriteFixedBtn from '../components/WriteFixedBtn';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { StSecTitle } from './MyPage';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -20,6 +21,7 @@ const Home = () => {
   return (
     <>
       <StWrap>
+      <StSecTitle>All Genre 🎂</StSecTitle>
         <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
           {posts.map((post) => (
             <MusicCard key={post.postId} post={post} />
@@ -33,7 +35,6 @@ const Home = () => {
 
 const StWrap = styled.div`
   margin: 5% 15%;
-  display: flex;
 `;
 
 export default Home;

@@ -31,12 +31,13 @@ const StTop = styled.div`
 
 export const StTitle = styled.div`
   font-size: 22px;
+  margin-bottom: 5px;
 `;
 
 export const StArtist = styled.div`
   font-size: 16px;
   font-style: italic;
-  margin-right: 10px;
+  /* margin-right: 10px; */
 `;
 
 export const StContent = styled.p`
