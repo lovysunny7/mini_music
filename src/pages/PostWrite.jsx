@@ -73,7 +73,7 @@ const PostWrite = () => {
         <br />
         <h3>{username}'s MUSIC PICK!</h3>
         <Form
-          style={{ width: '70%', margin: 'auto' }}
+          style={{ width: '80%', margin: 'auto' }}
           noValidate
           validated={validated}
           onSubmit={handleSubmit}
