@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { __getOnePost } from "../asyncThunk/asyncPost";
 
 const initialState = {
+  ishiddenPost: false,
   posetList: [],
   tmp: {},
 };
@@ -11,6 +12,12 @@ const postSlice = createSlice({
   name: "post",
   initialState,
   reducers: {
+    showIshidden: (state) => {
+    //  return(ishiddenPost);
+    },
+    updateIshidden: (state, action) => {
+      state.ishiddenPost = action.payload;
+    },
     createPost: (state, action) => {
       state.cafeList.push(action.payload);
     },
