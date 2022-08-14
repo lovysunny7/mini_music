@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRef } from 'react';
 import { Button, Col, Container, Form, InputGroup, Row } from 'react-bootstrap';
+import { StDetailWrap } from '../components/layout/Layout';
 
 const PostWrite = () => {
   const [validated, setValidated] = useState(false);
@@ -68,71 +69,88 @@ const PostWrite = () => {
 
   return (
     <div style={{ textAlign: 'center', margin: '30px' }}>
-      <Container style={{ margin: 'auto' }}>
-        <h1>What's your Favorite Song?</h1>
-        <br />
-        <h3>{username}'s MUSIC PICK!</h3>
-        <Form
-          style={{ width: '80%', margin: 'auto' }}
-          noValidate
-          validated={validated}
-          onSubmit={handleSubmit}
-        >
-          <Form.Group style={{ margin: '30px' }}>
-            <InputGroup hasValidation>
-              <InputGroup.Text>음악제목</InputGroup.Text>
-              <Form.Control type='text' required id='title' ref={titleRef} />
-              <Form.Control.Feedback type='invalid'>
-                음악제목을 적어주세요
-              </Form.Control.Feedback>
-            </InputGroup>
-          </Form.Group>
-          <Form.Group style={{ margin: '30px' }}>
-            <InputGroup hasValidation>
-              <InputGroup.Text>가수</InputGroup.Text>
-              <Form.Control type='text' required id='artist' ref={artistRef} />
-              <Form.Control.Feedback type='invalid'>
-                가수를 적어주세요
-              </Form.Control.Feedback>
-            </InputGroup>
-          </Form.Group>
-          <GenreRadio />
+      <StDetailWrap>
+        <Container style={{ margin: 'auto' }}>
+          <h1>What's your Favorite Song?</h1>
+          <br />
+          <h3>{username}'s MUSIC PICK!</h3>
+          <Form
+            // style={{ width: '80%', margin: 'auto' }}
+            noValidate
+            validated={validated}
+            onSubmit={handleSubmit}
+          >
+            <Form.Group style={{ margin: '30px' }}>
+              <InputGroup hasValidation>
+                <InputGroup.Text>음악제목</InputGroup.Text>
+                <Form.Control type='text' required id='title' ref={titleRef} />
+                <Form.Control.Feedback type='invalid'>
+                  음악제목을 적어주세요
+                </Form.Control.Feedback>
+              </InputGroup>
+            </Form.Group>
+            <Form.Group style={{ margin: '30px' }}>
+              <InputGroup hasValidation>
+                <InputGroup.Text>가수</InputGroup.Text>
+                <Form.Control
+                  type='text'
+                  required
+                  id='artist'
+                  ref={artistRef}
+                />
+                <Form.Control.Feedback type='invalid'>
+                  가수를 적어주세요
+                </Form.Control.Feedback>
+              </InputGroup>
+            </Form.Group>
+            <GenreRadio />
 
-          <Form.Group style={{ margin: '30px' }}>
-            <Form.Control
-              type='text'
-              required
-              id='contents'
-              ref={contentsRef}
-              placeholder='추천이유와 감상평은 어떻게 되시나요?'
-              style={{ height: '300px' }}
-            />
-            <Form.Control.Feedback type='invalid'>
-              추천 이유를 적어주세요
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group style={{ margin: '30px' }}>
-            <InputGroup hasValidation>
-              <InputGroup.Text>이미지</InputGroup.Text>
-              <Form.Control type='file' required id='imageUrl' ref={imageRef} />
+            <Form.Group style={{ margin: '30px' }}>
+              <Form.Control
+                type='text'
+                required
+                id='contents'
+                ref={contentsRef}
+                placeholder='추천이유와 감상평은 어떻게 되시나요?'
+                style={{ height: '300px' }}
+              />
               <Form.Control.Feedback type='invalid'>
-                이미지 파일을 업로드 해주세요
+                추천 이유를 적어주세요
               </Form.Control.Feedback>
-            </InputGroup>
-          </Form.Group>
-          <Form.Group style={{ margin: '30px' }}>
-            <InputGroup hasValidation>
-              <InputGroup.Text>Youtube URL</InputGroup.Text>
-              <Form.Control type='url' required id='videoUrl' ref={videoRef} />
-              <Form.Control.Feedback type='invalid'>
-                Youtube URL을 입력해주세요
-              </Form.Control.Feedback>
-            </InputGroup>
-          </Form.Group>
+            </Form.Group>
+            <Form.Group style={{ margin: '30px' }}>
+              <InputGroup hasValidation>
+                <InputGroup.Text>이미지</InputGroup.Text>
+                <Form.Control
+                  type='file'
+                  required
+                  id='imageUrl'
+                  ref={imageRef}
+                />
+                <Form.Control.Feedback type='invalid'>
+                  이미지 파일을 업로드 해주세요
+                </Form.Control.Feedback>
+              </InputGroup>
+            </Form.Group>
+            <Form.Group style={{ margin: '30px' }}>
+              <InputGroup hasValidation>
+                <InputGroup.Text>Youtube URL</InputGroup.Text>
+                <Form.Control
+                  type='url'
+                  required
+                  id='videoUrl'
+                  ref={videoRef}
+                />
+                <Form.Control.Feedback type='invalid'>
+                  Youtube URL을 입력해주세요
+                </Form.Control.Feedback>
+              </InputGroup>
+            </Form.Group>
 
-          <Button type='submit'>Submit form</Button>
-        </Form>
-      </Container>
+            <Button type='submit'>Submit form</Button>
+          </Form>
+        </Container>
+      </StDetailWrap>
     </div>
   );
 };
