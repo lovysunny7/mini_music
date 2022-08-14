@@ -1,17 +1,25 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const MusicCard = ({ post }) => {
-  const 생략 = (sentence) => {
-    if (sentence.length > 15) {
-      return sentence + ' ...';
+  const shorts = (sentence) => {
+    if (sentence.length > 18) {
+      return sentence + '...';
     } else {
       return sentence;
     }
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className='col'>
-      <div className='card'>
+      <div
+        className='card'
+        onClick={() => {
+          navigate(`/posts/${post.postId}`);
+        }}
+      >
         <img
           src={post.imageUrl}
           className='card-img-top'
@@ -24,7 +32,8 @@ const MusicCard = ({ post }) => {
           <StArtist>{post.artist}</StArtist>
           {/* </StTop> */}
           <StContent className='card-text'>
-            {생략(post.content.slice(0, 16))}
+            {/* {shorts(post.content.slice(0, 19))} */}
+            {post.content}
           </StContent>
         </div>
       </div>
@@ -35,7 +44,7 @@ const MusicCard = ({ post }) => {
 export default MusicCard;
 const StTop = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
 `;
 
@@ -47,7 +56,7 @@ export const StTitle = styled.div`
 export const StArtist = styled.div`
   font-size: 16px;
   font-style: italic;
-  /* margin-right: 10px; */
+  /* margin-left: 10px; */
 `;
 
 export const StContent = styled.p`

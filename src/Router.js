@@ -18,12 +18,11 @@ const Router = () => {
       <Header />
       <Routes>
         <Route exact path='/' element={<Home />} />
+        {/* <Route exact path='/' element={<Home2 />} /> */}
         <Route path='/ballad' element={<Ballad />} />
         <Route path='/dance' element={<Dance />} />
-        {/* <Route exact path='/' element={<Home />} /> */}
-        <Route exact path='/' element={<Home2 />} />
         <Route exact path='/mypage' element={<MyPage />} />
-        {/* <Route path='/posts/:id' element={<Detail />} /> */}
+        <Route path='/posts/:id' element={<Detail />} />
         {/* <Route exact path='/postview' element={<PostView />} /> */}
         <Route exact path='/postwrite' element={<PostWrite />} />
         <Route exact path='/postupdate' element={<PostUpdate />} />
