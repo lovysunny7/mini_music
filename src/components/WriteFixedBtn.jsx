@@ -21,7 +21,7 @@ const WriteFixedBtn = () => {
           cursor: PointerEvent,
         }}
         onClick={() => {
-          navigate('/postWrite');
+          navigate('/postwrite');
         }}
       >
         <span style={{ fontSize: '36px' }} className='material-icons'>

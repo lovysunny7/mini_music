@@ -30,16 +30,17 @@ api.interceptors.response.use(
 
 // copy, paste haha....
 const apis = {
-  //user
-  post_view: async (postId) => await api.get(`/api/post/?postId=${postId}`),
-  post_write: async (payload) => await api.post('api/post', payload),
-  post_reWr: async (postId, payload) => await api.put(`/api/post/?postId=${postId}`, payload),
-  post_del: async (postId, payload) => await api.delete(`/api/post/?postId=${postId}`,payload),
-  post_heart: async (postId) => await api.post(`/api/post/like/?postId=${postId}`),
-  com_write: async(postId, payload) => 
-  await api.post(`/api/post/?postID=${postId}/comment`, payload),
+  post_view:  (postId) =>  api.get(`posts/?postId=${postId}`),
+  post_write:  (payload) =>  api.post('posts', payload),
+  post_reWr:  (postId, payload) =>  api.put(`/posts/?postId=${postId}`, payload),
+  post_del:  (postId, payload) =>  api.delete(`posts/?postId=${postId}`,payload),
+  post_heart:  (postId) =>  api.post(`posts/like/?postId=${postId}`),
+  com_write: (postId, payload) => 
+   api.post(`/comments/?postID=${postId}/comment`, payload),
   com_del: async(postId, payload) =>
-  await api.delete(`/api/post/?postID=${postId}/comment`, payload),
+   api.delete(`/comments/?postID=${postId}/comment`, payload),
+
+   
 };
 
 export default apis;

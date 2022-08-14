@@ -1,5 +1,5 @@
 {
-  "posts": [
+    "posts": [
     {
       "postId": 1,
       "title": "epliogue",
@@ -10,6 +10,8 @@
       "imageUrl": "https://w.namu.la/s/db95e8529db90e3ad7c75b6d7ea8506b7a4a6f0d547810cc6ab1aa8c7f063f848a56c4f93636c7fa53e81f5fe00a3374df82f3d4b38372669e466cad41c3ea9f6d8599a7e1cc92e480151edd39e8d11f9fe8f557a20aca3229ccf1ece31b874b",
       "videoUrl": "https://youtu.be/c9E2IT1jHQY",
       "createdAt": 1659311283308,
+      "likeCnt":"5",
+      "commentList":["하하", "괜찮네","음 낫배드"],
       "modifiedAt": null
     },
     {
@@ -21,6 +23,8 @@
       "content": "들으면 몽글몽글해져요!",
       "imageUrl": "https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2528/image/gAQwYrfgzrdhkL4odG7BDoaIHu8",
       "videoUrl": "https://youtu.be/5g4KsIizYhQ",
+      "likeCnt":"3",
+      "commentList":["헷갈리니", "무어","ㅋㅋㅋㅋㅋ","나비야나비야"],
       "createdAt": 1659341238308,
       "modifiedAt": null
     },
@@ -33,6 +37,8 @@
       "content": "여름이었다..",
       "imageUrl": "http://image.genie.co.kr/Y/IMAGE/IMG_ALBUM/082/814/458/82814458_1657270030475_1_600x600.JPG",
       "videoUrl": "https://youtu.be/-ucgmFcncmk",
+      "likeCnt":"3",
+      "commentList":["여름이였다**", "아아아","잠온다..."],
       "createdAt": 1659311237308,
       "modifiedAt": null
     },
@@ -45,6 +51,8 @@
       "content": "여름이니까 당연히 덥지?",
       "imageUrl": "http://image.genie.co.kr/Y/IMAGE/IMG_ARTIST/080/228/214/80228214_1656491465832_18_600x600.JPG",
       "videoUrl": "https://youtu.be/vJvX9L6FCWI",
+      "likeCnt":"1",
+      "commentList":["여름이니까여", "하테하테","음악듣기는커녕쩔어있다"],
       "createdAt": 1659391248302,
       "modifiedAt": null
     },
@@ -57,6 +65,8 @@
       "content": "임시 db를 너무 열심히 채우는 바람에 덕분에 노래 많이 듣네,,",
       "imageUrl": "https://f4.bcbits.com/img/a2335066143_10.jpg",
       "videoUrl": "https://youtu.be/My-fv5Org-4",
+      "likeCnt":"0",
+      "commentList":["으히히힝", "잠온당","살려듀세여...."],
       "createdAt": 1659391243309,
       "modifiedAt": null
     },
