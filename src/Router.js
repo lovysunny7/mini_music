@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
+import Ballad from './pages/Ballad';
+import Dance from './pages/Dance';
 import MyPage from './pages/MyPage';
 import PostUpdate from './pages/PostUpdate';
 import PostView from './pages/PostView';
@@ -15,6 +17,8 @@ const Router = () => {
       <Header />
       <Routes>
         <Route exact path='/' element={<Home />} />
+        <Route path='/ballad' element={<Ballad />} />
+        <Route path='/dance' element={<Dance />} />
         <Route exact path='/mypage' element={<MyPage />} />
         <Route path='/posts/:id' element={<Detail />} />
         <Route exact path='/postView' element={<PostView />} />
