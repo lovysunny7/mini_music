@@ -16,7 +16,12 @@ function Header() {
   const navigate = useNavigate();
   return (
     <>
-      <Navbar collapseOnSelect expand='lg' style={{backgroundColor:'#564592'}} variant='dark'>
+      <Navbar
+        collapseOnSelect
+        expand='lg'
+        style={{ backgroundColor: '#564592' }}
+        variant='dark'
+      >
         <Container>
           <Navbar.Brand
             onClick={() => {
@@ -35,11 +40,41 @@ function Header() {
               >
                 All
               </Nav.Link>
-              <Nav.Link href='#'>Ballad</Nav.Link>
-              <Nav.Link href='#'>Dance</Nav.Link>
-              <Nav.Link href='#'>Hiphop</Nav.Link>
-              <Nav.Link href='#'>Rock</Nav.Link>
-              <Nav.Link href='#'>etc</Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  navigate('/ballad');
+                }}
+              >
+                Ballad
+              </Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  navigate('/dance');
+                }}
+              >
+                Dance
+              </Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  navigate('/hiphop');
+                }}
+              >
+                Hiphop
+              </Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  navigate('/rock');
+                }}
+              >
+                Rock
+              </Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  navigate('/etc');
+                }}
+              >
+                etc
+              </Nav.Link>
             </Nav>
             <Nav>
               {/* 비로그인시 */}
