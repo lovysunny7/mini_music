@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import MusicCard from '../components/MusicCard';
+import PostCard from '../components/PostCard';
 import StLayout from '../components/layout/Layout';
-import { StArtist, StTitle, StContent } from '../components/MusicCard';
+import { StArtist, StTitle, StContent } from '../components/PostCard';
 
 const MyPage = () => {
   // const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const MyPage = () => {
       <StSection>
         <StSecTitle>My Posting ✨</StSecTitle>
         <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
-          {/* <MusicCard /> */}
+          {/* <PostCard /> */}
           {/* 카드 하나 */}
           <div className='col'>
             <div className='card'>

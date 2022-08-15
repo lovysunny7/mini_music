@@ -1,4 +1,4 @@
-import MusicCard from '../components/MusicCard';
+import PostCard from '../components/PostCard';
 import WriteFixedBtn from '../components/WriteFixedBtn';
 import StLayout from '../components/layout/Layout';
 import { StSecTitle } from './MyPage';
@@ -34,7 +34,7 @@ const Home = () => {
             <StSecTitle>All Genre 🎂</StSecTitle>
             <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
               {posts.map((post) => (
-                <MusicCard
+                <PostCard
                   key={post.postId}
                   post={post}
                   onClick={() => {
