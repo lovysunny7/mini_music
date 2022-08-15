@@ -5,12 +5,12 @@ import { StSecTitle } from './MyPage';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const Dance = () => {
+const Hiphop = () => {
   const [posts, setPosts] = useState([]);
 
   const fetchPosts = async () => {
     let { data } = await axios.get('http://localhost:3001/posts');
-    data = data.filter((post) => post.genre === 'Dance');
+    data = data.filter((post) => post.genre === 'Hiphop');
     setPosts(data);
   };
 
@@ -22,7 +22,7 @@ const Dance = () => {
   return (
     <>
       <StLayout>
-        <StSecTitle>Dance 🎉</StSecTitle>
+        <StSecTitle>Hiphop 🕶</StSecTitle>
         {posts.length > 0 ? (
           <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
             {posts.map((post) => (
@@ -38,4 +38,4 @@ const Dance = () => {
   );
 };
 
-export default Dance;
+export default Hiphop;

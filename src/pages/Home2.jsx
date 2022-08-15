@@ -1,4 +1,4 @@
-import MusicCard from '../components/MusicCard';
+import PostCard from '../components/PostCard';
 import WriteFixedBtn from '../components/WriteFixedBtn';
 import StLayout from '../components/layout/Layout';
 import { StSecTitle } from './MyPage';
@@ -54,7 +54,7 @@ const Home2 = () => {
             // <div onClick={()=>navigate(`/posts/${post.postId}`)}>
             // <div onClick={()=>navigate(`/postview/${post.postId}`)}>
             <div  key={post.postId} onClick={()=>handleModal(post)}>
-            <MusicCard
+            <PostCard
               post={post}
             />
             </div>

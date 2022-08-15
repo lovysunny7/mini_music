@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-const MusicCard = ({ post }) => {
+const PostCard = ({ post }) => {
   const shorts = (sentence) => {
     if (sentence.length > 18) {
       return sentence + '...';
@@ -41,7 +41,7 @@ const MusicCard = ({ post }) => {
   );
 };
 
-export default MusicCard;
+export default PostCard;
 const StTop = styled.div`
   display: flex;
   justify-content: left;
