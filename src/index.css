@@ -1,5 +1,5 @@
 *::-webkit-scrollbar {
-    width: 15px; /* scroll width */
+    width: 15px; /* scroll width */    
 }
 
 *::-webkit-scrollbar-thumb {
@@ -11,6 +11,7 @@
 *::-webkit-scrollbar-track {
     background: none; /*scollbar background color*/
 }
+
 
 .btn {
     border: none;
