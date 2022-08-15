@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
-import { __getOnePost } from "../asyncThunk/asyncPost";
+import { createSlice } from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
+import { __getOnePost } from '../asyncThunk/asyncPost';
 
 const initialState = {
   ishiddenPost: false,
@@ -9,11 +9,11 @@ const initialState = {
 };
 
 const postSlice = createSlice({
-  name: "post",
+  name: 'post',
   initialState,
   reducers: {
     showIshidden: (state) => {
-    //  return(ishiddenPost);
+      //  return(ishiddenPost);
     },
     updateIshidden: (state, action) => {
       state.ishiddenPost = action.payload;
@@ -35,7 +35,7 @@ const postSlice = createSlice({
     },
     [__getOnePost.fulfilled]: (state, action) => {
       // console.log("fulfilled 상태", state, action);
-    //   state.cafeList  = action.payload; // Promise가 fullfilled일 때 dispatch
+      //   state.cafeList  = action.payload; // Promise가 fullfilled일 때 dispatch
       // console.log(state.cafeList);
     },
     [__getOnePost.rejected]: (state, action) => {
@@ -44,5 +44,5 @@ const postSlice = createSlice({
   },
 });
 
-export const {showIshidden, updateIshidden}= postSlice.actions;
+export const { showIshidden, updateIshidden } = postSlice.actions;
 export default postSlice.reducer;
