@@ -2,7 +2,12 @@ import axios from "axios";
 // import { getCookie } from "../shared/Cookie";
 // 1. Axios instance생성
 export const api = axios.create({
-    baseURL: "http://localhost:3001/"
+    baseURL: "http://localhost:3001"
+})
+
+export const apiForm = axios.create({
+    baseURL:"http://localhost:3001",
+
 })
 
 // 2. request interceptor
@@ -30,11 +35,12 @@ api.interceptors.response.use(
 
 // copy, paste haha....
 const apis = {
-  post_view:  (postId) =>  api.get(`posts/?postId=${postId}`),
-  post_write:  (payload) =>  api.post('posts', payload),
+  post_all: async () => await api.get('/posts'),
+  post_view:  (postId) =>  api.get(`/posts/?postId=${postId}`),
+  post_write: async (payload) => await api.post('/posts', payload),
   post_reWr:  (postId, payload) =>  api.put(`/posts/?postId=${postId}`, payload),
-  post_del:  (postId, payload) =>  api.delete(`posts/?postId=${postId}`,payload),
-  post_heart:  (postId) =>  api.post(`posts/like/?postId=${postId}`),
+  post_del:  (postId, payload) =>  api.delete(`/posts/?postId=${postId}`,payload),
+  post_heart:  (postId) =>  api.post(`/posts/like/?postId=${postId}`),
   com_write: (postId, payload) => 
    api.post(`/comments/?postID=${postId}/comment`, payload),
   com_del: async(postId, payload) =>

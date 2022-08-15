@@ -16,9 +16,9 @@ const PostCard = ({ post }) => {
     <div className='col'>
       <div
         className='card'
-        onClick={() => {
-          navigate(`/posts/${post.postId}`);
-        }}
+        // onClick={() => {
+        //   navigate(`/posts/${post.postId}`);
+        // }}
       >
         <img
           src={post.imageUrl}

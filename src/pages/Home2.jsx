@@ -8,7 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { updateIshidden } from '../redux/modules/postSlice';
 import {useDispatch} from 'react-redux';
 import ViewModal from '../components/ViewModal';
-import { __getOnePost } from '../redux/asyncThunk/asyncPost';
+import { __getOnePost,__getAll } from '../redux/asyncThunk/asyncPost';
+import apis from '../api/axios';
 
 
 const Home2 = () => {
@@ -17,16 +18,18 @@ const Home2 = () => {
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState('');
 
-  const fetchPosts = async () => {
-    const { data } = await axios.get('http://localhost:3001/posts');
-    setPosts(data);
-  };
-
+  // const fetchPosts = async () => {
+  //   const { data } = await axios.get('http://localhost:3001/posts');
+  //   setPosts(data);
+  // };
+  const showAll = () => {
+   apis.post_all().then((res)=> setPosts(res.data))
+  }
+  
   useEffect(() => {
-    fetchPosts();
+    showAll();
+    // setPosts(dispatch(__getAll()));
   }, []);
-
-//   console.log(posts);
   
   const [show, setShow] = useState(false);
   const handleShow = () => {setShow(true)};

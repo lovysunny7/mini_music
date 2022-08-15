@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
-import { __getOnePost } from "../asyncThunk/asyncPost";
+import { __getAll, __getOnePost } from "../asyncThunk/asyncPost";
 
 const initialState = {
   ishiddenPost: false,
@@ -30,6 +30,20 @@ const postSlice = createSlice({
     },
   },
   extraReducers: {
+    [__getAll.pending]: (state, action) => {
+      // console.log("pending 상태", state, action); // Promise가 pending일때 dispatch
+    },
+    [__getAll.fulfilled]: (state, action) => {
+      console.log("fulfilled 상태", state, action);
+      console.log(state);
+      console.log(action);
+
+    //   state.cafeList  = action.payload; // Promise가 fullfilled일 때 dispatch
+      // console.log(state.cafeList);
+    },
+    [__getAll.rejected]: (state, action) => {
+      // console.log("rejected 상태", state, action); // Promise가 rejected일 때 dispatch
+    },
     [__getOnePost.pending]: (state, action) => {
       // console.log("pending 상태", state, action); // Promise가 pending일때 dispatch
     },
@@ -45,4 +59,5 @@ const postSlice = createSlice({
 });
 
 export const {showIshidden, updateIshidden}= postSlice.actions;
+// export const {__getAll} = postSlice.caseReducers;
 export default postSlice.reducer;

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import { Button, Card, Container, Form, InputGroup, Image} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import apis from '../api/axios';
 import { StDetailWrap } from '../components/layout/Layout';
 
 const PostWrite = () => {
   const [validated, setValidated] = useState(false);
   const navigate = useNavigate();
   ///////////////////////////////////////////////
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('이름없음');
   // const [title, setTitle] =  useState('');
   // const [artisit, setArtisit] =  useState('');
   const [genre, setGenre] = useState('');
@@ -24,7 +25,7 @@ const PostWrite = () => {
   const titleRef = useRef();
   const artistRef = useRef();
   const genreRef = useRef();
-  const contentsRef = useRef();
+  const contentRef = useRef();
   const imageRef = useRef();
   const videoRef = useRef();
 
@@ -44,48 +45,35 @@ const PostWrite = () => {
     // console.log(imageRef.current.value);
   };
 
-  // if checkValidaity is not 
   const handleSubmit = (e) => {
     const form = e.currentTarget;
-    const data = e.target;
-    // const {id, value} = data;
-    // setUserData({...userData, [id]: value})
 
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
     }else{
       setUserData({
+          id: titleRef.current.value+ new Date(),
+          postId: titleRef.current.value,
+          username: username,
           title: titleRef.current.value,
           artist: artistRef.current.value,
           genre: genreRef.current.value,
-          contents: contentsRef.current.value,
-          imageUrl: imageRef.current,
-          videoUrl: videoRef.current.value
+          content: contentRef.current.value,
+          imageUrl: imageRef.current.value,
+          videoUrl: videoRef.current.value,
+          likeCnt:0,
+          commetList:[],
+          createAt: new Date().toUTCString(),
+          modifiedAt: null
         })
         e.preventDefault();
     
       }
       setValidated(true);
     };
-    
-    useEffect(() => {
-      if(userData===undefined){
-        console.log("값 노노")
-      }else{
-        console.log(userData)
-        setTimeout(()=>{
-          navigate('/mypage')
-        },500)
-        deleteFileImage();
-      }
-      // return () => {
-      //   second
-      // }
-    }, [userData])
-    
-
-    
+  
+    // unused func
   const userFunc = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
@@ -95,6 +83,23 @@ const PostWrite = () => {
   const onChangeGenre = (e) => {
     setGenre(e.target.value);
   };
+
+  const postWrite = (payload) => {
+    apis.post_write(payload)
+   }
+
+  useEffect(() => {
+    if(userData===undefined){
+      console.log("값 노노")
+    }else{
+      console.log(userData)
+      postWrite(userData);
+      setTimeout(()=>{
+        deleteFileImage();
+        navigate('/mypage')
+      },500)
+    }
+  }, [userData])
 
   const GenreRadio = () => {
     return (
@@ -162,7 +167,7 @@ const PostWrite = () => {
                 required
                 id="contents"
                 // onChange={userFunc}
-                ref={contentsRef}
+                ref={contentRef}
                 placeholder="추천이유와 감상평은 어떻게 되시나요?"
                 style={{ height: "300px" }}
               />
