@@ -29,6 +29,7 @@ const postSlice = createSlice({
       };
     },
   },
+  
   extraReducers: {
     [__getAll.pending]: (state, action) => {
       // console.log("pending 상태", state, action); // Promise가 pending일때 dispatch
