@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { __getAll, __getOnePost } from "../asyncThunk/asyncPost";
 
+
 const initialState = {
   ishiddenPost: false,
   posetList: [],
@@ -59,7 +60,5 @@ const postSlice = createSlice({
   },
 });
 
-
-
-export const { showIshidden, updateIshidden } = postSlice.actions;
+export const {showIshidden, updateIshidden}= postSlice.actions;
 export default postSlice.reducer;
