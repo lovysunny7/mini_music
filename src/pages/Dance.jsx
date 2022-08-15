@@ -23,11 +23,15 @@ const Dance = () => {
     <>
       <StLayout>
         <StSecTitle>Dance 🎉</StSecTitle>
-        <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
-          {posts.map((post) => (
-            <MusicCard key={post.postId} post={post} />
-          ))}
-        </div>
+        {posts.length > 0 ? (
+          <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
+            {posts.map((post) => (
+              <MusicCard key={post.postId} post={post} />
+            ))}
+          </div>
+        ) : (
+          <div>등록된 게시글이 없습니다.</div>
+        )}
       </StLayout>
       <WriteFixedBtn />
     </>
