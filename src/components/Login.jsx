@@ -1,5 +1,9 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useRef, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setCookie } from '../shared/Cookie';
 
 const Login = ({ login, handleCloseLogin }) => {
   const [state, setState] = useState({
@@ -23,6 +27,56 @@ const Login = ({ login, handleCloseLogin }) => {
       password: '',
     }); // 인풋 초기화
   };
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const idRef = useRef();
+  const passwordRef = useRef();
+
+  // const handleLogin = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     const response = await apis.postLogin({
+  //       userId: idRef.current.value,
+  //       password: passwordRef.current.value,
+  //     });
+
+  //     const AccessToken = response.headers.authorization.split(' ')[1];
+
+  //     setCookie('token', AccessToken);
+  //     alert('로그인 되었습니다!');
+  //     navigate('/');
+  //   } catch (error) {
+  //     alert('정보를 확인해주세요.');
+  //   }
+  // };
+
+  const [users, setUsers] = useState(null);
+  const fetchUser = async () => {
+    const { data } = await axios.get('http://localhost:3001/users');
+    setUsers(data);
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+  console.log(users);
+
+  const [user, setUser] = useState(null);
+  const authenticated = user != null;
+
+  // function handleLogin({ userId, password }) {
+  //   const user = users.find(
+  //     (user) => user.userId === userId && user.password === password
+  //   );
+  //   if (user === undefined) throw new Error();
+  //   return user;
+  // }
+
+  // const login = ({ userId, password }) =>
+  //   setUser(handleLogin({ userId, password }));
+  // const logout = () => setUser(null);
+
   return (
     <>
       <Modal show={login} onHide={handleClose}>
@@ -40,6 +94,7 @@ const Login = ({ login, handleCloseLogin }) => {
                 name='username'
                 value={state.username}
                 onChange={handleChangeState}
+                ref={idRef}
               />
             </Form.Group>
             <Form.Group className='mb-3' controlId='password'>
@@ -51,6 +106,7 @@ const Login = ({ login, handleCloseLogin }) => {
                 name='password'
                 value={state.password}
                 onChange={handleChangeState}
+                ref={passwordRef}
               />
             </Form.Group>
           </Form>
