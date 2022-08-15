@@ -37,9 +37,9 @@ const Home = () => {
                 <PostCard
                   key={post.postId}
                   post={post}
-                  onClick={() => {
-                    navigate(`/posts/${post.postId}`);
-                  }}
+                  // onClick={() => {
+                  //   navigate(`/posts/${post.postId}`);
+                  // }}
                 />
               ))}
             </div>
