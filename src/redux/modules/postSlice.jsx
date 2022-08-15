@@ -59,6 +59,7 @@ const postSlice = createSlice({
   },
 });
 
-// export const {__getAll} = postSlice.caseReducers;
+
+
 export const { showIshidden, updateIshidden } = postSlice.actions;
 export default postSlice.reducer;
