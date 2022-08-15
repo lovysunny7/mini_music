@@ -6,6 +6,7 @@ import ComCard from './ComCard';
 import {useDispatch, useSelector} from 'react-redux';
 import { __getOnePost } from '../redux/asyncThunk/asyncPost';
 import { showIshidden, updateIshidden } from '../redux/modules/postSlice';
+import { UpdateDeleteBtn } from './UpdateDeleteBtn';
 
 const ViewModal = ({show, handleShow, handleClose, post}) => {
   // const dispatch = useDispatch();
@@ -61,6 +62,7 @@ const ViewModal = ({show, handleShow, handleClose, post}) => {
         </Modal.Header>
         <Modal.Body>
           <Container>
+            <UpdateDeleteBtn postId={post.postId}/>
             <ReactPlayer
               controls={true}
               width={'100%'}
@@ -73,7 +75,7 @@ const ViewModal = ({show, handleShow, handleClose, post}) => {
               <Card.Body>
                 <Row>
                   <Col xs={12} md={8}>
-                    글작성자: {post.username}
+                    작성자: {post.username}
                   </Col>
                   <Col xs={6} md={4}>
                     작성시간: {post.createdAt}

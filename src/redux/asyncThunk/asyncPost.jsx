@@ -12,8 +12,8 @@ export const __getOnePost = createAsyncThunk(
         })
           console.log('조회완료');
         } catch (error) {
-          console.log(error);
-          return thunkAPI.rejectWithValue;
+          console.log('실패',error);
+          // return thunkAPI.rejectWithValue;
         }
       } 
 );
@@ -22,9 +22,9 @@ export const __getAll = createAsyncThunk(
   '/api/post/viewall',
   async () => {
       try {
-      const {data} = await apis.post_all();
-          console.log(data)
-          return data;
+      const data = await apis.post_all();
+          // console.log(data)
+          return data.data;
       }catch(error){
         // return thunkAPI.rejectWithValue;
         console.log('실패')

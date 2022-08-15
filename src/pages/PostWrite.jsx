@@ -54,18 +54,20 @@ const PostWrite = () => {
     }else{
       setUserData({
           id: titleRef.current.value+ new Date(),
-          postId: titleRef.current.value,
-          username: username,
+
+          // postId: titleRef.current.value,
+          // username: username,
           title: titleRef.current.value,
           artist: artistRef.current.value,
           genre: genreRef.current.value,
           content: contentRef.current.value,
-          imageUrl: imageRef.current.value,
+          // imageUrl: imageRef.current,
           videoUrl: videoRef.current.value,
-          likeCnt:0,
-          commetList:[],
-          createAt: new Date().toUTCString(),
-          modifiedAt: null
+
+          // likeCnt:0,
+          // commetList:[],
+          // createdAt: new Date().toUTCString(),
+          // modifiedAt: null
         })
         e.preventDefault();
     
@@ -88,6 +90,8 @@ const PostWrite = () => {
     apis.post_write(payload)
    }
 
+
+
   useEffect(() => {
     if(userData===undefined){
       console.log("값 노노")
@@ -104,7 +108,7 @@ const PostWrite = () => {
   const GenreRadio = () => {
     return (
       <Form.Group >
-        {['Ballad', 'Dance', 'Hiphop', 'Rock', 'etc'].map((type) => (
+        {['BALLAD', 'DANCE', 'HiPHOP', 'ROCK', 'ETC'].map((type) => (
           <Form.Check
             inline
             key={type}

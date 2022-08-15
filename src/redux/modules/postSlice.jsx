@@ -5,8 +5,9 @@ import { __getAll, __getOnePost } from "../asyncThunk/asyncPost";
 
 const initialState = {
   ishiddenPost: false,
-  posetList: [],
+  postList: [],
   tmp: {},
+  delPostId : '',
 };
 
 const postSlice = createSlice({
@@ -22,43 +23,23 @@ const postSlice = createSlice({
     createPost: (state, action) => {
       state.cafeList.push(action.payload);
     },
-    deletPost: (state, action) => {
-      const idx = action.payload;
-      return {
-        ...state,
-        postList: state.posetList.filter((e) => e.postId !== idx),
-      };
+    deletPostId: (state, action) => {
+      state.delPostId = action.payload;
+     ;
     },
   },
   
-  extraReducers: {
-    [__getAll.pending]: (state, action) => {
-      // console.log("pending 상태", state, action); // Promise가 pending일때 dispatch
-    },
-    [__getAll.fulfilled]: (state, action) => {
-      console.log("fulfilled 상태", state, action);
-      console.log(state);
-      console.log(action);
-
-    //   state.cafeList  = action.payload; // Promise가 fullfilled일 때 dispatch
-      // console.log(state.cafeList);
-    },
-    [__getAll.rejected]: (state, action) => {
-      // console.log("rejected 상태", state, action); // Promise가 rejected일 때 dispatch
-    },
-    [__getOnePost.pending]: (state, action) => {
-      // console.log("pending 상태", state, action); // Promise가 pending일때 dispatch
-    },
-    [__getOnePost.fulfilled]: (state, action) => {
-      // console.log("fulfilled 상태", state, action);
-      //   state.cafeList  = action.payload; // Promise가 fullfilled일 때 dispatch
-      // console.log(state.cafeList);
-    },
-    [__getOnePost.rejected]: (state, action) => {
-      // console.log("rejected 상태", state, action); // Promise가 rejected일 때 dispatch
-    },
-  },
+  extraReducers:  (builder) => {
+    builder.addCase(__getOnePost.fulfilled, (state, action) => {
+        state.tmp = action.payload;
+        return state.tmp;
+    })
+    builder.addCase(__getAll.fulfilled, (state, action) => {
+        // state.postList = [...state.postList,action.payload];
+        // return state.postList;
+    })
+},
 });
 
-export const {showIshidden, updateIshidden}= postSlice.actions;
+export const {showIshidden, updateIshidden, deletPostId}= postSlice.actions;
 export default postSlice.reducer;

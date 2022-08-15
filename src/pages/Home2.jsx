@@ -26,9 +26,19 @@ const Home2 = () => {
    apis.post_all().then((res)=> setPosts(res.data))
   }
   
+  // const payload = dispatch(__getAll()).then((res)=>{return res});
+
+  const payload2 = async () => {
+    const {data} = await dispatch(__getAll());
+    console.log(data);
+  }
+
+  
   useEffect(() => {
     showAll();
+    // payload2();
     // setPosts(dispatch(__getAll()));
+
   }, []);
   
   const [show, setShow] = useState(false);
