@@ -60,10 +60,10 @@ const PostWrite = () => {
       e.stopPropagation();
     }else{
       setUserData({
-          id: titleRef.current.value+ new Date(),
+          id: titleRef.current.value+new Date(),
 
-          // postId: titleRef.current.value,
-          // username: username,
+          postId: titleRef.current.value,
+          username: username,
           title: titleRef.current.value,
           artist: artistRef.current.value,
           genre: e.target.genre.value,
@@ -134,13 +134,14 @@ const PostWrite = () => {
       console.log("값 노노")
     }else{
       console.log(userData);
-      // postWrite(userData);
+      postWrite(userData);
+
       formData.append('title', titleRef.current.value);
       formData.append('artist', artistRef.current.value);
       formData.append('content', contentRef.current.value);
       formData.append('videoUrl', videoRef.current.value);
       formData.append('genre', genre);
-      formData.append('imageUrl',imageUrl);
+      formData.append('imageFile',imageUrl);
       for (var key of formData.keys()) {
         
         console.log(key);
@@ -152,7 +153,7 @@ const PostWrite = () => {
         
       }
       console.log(formData);
-      postWrite2(formData)
+      // postWrite2(formData)
       setTimeout(()=>{
         // deleteFileImage();
         // navigate('/mypage')

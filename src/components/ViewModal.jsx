@@ -7,13 +7,19 @@ import {useDispatch, useSelector} from 'react-redux';
 import { __getOnePost } from '../redux/asyncThunk/asyncPost';
 import { showIshidden, updateIshidden } from '../redux/modules/postSlice';
 import { UpdateDeleteBtn } from './UpdateDeleteBtn';
+import apis from '../api/axios';
 
 const ViewModal = ({show, handleShow, handleClose, post}) => {
   // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(__getOnePost(postId));
-  // }, [dispatch, postId]);
+  // const [post, setPost] = useState();
+  const showOne = (postId) => {
+    apis.post_view2(postId).then((res)=>
+    {
+      console.log(res);
+      // setPost(post);
+    }
+    )
+   }
 
   // const [show, setShow] = useState(false);
   // const handleShow = () => setShow(true);
@@ -26,6 +32,7 @@ const ViewModal = ({show, handleShow, handleClose, post}) => {
   // console.log(post);
   
   useEffect(() => {
+    showOne(post.postId);
   
   }, [show]);
   /////////////////////////////////////////////

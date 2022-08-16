@@ -23,7 +23,9 @@ const Home2 = () => {
   //   setPosts(data);
   // };
   const showAll = () => {
-   apis.post_all().then((res)=> setPosts(res.data))
+   apis.post_all().then((res)=> 
+   {console.log(res.data)
+   setPosts(res.data)})
   }
   
   // const payload = dispatch(__getAll()).then((res)=>{return res});
@@ -66,7 +68,7 @@ const Home2 = () => {
           {posts.map((post) => (
             // <div onClick={()=>navigate(`/posts/${post.postId}`)}>
             // <div onClick={()=>navigate(`/postview/${post.postId}`)}>
-            <div  key={post.postId} onClick={()=>handleModal(post)}>
+            <div  key={post.postId} onClick={()=>handleModal(post.postId)}>
             <PostCard
               post={post}
             />

@@ -3,6 +3,7 @@ import axios from "axios";
 // 1. Axios instance생성
 export const api = axios.create({
     baseURL: "http://localhost:3001",
+    // baseURL: "http://52.78.235.109/api",
     // credentials:true,  
 })
 
@@ -41,11 +42,14 @@ api.interceptors.response.use(
 // copy, paste haha....
 const apis = {
   post_all: async () => await api.get('/posts'),
-  post_view:  (postId) =>  api.get(`/posts/?postId=${postId}`),
-  // formData 용
+ // db 용
+ post_view2:  async (postId) => await api.get(`/posts/${postId}`),
   post_write2: async (payload) => await apiForm('/posts', payload),
+
   // local용
+  post_view:  async (postId) => await api.get(`/posts/?postId=${postId}`),
   post_write: async (payload) => await api.post('/posts', payload),
+
 
   post_reWr:  (postId, payload) =>  api.put(`/posts/?postId=${postId}`, payload),
   post_del:  async (postId) => await api.delete(`/posts/?postId=${postId}`),

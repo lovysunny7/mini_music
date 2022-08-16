@@ -23,30 +23,30 @@ export const StBtn = styled.button`
   margin-bottom: ${(props) => (props.pop ? "15px" : "")};
   margin-left: ${(props) => (props.pop ? "45px" : "")};
 `;
-const OnDelClick = () => {
+const onDelClick = (e, postId) => {
 //   const navigate = useNavigate();
-  // apis.post_del(postId);
-  const postId = useSelector(db=>db.deletPostId);
+//   const postId = useSelector(db=>db.deletPostId);
+  apis.post_del(postId);
   console.log(postId);
-//    navigate('/mypage')
-  return <Navigate to='/mypage' />
+   navigate('/mypage');
 
 };
 
-// overlTrigger 때문인지 몰라서, styled component 선선언 필요
-const popover =  (
-
+// overlTrigger 때문인지, styled component 선선언 필요
+const StPopover= (e, postId) =>  {
+    console.log(postId)
+    return(
   <Popover id="popover-basic">
     <Popover.Body>정말 삭제하시겠어요 ❓</Popover.Body>
-    <StBtn del pop onClick={(postId)=>OnDelClick}>
+    <StBtn del pop onClick={onDelClick(postId)}>
       네
     </StBtn>
   </Popover>
-  )
+  )}
   ;
   
   
-  export const UpdateDeleteBtn = (postId) => {
+  export const UpdateDeleteBtn = (e, postId) => {
       //   console.log(postId);
     // const dispatch = useDispatch();
     // dispatch(deletPostId(postId));
@@ -55,8 +55,8 @@ const popover =  (
   return (
     <div style={{ textAlign: "right", marginBottom: "10px" }}>
       <StBtn>수정하기</StBtn>{" "}
-      <OverlayTrigger postId={postId} trigger="click" placement="bottom" overlay={popover}>
-        <StBtn del>삭제하기</StBtn>
+      <OverlayTrigger postId={postId} trigger="click" placement="bottom" overlay={StPopover(postId)}>
+        <StBtn del postId={postId}>삭제하기</StBtn>
       </OverlayTrigger>
     </div>
   );
