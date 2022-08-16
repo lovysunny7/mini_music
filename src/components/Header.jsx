@@ -3,6 +3,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Login from './Login';
 import SignUp from './SignUp';
+import { deleteCookie } from '../shared/Cookie';
 
 function Header() {
   const [login, setLogin] = useState(false);
@@ -88,7 +89,15 @@ function Header() {
               >
                 My Page
               </Nav.Link>
-              <Nav.Link onClick={() => {}}>Log Out</Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  console.log('호출');
+                  deleteCookie('refreshToken')
+                  deleteCookie('accessToken')
+                }}
+              >
+                Log Out
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
