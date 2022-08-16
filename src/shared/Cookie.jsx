@@ -4,18 +4,18 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 // 쿠키에 저장할 때
+// export const setCookie = (name, value, exp = 5) => {
 export const setCookie = (name, value, exp) => {
   let date = new Date();
   date.setTime(exp);
   // date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
   document.cookie = `${name}=${value}; expires=${date.toUTCString()}`;
-  console.log(cookies);
   // return cookies.set(name, value, { ...option });
 };
 
 // 쿠키에 저장한 거 쓸 때
 export const getCookie = (name) => {
-  return cookies.get(name, { path: '/' });
+  return cookies.get(name);
 };
 
 // 쿠키 지울 때
