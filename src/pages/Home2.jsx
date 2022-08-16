@@ -45,7 +45,7 @@ const Home2 = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-  const handleModal = (post) => {
+  const handleModal = (postId) => {
     handleShow();
     setPostId(postId);
   }
