@@ -1,15 +1,15 @@
 {
   "posts": [
-    { 
-      "id":1,
+    {
+      "id": 1,
       "postId": 1,
       "title": "epliogue",
       "user": {
-        "userId":1,
+        "userId": 1,
         "username": "cocobang",
         "createdAt": 1659311283308,
         "modifiedAt": null
-      },    
+      },
       "artist": "IU",
       "genre": "Ballad",
       "content": "퇴사할 즈음에 많이 들었어요",
@@ -19,138 +19,164 @@
       "commentList": [
         "1등",
         "노래 좋죠"
-      ]     
+      ]
     },
     {
-			"id" : 2,
-			"postId" : 2,
-			"title" : "주저하는 연인들을 위해",
-			"user" : {
-				"username" : "몽글이",
-				"createdAt" : 1659341238308,
-				"modifiedAt" : null,
-				"userId" : 2
-			},
-			"artist" : "잔나비",
-			"genre" : "Ballad",
-			"content" : "들으면 몽글몽글해져요!",
-			"imageUrl" : "https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2528/image/gAQwYrfgzrdhkL4odG7BDoaIHu8",
-			"videoUrl" : "https://youtu.be/5g4KsIizYhQ",
-			"likeCnt" : 3,
-			"commentList" : [ "헷갈리니", "무어", "ㅋㅋㅋㅋㅋ", "나비야나비야" ]
-		},
-		{
-			"postId" : 3,
-			"title" : "주저하는 연인들을 위해",
-			"artist" : "잔나비",
-			"genre" : "Ballad",
-			"content" : "들으면 몽글몽글해져요!",
-			"imageUrl" : "https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2528/image/gAQwYrfgzrdhkL4odG7BDoaIHu8",
-			"videoUrl" : "https://youtu.be/5g4KsIizYhQ",
-			"likeCnt" : 3,
-			"commentList" : [ "헷갈리니", "무어", "ㅋㅋㅋㅋㅋ", "나비야나비야" ],
-			"user" : {
-				"username" : "몽글이",
-				"createdAt" : 1659341238308,
-				"modifiedAt" : null,
-				"userId" : 3
-			},
-			"id" : 3
-		},
-		{
-			"postId" : 4,
-			"title" : "열이 올라요",
-			"artist" : "선미",
-			"genre" : "Dance",
-			"content" : "여름이니까 당연히 덥지?",
-			"imageUrl" : "http://image.genie.co.kr/Y/IMAGE/IMG_ARTIST/080/228/214/80228214_1656491465832_18_600x600.JPG",
-			"videoUrl" : "https://youtu.be/vJvX9L6FCWI",
-			"likeCnt" : 1,
-			"commentList" : [ "여름이니까여", "하테하테", "음악듣기는커녕쩔어있다" ],
-			"user" : {
-				"username" : "sunmimi",
-				"createdAt" : 1659341238308,
-				"modifiedAt" : null,
-				"userId" : 4
-			},
-			"id" : 4
-		},
-		{
-			"postId" : 5,
-			"title" : "4am",
-			"artist" : "KozyPop",
-			"genre" : "etc",
-			"content" : "임시 db를 너무 열심히 채우는 바람에 덕분에 노래 많이 듣네,,",
-			"imageUrl" : "https://f4.bcbits.com/img/a2335066143_10.jpg",
-			"videoUrl" : "https://youtu.be/My-fv5Org-4",
-			"likeCnt" : 0,
-			"commentList" : [ "으히히힝", "잠온당", "살려듀세여...." ],
-			"user" : {
-				"username" : "popopping123",
-				"createdAt" : 1659341238308,
-				"modifiedAt" : null,
-				"userId" : 5
-			},
-			"id" : 5
-		},
-		{
-			"postId" : 6,
-			"title" : "Sober Up",
-			"artist" : "AJR",
-			"genre" : "etc",
-			"content" : "바이올린 소리가 너무 매력적이에요",
-			"imageUrl" : "https://mblogthumb-phinf.pstatic.net/MjAxOTAxMTlfMTYw/MDAxNTQ3ODc4MTk2MTQy.B6wB3ZU42nuC_dIxtfCBfziYDxNT_16CCpParYfQJOcg.qmHGkiirVXtne10PUah1RuW07x6txuv6liNf78Y9k1Ig.JPEG.kjl784000/AJR.jpg?type=w800",
-			"videoUrl" : "https://youtu.be/DC_TrsY7U3A",
-			"likeCnt" : 0,
-			"commentList" : [ "으히히힝", "잠온당", "살려듀세여...." ],
-			"user" : {
-				"username" : "lululemon",
-				"createdAt" : 1659341238308,
-				"modifiedAt" : null,
-				"userId" : 6
-			},
-			"id" : 6
-		},
-		{
-			"postId" : 7,
-			"title" : "아줌마",
-			"username" : "kingjina",
-			"artist" : "태진아",
-			"genre" : "etc",
-			"content" : "놀랍게도 베이스 띵곡입니다",
-			"imageUrl" : "https://image.bugsm.co.kr/album/images/200/2651/265118.jpg?version=20170925053336.0",
-			"videoUrl" : "https://youtu.be/APhoNKEdndo",
-			"likeCnt" : 4,
-			"commentList" : [ "충격적", "베이스가 좋아서 놀람" ],
-			"user" : {
-				"username" : "lululemon",
-				"createdAt" : 1659341238308,
-				"modifiedAt" : null,
-				"userId" : 7
-			},
-			"id" : 7
-		},
-		{
-			"postId" : 8,
-			"title" : "베이스의 매력을 모르는 사람 불쌍해",
-			"username" : "basspsycho",
-			"artist" : "Various Artists",
-			"genre" : "Rock",
-			"content" : "베이스 메들리예요 제발 들어줘",
-			"imageUrl" : "https://img1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/8fXh/image/M7kpICX4bbcXfuMgX2DH0NT0qeg.png",
-			"videoUrl" : "https://youtu.be/59qUq5NRMhE",
-			"likeCnt" : 8,
-			"commentList" : [ "베이스 잘 치고 싶다" ],
-			"createdAt" : 1699396140939,
-			"modifiedAt" : null,
-			"user" : {
-				"username" : "lululemon",
-				"createdAt" : 1659341238308,
-				"modifiedAt" : null,
-				"userId" : 8
-			},
-			"id" : 8
-		}
+      "id": 2,
+      "postId": 2,
+      "title": "주저하는 연인들을 위해",
+      "user": {
+        "username": "몽글이",
+        "createdAt": 1659341238308,
+        "modifiedAt": null,
+        "userId": 2
+      },
+      "artist": "잔나비",
+      "genre": "Ballad",
+      "content": "들으면 몽글몽글해져요!",
+      "imageUrl": "https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2528/image/gAQwYrfgzrdhkL4odG7BDoaIHu8",
+      "videoUrl": "https://youtu.be/5g4KsIizYhQ",
+      "likeCnt": 3,
+      "commentList": [
+        "헷갈리니",
+        "무어",
+        "ㅋㅋㅋㅋㅋ",
+        "나비야나비야"
+      ]
+    },
+    {
+      "postId": 3,
+      "title": "주저하는 연인들을 위해",
+      "artist": "잔나비",
+      "genre": "Ballad",
+      "content": "들으면 몽글몽글해져요!",
+      "imageUrl": "https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2528/image/gAQwYrfgzrdhkL4odG7BDoaIHu8",
+      "videoUrl": "https://youtu.be/5g4KsIizYhQ",
+      "likeCnt": 3,
+      "commentList": [
+        "헷갈리니",
+        "무어",
+        "ㅋㅋㅋㅋㅋ",
+        "나비야나비야"
+      ],
+      "user": {
+        "username": "몽글이",
+        "createdAt": 1659341238308,
+        "modifiedAt": null,
+        "userId": 3
+      },
+      "id": 3
+    },
+    {
+      "postId": 4,
+      "title": "열이 올라요",
+      "artist": "선미",
+      "genre": "Dance",
+      "content": "여름이니까 당연히 덥지?",
+      "imageUrl": "http://image.genie.co.kr/Y/IMAGE/IMG_ARTIST/080/228/214/80228214_1656491465832_18_600x600.JPG",
+      "videoUrl": "https://youtu.be/vJvX9L6FCWI",
+      "likeCnt": 1,
+      "commentList": [
+        "여름이니까여",
+        "하테하테",
+        "음악듣기는커녕쩔어있다"
+      ],
+      "user": {
+        "username": "sunmimi",
+        "createdAt": 1659341238308,
+        "modifiedAt": null,
+        "userId": 4
+      },
+      "id": 4
+    },
+    {
+      "postId": 5,
+      "title": "4am",
+      "artist": "KozyPop",
+      "genre": "etc",
+      "content": "임시 db를 너무 열심히 채우는 바람에 덕분에 노래 많이 듣네,,",
+      "imageUrl": "https://f4.bcbits.com/img/a2335066143_10.jpg",
+      "videoUrl": "https://youtu.be/My-fv5Org-4",
+      "likeCnt": 0,
+      "commentList": [
+        "으히히힝",
+        "잠온당",
+        "살려듀세여...."
+      ],
+      "user": {
+        "username": "popopping123",
+        "createdAt": 1659341238308,
+        "modifiedAt": null,
+        "userId": 5
+      },
+      "id": 5
+    },
+    {
+      "postId": 6,
+      "title": "Sober Up",
+      "artist": "AJR",
+      "genre": "etc",
+      "content": "바이올린 소리가 너무 매력적이에요",
+      "imageUrl": "https://mblogthumb-phinf.pstatic.net/MjAxOTAxMTlfMTYw/MDAxNTQ3ODc4MTk2MTQy.B6wB3ZU42nuC_dIxtfCBfziYDxNT_16CCpParYfQJOcg.qmHGkiirVXtne10PUah1RuW07x6txuv6liNf78Y9k1Ig.JPEG.kjl784000/AJR.jpg?type=w800",
+      "videoUrl": "https://youtu.be/DC_TrsY7U3A",
+      "likeCnt": 0,
+      "commentList": [
+        "으히히힝",
+        "잠온당",
+        "살려듀세여...."
+      ],
+      "user": {
+        "username": "lululemon",
+        "createdAt": 1659341238308,
+        "modifiedAt": null,
+        "userId": 6
+      },
+      "id": 6
+    },
+    {
+      "postId": 7,
+      "title": "아줌마",
+      "username": "kingjina",
+      "artist": "태진아",
+      "genre": "etc",
+      "content": "놀랍게도 베이스 띵곡입니다",
+      "imageUrl": "https://image.bugsm.co.kr/album/images/200/2651/265118.jpg?version=20170925053336.0",
+      "videoUrl": "https://youtu.be/APhoNKEdndo",
+      "likeCnt": 4,
+      "commentList": [
+        "충격적",
+        "베이스가 좋아서 놀람"
+      ],
+      "user": {
+        "username": "lululemon",
+        "createdAt": 1659341238308,
+        "modifiedAt": null,
+        "userId": 7
+      },
+      "id": 7
+    },
+    {
+      "postId": 8,
+      "title": "베이스의 매력을 모르는 사람 불쌍해",
+      "artist": "Various Artists",
+      "genre": "Rock",
+      "content": "베이스 메들리예요 제발 들어줘",
+      "imageUrl": "https://img1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/8fXh/image/M7kpICX4bbcXfuMgX2DH0NT0qeg.png",
+      "videoUrl": "https://youtu.be/59qUq5NRMhE",
+      "likeCnt": 8,
+      "commentList": [
+        "베이스 잘 치고 싶다"
+      ],
+      "createdAt": 1699396140939,
+      "modifiedAt": null,
+      "user": {
+        "username": "lululemon",
+        "createdAt": 1659341238308,
+        "modifiedAt": null,
+        "userId": 8
+      },
+      "id": 8
+    }
   ],
   "comments": [
     {

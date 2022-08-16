@@ -62,9 +62,14 @@ const PostWrite = () => {
       let nowtime = Date.now();
       setUserData({
           id: nowtime,
-          
+
           postId: nowtime,
-          username: username,
+
+          user :{
+            username: username,
+            createdAt: new Date().toUTCString(),
+            modifiedAt: null,
+          },
           title: titleRef.current.value,
           artist: artistRef.current.value,
           genre: e.target.genre.value,
@@ -74,8 +79,6 @@ const PostWrite = () => {
 
           // likeCnt:0,
           // commetList:[],
-          // createdAt: new Date().toUTCString(),
-          // modifiedAt: null
         })
 
       // formData = new URLSearchParams({

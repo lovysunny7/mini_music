@@ -8,18 +8,25 @@ import { __getOnePost } from '../redux/asyncThunk/asyncPost';
 import { showIshidden, updateIshidden } from '../redux/modules/postSlice';
 import { UpdateDeleteBtn } from './UpdateDeleteBtn';
 import apis from '../api/axios';
+import ErrorBoundary from './ErrorBoundary';
 
-const ViewModal = ({show, handleShow, handleClose, post}) => {
+const ViewModal = ({show, handleShow, handleClose, postId}) => {
   // const dispatch = useDispatch();
-  // const [post, setPost] = useState();
-  // const showOne = (postId) => {
-  //   apis.post_view2(postId).then((res)=>
-  //   {
-  //     console.log(res);
-  //     // setPost(post);
-  //   }
-  //   )
-  //  }
+  const [post, setPost] = useState();
+  const showOne = (postId) => {
+    try{
+      apis.post_view(postId).then((res)=>
+      {
+        // console.log(postId);
+        // console.log(res?.data);
+        setPost(res?.data);
+      }
+      )
+    }catch(err){
+      console.log('첫 실행시 나타나는 문제')
+    }
+
+   }
 
   // const [show, setShow] = useState(false);
   // const handleShow = () => setShow(true);
@@ -32,7 +39,7 @@ const ViewModal = ({show, handleShow, handleClose, post}) => {
   // console.log(post);
   
   useEffect(() => {
-    // showOne(post.postId);
+    showOne(postId);
   
   }, [show]);
   /////////////////////////////////////////////
@@ -64,16 +71,16 @@ const ViewModal = ({show, handleShow, handleClose, post}) => {
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            {post.title} - {post.artist} / {post.genre}
+            {post?.title} - {post?.artist} / {post?.genre}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container>
-            <UpdateDeleteBtn postId={post.postId}/>
+            <UpdateDeleteBtn postId={post?.postId}/>
             <ReactPlayer
               controls={true}
               width={'100%'}
-              url={post.videoUrl}
+              url={post?.videoUrl}
               host= {'https://www.youtube.com'}
             />
           </Container>
@@ -82,10 +89,10 @@ const ViewModal = ({show, handleShow, handleClose, post}) => {
               <Card.Body>
                 <Row>
                   <Col xs={12} md={8}>
-                    작성자: {post.username}
+                    작성자: {post?.user?.username}
                   </Col>
                   <Col xs={6} md={4}>
-                    작성시간: {post.createdAt}
+                    작성시간: {post?.user?.createdAt}
                   </Col>
                 </Row>
               </Card.Body>
@@ -94,7 +101,7 @@ const ViewModal = ({show, handleShow, handleClose, post}) => {
               <Card.Body>
                 감상평/추천이유
                 <br/>
-                {post.content}
+                {post?.content}
               </Card.Body>
             </Card>
             <ComCard post={post} />
