@@ -2,17 +2,19 @@ import axios from 'axios';
 import { getCookie } from '../shared/Cookie';
 
 const api = axios.create({
-  baseURL: 'http://52.79.226.242',
+  baseURL: 'http://52.78.235.109',
 });
 
 api.interceptors.request.use(
   (config) => {
     const token = getCookie('token');
-    config.headers.Authorization = token;
+    config.headers['Authorization'] = `Bearer ${token}`;
+    config.headers['Refresh-token'] = token;
+    config.headers['Access-Token-Expire-Time'] = 1234263763542;
     return config;
   },
   (error) => {
-    // console.log(error);
+    console.log(error);
   }
 );
 
