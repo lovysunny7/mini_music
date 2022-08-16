@@ -12,15 +12,13 @@ import ErrorBoundary from './ErrorBoundary';
 
 const ViewModal = ({ show, handleShow, handleClose, postId }) => {
   // const dispatch = useDispatch();
-  // const [post, setPost] = useState();
-  // const showOne = (postId) => {
-  //   apis.post_view2(postId).then((res)=>
-  //   {
-  //     console.log(res);
-  //     // setPost(post);
-  //   }
-  //   )
-  //  }
+  const [post, setPost] = useState();
+  const showOne = (postId) => {
+    apis.post_view2(postId).then((res) => {
+      console.log(res);
+      // setPost(post);
+    });
+  };
 
   // const [show, setShow] = useState(false);
   // const handleShow = () => setShow(true);
