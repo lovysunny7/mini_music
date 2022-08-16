@@ -10,16 +10,7 @@ const PostWrite = () => {
   const navigate = useNavigate();
   ///////////////////////////////////////////////
   const [username, setUsername] = useState('이름없음');
-  // const [title, setTitle] =  useState('');
-  // const [artisit, setArtisit] =  useState('');
   const [genre, setGenre] = useState('');
-  // const [contents, setContents] = useState('');
-  // const [imageURL, setImage] = useState('');
-  // const [viedoURL, setVideo] = useState('');
-  // const [likeCnt, setLikeCnt] = useState('');
-  // const [commentList, setCommentList] = useState('');
-  // const [createdAt, setCreatedAt] = useState('');
-  // const [modifiedAt, setModifiedAt] = useState('');
   const [userData, setUserData] = useState();
   let formData = new FormData();
 
@@ -39,6 +30,7 @@ const PostWrite = () => {
   // 파일 저장 - 로컬에서만 볼 수 있다
   const saveFileImage = (e) => {
     setFileImage(URL.createObjectURL(e.target.files[0]));
+    setImage(e.target.files[0])
   };
 
   // 파일 삭제
@@ -85,24 +77,11 @@ const PostWrite = () => {
       //     content: contentRef.current.value,
       //     videoUrl: videoRef.current.value,
       // })
-      // e.preventDefault()
-      // formData.append('title', titleRef.current.value);
-      // formData.append('artist', artistRef.current.value);
-      // formData.append('content', contentRef.current.value);
-      // formData.append('videoUrl', videoRef.current.value);
-      
-      // formData.append('genre',e.target.genre.value);
-      // formData.append('imageUrl',imageUrl);
-      // console.log(imageUrl);
-      // formData.append('imageUrl',imageRef.current)
-      
-      e.preventDefault();
     
+      e.preventDefault();
       }
       setValidated(true);
     };
-
-
 
   
     // unused func
@@ -125,46 +104,36 @@ const PostWrite = () => {
   const postWrite = (payload) => {
     apis.post_write(payload)
    }
+
   const postWrite2 = (payload) => {
     apis.post_write2(payload)
   }
-
- 
 
   useEffect(() => {
     if(userData===undefined){
       console.log("값 노노")
     }else{
-      console.log(userData);
-      postWrite(userData);
+      // console.log(userData);
+      // postWrite(userData);
 
       formData.append('title', titleRef.current.value);
       formData.append('artist', artistRef.current.value);
       formData.append('content', contentRef.current.value);
       formData.append('videoUrl', videoRef.current.value);
       formData.append('genre', genre);
-      formData.append('imageFile',imageRef.current);
+      formData.append('imageFile',imageUrl);
       for (var key of formData.keys()) {
-        
         console.log(key);
-        
       }
       for (var value of formData.values()) {
-        
         console.log(value);
-        
       }
-      console.log(formData);
       postWrite2(formData)
       setTimeout(()=>{
         // deleteFileImage();
         // navigate('/mypage')
       },500)
-   
     }
-    console.log(imageRef.current);
-    // console.log(imageUrl);
-
   }, [userData,genreRef.value])
 
   const GenreRadio = () => {
@@ -249,7 +218,6 @@ const PostWrite = () => {
                  accept="image/*"
                  src={fileImage}
                  rounded={true}
-                 onChange={onChangeImage}
                />
               </Card>
               <InputGroup hasValidation>
