@@ -4,6 +4,7 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import apis from '../api/index';
+import { getCookie, setCookie, deleteCookie } from '../shared/Cookie';
 
 const Login = ({ login, handleCloseLogin }) => {
   const [state, setState] = useState({
@@ -46,7 +47,12 @@ const Login = ({ login, handleCloseLogin }) => {
     // console.log(await res);
 
     const res2 = apis.loginUser(state, { withCredentials: true });
-    console.log('apis', await res2);
+    // console.log('apis', await res2);
+    const token = (await res2).data.data.token;
+    console.log(token);
+    // setCookie('token', token);
+    setCookie('accessToken', token.accessToken);
+    setCookie('refreshToken', token.refreshToken);
   };
 
   return (
