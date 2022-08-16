@@ -10,17 +10,9 @@ const PostUpdate = () => {
   const navigate = useNavigate();
   ///////////////////////////////////////////////
   const [username, setUsername] = useState('이름없음');
-  // const [title, setTitle] =  useState('');
-  // const [artisit, setArtisit] =  useState('');
   const [genre, setGenre] = useState('');
-  // const [contents, setContents] = useState('');
-  // const [imageURL, setImage] = useState('');
-  // const [viedoURL, setVideo] = useState('');
-  // const [likeCnt, setLikeCnt] = useState('');
-  // const [commentList, setCommentList] = useState('');
-  // const [createdAt, setCreatedAt] = useState('');
-  // const [modifiedAt, setModifiedAt] = useState('');
   const [userData, setUserData] = useState();
+  let formData = new FormData();
 
   const titleRef = useRef();
   const artistRef = useRef();
@@ -32,9 +24,13 @@ const PostUpdate = () => {
   //파일 미리볼 url을 저장해줄 state - copy & paste
   const [fileImage, setFileImage] = useState("");
 
+  //보내줄 파일을 저장해줄 state
+  const [fileImgUp, setImage] = useState();
+
   // 파일 저장 - 로컬에서만 볼 수 있다
   const saveFileImage = (e) => {
     setFileImage(URL.createObjectURL(e.target.files[0]));
+    setImage(e.target.files[0])
   };
 
   // 파일 삭제
@@ -52,61 +48,98 @@ const PostUpdate = () => {
       e.preventDefault();
       e.stopPropagation();
     }else{
+      let nowtime = Date.now();
       setUserData({
-          id: titleRef.current.value+ new Date(),
-          
-          postId: titleRef.current.value,
-          username: username,
+          id: nowtime,
+
+          postId: nowtime,
+
+          user :{
+            username: username,
+            createdAt: new Date().toUTCString(),
+            modifiedAt: null,
+          },
           title: titleRef.current.value,
           artist: artistRef.current.value,
-          genre: genreRef.current.value,
+          genre: e.target.genre.value,
           content: contentRef.current.value,
-          imageUrl: imageRef.current.value,
+          // imageUrl: imageRef.current,
           videoUrl: videoRef.current.value,
 
-          likeCnt:0,
-          commetList:[],
-          createdAt: new Date().toUTCString(),
-          modifiedAt: null
+          // likeCnt:0,
+          // commetList:[],
         })
-        e.preventDefault();
+
+      // formData = new URLSearchParams({
+      //     title: titleRef.current.value,
+      //     artist: artistRef.current.value, 
+      //     genre: e.target.genre.value,
+      //     content: contentRef.current.value,
+      //     videoUrl: videoRef.current.value,
+      // })
     
+      e.preventDefault();
       }
       setValidated(true);
     };
+
   
     // unused func
   const userFunc = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
-    console.log(userData);
+    // console.log(userData);
   };
 
   const onChangeGenre = (e) => {
     setGenre(e.target.value);
   };
 
+  // 이미지 파일 저장
+  const onChangeImage = (e) =>{
+    setImage(e.target.files[0])
+    console.log(fileImgUp);
+  }
+
   const postWrite = (payload) => {
     apis.post_write(payload)
    }
+
+  const postWrite2 = (payload) => {
+    apis.post_write2(payload)
+  }
 
   useEffect(() => {
     if(userData===undefined){
       console.log("값 노노")
     }else{
-      console.log(userData)
-      postWrite(userData);
+      // console.log(userData);
+      // postWrite(userData);
+
+      formData.append('title', titleRef.current.value);
+      formData.append('artist', artistRef.current.value);
+      formData.append('content', contentRef.current.value);
+      formData.append('videoUrl', videoRef.current.value);
+      formData.append('genre', genre);
+      formData.append('imageFile',fileImgUp);
+      for (var key of formData.keys()) {
+        console.log(key);
+      }
+      for (var value of formData.values()) {
+        console.log(value);
+      }
+      postWrite2(formData)
       setTimeout(()=>{
-        deleteFileImage();
-        navigate('/mypage')
+        // deleteFileImage();
+        // navigate('/mypage')
       },500)
     }
-  }, [userData])
+  }, [userData,genreRef.value])
 
   const GenreRadio = () => {
     return (
       <Form.Group >
-        {['Ballad', 'Dance', 'Hiphop', 'Rock', 'etc'].map((type) => (
+        {['BALLAD', 'DANCE', 'HIPHOP', 'ROCK', 'ETC'].map((type) => (
           <Form.Check
             inline
             key={type}
@@ -117,7 +150,7 @@ const PostUpdate = () => {
             type='radio'
             value={type}
             onChange={onChangeGenre}
-            checked={`genre===${type}`}
+            checked={genre===type}
           />
         ))}
       </Form.Group>
@@ -193,7 +226,7 @@ const PostUpdate = () => {
                   type="file"
                   required
                   id="imageUrl"
-                  name="file"
+                  name="imageFile"
                   onChange={saveFileImage}
                   ref={imageRef}
                 />

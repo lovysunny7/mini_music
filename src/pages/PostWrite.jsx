@@ -4,15 +4,17 @@ import { Button, Card, Container, Form, InputGroup, Image} from 'react-bootstrap
 import { useNavigate } from 'react-router-dom';
 import apis from '../api/axios';
 import { StDetailWrap } from '../components/layout/Layout';
+import { getCookie } from '../shared/Cookie';
 
 const PostWrite = () => {
   const [validated, setValidated] = useState(false);
   const navigate = useNavigate();
   ///////////////////////////////////////////////
-  const [username, setUsername] = useState('이름없음');
   const [genre, setGenre] = useState('');
   const [userData, setUserData] = useState();
   let formData = new FormData();
+
+  const username = getCookie('username');
 
   const titleRef = useRef();
   const artistRef = useRef();
@@ -25,7 +27,7 @@ const PostWrite = () => {
   const [fileImage, setFileImage] = useState("");
 
   //보내줄 파일을 저장해줄 state
-  const [imageUrl, setImage] = useState();
+  const [fileImgUp, setImage] = useState();
 
   // 파일 저장 - 로컬에서만 볼 수 있다
   const saveFileImage = (e) => {
@@ -98,7 +100,7 @@ const PostWrite = () => {
   // 이미지 파일 저장
   const onChangeImage = (e) =>{
     setImage(e.target.files[0])
-    console.log(imageUrl);
+    console.log(fileImgUp);
   }
 
   const postWrite = (payload) => {
@@ -110,8 +112,10 @@ const PostWrite = () => {
   }
 
   useEffect(() => {
+    if(username===''){
+      navigate('/');
+    }
     if(userData===undefined){
-      console.log("값 노노")
     }else{
       // console.log(userData);
       // postWrite(userData);
@@ -121,7 +125,7 @@ const PostWrite = () => {
       formData.append('content', contentRef.current.value);
       formData.append('videoUrl', videoRef.current.value);
       formData.append('genre', genre);
-      formData.append('imageFile',imageUrl);
+      formData.append('imageFile',fileImgUp);
       for (var key of formData.keys()) {
         console.log(key);
       }

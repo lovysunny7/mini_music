@@ -37,11 +37,14 @@ export const StBtn = styled.button`
 const onDelClick = (e) => {
 //   const navigate = useNavigate();
 //   const postId = useSelector(db=>db.deletPostId);
-const tmp = (e.target.value).toString();
-console.log(tmp);
+const tmp = e.target.value;
   apis.post_del2(tmp)
    navigate('/mypage');
 };
+
+const onUpClick = (e) =>{
+ 
+}
 
 // overlTrigger 때문인지, styled component 선선언 필요
 const StPopover= (postId) =>  {
@@ -65,7 +68,7 @@ const StPopover= (postId) =>  {
 
   return (
     <div style={{ textAlign: "right", marginBottom: "10px" }}>
-      <StBtn>수정하기</StBtn>{" "}
+      <StBtn value={postId}>수정하기</StBtn>{" "}
         <StBtn del id="delBtn" value={postId}>삭제하기</StBtn>
     </div>
   );
