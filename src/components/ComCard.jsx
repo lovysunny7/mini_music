@@ -28,7 +28,7 @@ const ComCard = ({ post }) => {
       </span>
     );
   };
-  
+
   // console.log(post);
   return (
     <>
@@ -38,9 +38,10 @@ const ComCard = ({ post }) => {
           {post.likeCnt} <Heart />
         </Card.Header>
         <ListGroup variant='flush'>
-          {post.commentList && post.commentList.map((cmt, idx) => (
-            <ListGroup.Item key={idx}>{cmt}</ListGroup.Item>
-          ))}
+          {post.commentList &&
+            post.commentList.map((cmt, idx) => (
+              <ListGroup.Item key={idx}>{cmt}</ListGroup.Item>
+            ))}
         </ListGroup>
       </Card>
       {/* <Card size='lg'> */}

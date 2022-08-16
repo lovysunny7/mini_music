@@ -26,7 +26,7 @@ const PostCard = ({ post }) => {
           alt='앨범 이미지 설명글'
         />
         <div className='card-body'>
-          <p className='card-text'>{post.username}님의 Pick!</p>
+          <p className='card-text'>{post.user.username}님의 Pick!</p>
           {/* <StTop> */}
           <StTitle>{post.title}</StTitle>
           <StArtist>{post.artist}</StArtist>
