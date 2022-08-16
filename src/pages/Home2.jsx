@@ -11,25 +11,29 @@ import ViewModal from '../components/ViewModal';
 import { __getOnePost, __getAll } from '../redux/asyncThunk/asyncPost';
 import apis from '../api/axios';
 import ErrorBoundary from '../components/ErrorBoundary';
+import { getCookie } from '../shared/Cookie';
 
 const Home2 = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState({});
   const [postId, setPostId] = useState('');
 
-  // const fetchPosts = async () => {
-  //   const { data } = await axios.get('http://localhost:3001/posts');
-  //   setPosts(data);
-  // };
+  const cookie = getCookie('accessToken');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (cookie !== undefined) {
+      return setIsLoggedIn(true);
+    }
+  }, []);
 
   const showAll = () => {
-   apis.post_all().then((res)=> 
-   {console.log(res?.data.data)
-   setPosts(res?.data.data)})
-  }
-  
+    apis.post_all().then((res) => {
+      console.log(res?.data.data);
+      setPosts(res?.data.data);
+    });
+  };
+
   // const payload2 = async () => {
   //   const {data} = await dispatch(__getAll());
   //   console.log(data);
@@ -48,30 +52,36 @@ const Home2 = () => {
   const handleModal = (postId) => {
     handleShow();
     setPostId(postId);
-  }
- 
+  };
 
- return (
+  return (
     <>
       <StLayout>
         <StSecTitle>All Genre 🎂</StSecTitle>
         <ErrorBoundary>
-        <ViewModal show={show} handleShow={handleShow} handleClose={handleClose} postId={postId}/>
+          <ViewModal
+            show={show}
+            handleShow={handleShow}
+            handleClose={handleClose}
+            postId={postId}
+          />
         </ErrorBoundary>
         <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
           {posts.map((post) => (
-            <div key={post.postId} onClick={()=>handleModal(post.postId)}>
-            <PostCard
-              post={post}
-              show={show} handleShow={handleShow} handleClose={handleClose} 
-            />
+            <div key={post.postId} onClick={() => handleModal(post.postId)}>
+              <PostCard
+                post={post}
+                show={show}
+                handleShow={handleShow}
+                handleClose={handleClose}
+              />
             </div>
           ))}
         </div>
       </StLayout>
-      <WriteFixedBtn />
+      {isLoggedIn ? <WriteFixedBtn /> : null}
     </>
   );
-}
+};
 
 export default Home2;
