@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getCookie } from '../shared/Cookie';
 // import { getCookie } from "../shared/Cookie";
 // 1. Axios instance생성
-// hearders에 content-type를 정하게 되면, 프리플라이트가 날아가지 않아서 로그인 실패
+// headers에 content-type을 정하게 되면, 프리플라이트가 날아가지 않아서 로그인 실패
 export const api = axios.create({
     // baseURL: "http://localhost:3001",
     baseURL: "http://52.78.235.109/api",
@@ -43,13 +43,13 @@ const apis = {
  post_view2:  async (postId) => await api.get(`/posts/${postId}`,postId),
  post_write2: async (payload) => await api.post('/posts', payload),
  post_del2:  async (postId) => await api.delete(`/posts/${postId}`,postId),
- post_reWr2:  (postId, payload) =>  api.put(`/posts/${postId}`, postId, payload),
+ post_reWr2:  async (postId, payload) => await api.put(`/posts/${postId}`, payload),
 
  // local json db용
   post_view:  async (id) => await api.get(`/posts/${id}`,id),
   post_write: async (payload) => await api.post('/posts', payload),
   post_del:  async (id) => await api.delete(`/posts/${id}`),
-  post_reWr:  (postId, payload) =>  api.put(`/posts/?postId=${postId}`, postId, payload),
+  post_reWr:  async (postId,payload) =>  api.put(`/posts/${postId}`, payload),
   
   post_heart:  (postId) =>  api.post(`/posts/like/?postId=${postId}`),
 

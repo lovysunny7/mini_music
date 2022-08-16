@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import { Button, Card, Container, Form, InputGroup, Image} from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import apis from '../api/axios';
 import { StDetailWrap } from '../components/layout/Layout';
+import { getCookie } from '../shared/Cookie';
 
 const PostUpdate = () => {
   const [validated, setValidated] = useState(false);
   const navigate = useNavigate();
   ///////////////////////////////////////////////
-  const [username, setUsername] = useState('이름없음');
   const [genre, setGenre] = useState('');
   const [userData, setUserData] = useState();
   let formData = new FormData();
+  // cookie get
+  const username = getCookie('username');
+  const myUserId = getCookie('userId');
 
   const titleRef = useRef();
   const artistRef = useRef();
@@ -20,6 +23,10 @@ const PostUpdate = () => {
   const contentRef = useRef();
   const imageRef = useRef();
   const videoRef = useRef();
+
+  // parameter get
+  const {postId} = useParams();
+  const {userId} = useParams();
 
   //파일 미리볼 url을 저장해줄 state - copy & paste
   const [fileImage, setFileImage] = useState("");
@@ -51,9 +58,6 @@ const PostUpdate = () => {
       let nowtime = Date.now();
       setUserData({
           id: nowtime,
-
-          postId: nowtime,
-
           user :{
             username: username,
             createdAt: new Date().toUTCString(),
@@ -65,9 +69,6 @@ const PostUpdate = () => {
           content: contentRef.current.value,
           // imageUrl: imageRef.current,
           videoUrl: videoRef.current.value,
-
-          // likeCnt:0,
-          // commetList:[],
         })
 
       // formData = new URLSearchParams({
@@ -102,20 +103,22 @@ const PostUpdate = () => {
   }
 
   const postWrite = (payload) => {
-    apis.post_write(payload)
+    apis.post_reWr(payload)
    }
 
   const postWrite2 = (payload) => {
-    apis.post_write2(payload)
+    apis.post_reWr2(payload)
   }
 
   useEffect(() => {
+    // console.log(JSON.stringify(postId));
+    if(username===''||myUserId!==userId){
+      navigate('/');
+    }
     if(userData===undefined){
-      console.log("값 노노")
     }else{
       // console.log(userData);
       // postWrite(userData);
-
       formData.append('title', titleRef.current.value);
       formData.append('artist', artistRef.current.value);
       formData.append('content', contentRef.current.value);
@@ -128,9 +131,9 @@ const PostUpdate = () => {
       for (var value of formData.values()) {
         console.log(value);
       }
-      postWrite2(formData)
+      postWrite2(postId, formData)
       setTimeout(()=>{
-        // deleteFileImage();
+      deleteFileImage();
         // navigate('/mypage')
       },500)
     }

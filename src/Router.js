@@ -31,7 +31,7 @@ const Router = () => {
         <Route path='/posts/:id' element={<Detail />} />
         {/* <Route exact path='/postview' element={<PostView />} /> */}
         <Route exact path='/postwrite' element={<PostWrite />} />
-        <Route exact path='/postupdate' element={<PostUpdate />} />
+        <Route path='/postupdate/:userId/:postId' element={<PostUpdate />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>

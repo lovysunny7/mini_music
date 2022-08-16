@@ -51,8 +51,8 @@ const Login = ({ login, handleCloseLogin }) => {
       console.log(res);
       setCookie('accessToken', token.accessToken, token.accessTokenExpiresIn);
       setCookie('refreshToken', token.refreshToken, token.accessTokenExpiresIn);
-      setCookie('userId', res.data.data.id);
-      setCookie('username', res.data.data.username)
+      setCookie('userId', res.data.data.id, token.accessTokenExpiresIn);
+      setCookie('username', res.data.data.username, token.accessTokenExpiresIn)
       alert('로그인 성공');
       window.location.reload(true);
     } catch (error) {

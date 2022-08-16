@@ -75,7 +75,7 @@ const ViewModal = ({ show, handleShow, handleClose, postId }) => {
         </Modal.Header>
         <Modal.Body>
           <Container>
-           {(username===post?.user?.username) && <UpdateDeleteBtn postId={post?.postId} />}
+           {(username===post?.user?.username) && <UpdateDeleteBtn postId={post?.postId} userId={post?.user?.userId} />}
             <ReactPlayer
               controls={true}
               width={'100%'}

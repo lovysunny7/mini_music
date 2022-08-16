@@ -37,13 +37,15 @@ export const StBtn = styled.button`
 const onDelClick = (e) => {
 //   const navigate = useNavigate();
 //   const postId = useSelector(db=>db.deletPostId);
-const tmp = e.target.value;
-  apis.post_del2(tmp)
+const postId = e.target.value;
+  apis.post_del2(postId)
    navigate('/mypage');
 };
 
-const onUpClick = (e) =>{
- 
+const onUpClick = (postId, userId) =>{
+    // console.log(postId, userId);
+    // console.log(JSON.stringify(postId));
+    navigate(`/postupdate/${userId}/${postId}`);
 }
 
 // overlTrigger 때문인지, styled component 선선언 필요
@@ -52,7 +54,7 @@ const StPopover= (postId) =>  {
     return(
   <Popover id="popover-basic">
     <Popover.Body>정말 삭제하시겠어요 ❓</Popover.Body>
-    <StBtn del pop onClick={onDelClick(postId)}>
+    <StBtn del pop>
       네
     </StBtn>
   </Popover>
@@ -60,16 +62,16 @@ const StPopover= (postId) =>  {
   ;
   
   
-  export const UpdateDeleteBtn = ({postId}) => {
-        // console.log(postId);
+  export const UpdateDeleteBtn = ({postId, userId}) => {
+    // console.log(postId);
     // const dispatch = useDispatch();
     // dispatch(deletPostId(postId));
     navigate = useNavigate();
 
   return (
     <div style={{ textAlign: "right", marginBottom: "10px" }}>
-      <StBtn value={postId}>수정하기</StBtn>{" "}
-        <StBtn del id="delBtn" value={postId}>삭제하기</StBtn>
+      <StBtn onClick={()=>onUpClick(postId, userId)}>수정하기</StBtn>{" "}
+        <StBtn del value={postId} onClick={onDelClick}>삭제하기</StBtn>
     </div>
   );
 };

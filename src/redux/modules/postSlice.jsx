@@ -5,9 +5,8 @@ import { __getAll, __getOnePost } from "../asyncThunk/asyncPost";
 
 const initialState = {
   ishiddenPost: false,
-  postList: [],
+  list: [],
   tmp: {},
-  loginStatus :false,
 };
 
 const postSlice = createSlice({
@@ -17,9 +16,6 @@ const postSlice = createSlice({
     updateIshidden: (state, action) => {
       state.ishiddenPost = action.payload;
     },
-    updateLogin:(state, action) => {
-      state.loginStatus = action.payload;
-    }
   },
   
   extraReducers:  (builder) => {
@@ -34,5 +30,5 @@ const postSlice = createSlice({
 },
 });
 
-export const {updateIshidden, updateLogin}= postSlice.actions;
+export const {updateIshidden}= postSlice.actions;
 export default postSlice.reducer;
