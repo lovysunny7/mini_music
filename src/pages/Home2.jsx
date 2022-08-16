@@ -11,18 +11,22 @@ import ViewModal from "../components/ViewModal";
 import { __getOnePost, __getAll } from "../redux/asyncThunk/asyncPost";
 import apis from "../api/axios";
 import ErrorBoundary from "../components/ErrorBoundary";
+import { getCookie } from "../shared/Cookie";
+
 
 const Home2 = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState({});
   const [postId, setPostId] = useState("");
 
-  // const fetchPosts = async () => {
-  //   const { data } = await axios.get('http://localhost:3001/posts');
-  //   setPosts(data);
-  // };
+  const cookie = getCookie('accessToken');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (cookie !== undefined) {
+      return setIsLoggedIn(true);
+    }
+  }, []);
 
   const showAll = () => {
     apis.post_all().then((res) => {
@@ -76,7 +80,7 @@ const Home2 = () => {
           ))}
         </div>
       </StLayout>
-      <WriteFixedBtn />
+      {isLoggedIn ? <WriteFixedBtn /> : null}
     </>
   );
 };

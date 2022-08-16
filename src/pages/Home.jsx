@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { updateIshidden } from '../redux/modules/postSlice';
 import { useDispatch } from 'react-redux';
 import { __getOnePost, __getAll } from '../redux/asyncThunk/asyncPost';
+import axios from 'axios';
 import apis from '../api/axios';
 import styled from 'styled-components';
 
@@ -17,23 +18,13 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState('');
 
-  const showAll = () => {
-    apis.post_all().then((res) => {
-      console.log(res.data);
-      setPosts(res.data);
-    });
-  };
-
-  // const payload = dispatch(__getAll()).then((res)=>{return res});
-  const payload2 = async () => {
-    const { data } = await dispatch(__getAll());
-    console.log(data);
+  const fetchPosts = async () => {
+    const { data } = await axios.get('http://localhost:3001/posts');
+    setPosts(data);
   };
 
   useEffect(() => {
-    showAll();
-    // payload2();
-    // setPosts(dispatch(__getAll()));
+    fetchPosts();
   }, []);
 
   const [show, setShow] = useState(false);
@@ -45,13 +36,6 @@ const Home = () => {
     // console.log(post);
     handleShow();
     setPost(post);
-    // return (
-    //     <ViewModal show={show} handleShow={handleShow} handleClose={handleClose} post={post}/>
-    // )
-  };
-
-  const onClickPost = (post) => {
-    // dispatch(__getOnePost(post));
   };
 
   return (
@@ -66,9 +50,7 @@ const Home = () => {
         />
         <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
           {posts.map((post) => (
-            // <div onClick={()=>navigate(`/posts/${post.postId}`)}>
-            // <div onClick={()=>navigate(`/postview/${post.postId}`)}>
-            <div key={post.postId} onClick={() => handleModal(post)}>
+            <div key={post.postId} onClick={() => handleModal(post.postId)}>
               <PostCard post={post} />
             </div>
           ))}

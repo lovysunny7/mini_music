@@ -33,7 +33,7 @@ function Header() {
     deleteCookie('userId');
     deleteCookie('username');
     alert('로그아웃이 완료되었습니다');
-    window.location.reload(true);
+    window.location.replace('/');
   };
 
   return (
