@@ -37,16 +37,20 @@ const Login = ({ login, handleCloseLogin }) => {
 
   const [cookies, setCookie] = useCookies('id');
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    axios
-      .post('http://52.79.226.242/api/users/login', {
+    const res = axios.post(
+      'http://52.78.235.109/api/users/login',
+      {
         username: state.username,
         password: state.password,
-      })
-      .then((res) => {
-        setCookie('id', res.data.token);
-      });
+      },
+      { withCredentials: true }
+    );
+    console.log(res);
+
+    let data = await res;
+    console.log(data);
   };
 
   const onLogin = () => {
@@ -59,12 +63,15 @@ const Login = ({ login, handleCloseLogin }) => {
       .then((response) => {
         const { accessToken } = response.data;
         console.log(accessToken);
+
         // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
-        // axios.defaults.headers.common[
-        //   'Authorization'
-        // ] = `Bearer ${accessToken}`;
-        // axios.defaults.headers.common['Refresh-Token'] = `${accessToken}`;
-        // axios.defaults.headers.common['Access-Token-Expire-Time'] = `???`;
+        axios.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${accessToken}`;
+        axios.defaults.headers.common['Refresh-Token'] = `${accessToken}`;
+        axios.defaults.headers.common[
+          'Access-Token-Expire-Time'
+        ] = 148357239458;
         // accessToken을 localStorage, cookie 등에 저장하지 않는다!
       })
       .catch((error) => {
@@ -110,7 +117,7 @@ const Login = ({ login, handleCloseLogin }) => {
           <Button variant='secondary' onClick={handleClose}>
             Close
           </Button>
-          <Button variant='primary' onClick={onLogin}>
+          <Button variant='primary' onClick={handleLogin}>
             Log In
           </Button>
         </Modal.Footer>
