@@ -12,14 +12,14 @@ import apis from '../api/axios';
 const ViewModal = ({show, handleShow, handleClose, post}) => {
   // const dispatch = useDispatch();
   // const [post, setPost] = useState();
-  const showOne = (postId) => {
-    apis.post_view2(postId).then((res)=>
-    {
-      console.log(res);
-      // setPost(post);
-    }
-    )
-   }
+  // const showOne = (postId) => {
+  //   apis.post_view2(postId).then((res)=>
+  //   {
+  //     console.log(res);
+  //     // setPost(post);
+  //   }
+  //   )
+  //  }
 
   // const [show, setShow] = useState(false);
   // const handleShow = () => setShow(true);
@@ -32,7 +32,7 @@ const ViewModal = ({show, handleShow, handleClose, post}) => {
   // console.log(post);
   
   useEffect(() => {
-    showOne(post.postId);
+    // showOne(post.postId);
   
   }, [show]);
   /////////////////////////////////////////////

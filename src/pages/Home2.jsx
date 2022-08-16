@@ -68,7 +68,7 @@ const Home2 = () => {
           {posts.map((post) => (
             // <div onClick={()=>navigate(`/posts/${post.postId}`)}>
             // <div onClick={()=>navigate(`/postview/${post.postId}`)}>
-            <div  key={post.postId} onClick={()=>handleModal(post.postId)}>
+            <div  key={post.postId} onClick={()=>handleModal(post)}>
             <PostCard
               post={post}
             />

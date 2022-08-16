@@ -59,10 +59,11 @@ const PostWrite = () => {
       e.preventDefault();
       e.stopPropagation();
     }else{
+      let nowtime = Date.now();
       setUserData({
-          id: titleRef.current.value+new Date(),
-
-          postId: titleRef.current.value,
+          id: nowtime,
+          
+          postId: nowtime,
           username: username,
           title: titleRef.current.value,
           artist: artistRef.current.value,

@@ -23,17 +23,17 @@ export const StBtn = styled.button`
   margin-bottom: ${(props) => (props.pop ? "15px" : "")};
   margin-left: ${(props) => (props.pop ? "45px" : "")};
 `;
-const onDelClick = (e, postId) => {
+const onDelClick = (e) => {
 //   const navigate = useNavigate();
 //   const postId = useSelector(db=>db.deletPostId);
-  apis.post_del(postId);
-  console.log(postId);
+console.log(e.target.value);
+  apis.post_del(e.target.value);
    navigate('/mypage');
 
 };
 
 // overlTrigger 때문인지, styled component 선선언 필요
-const StPopover= (e, postId) =>  {
+const StPopover= (postId) =>  {
     console.log(postId)
     return(
   <Popover id="popover-basic">
@@ -46,8 +46,8 @@ const StPopover= (e, postId) =>  {
   ;
   
   
-  export const UpdateDeleteBtn = (e, postId) => {
-      //   console.log(postId);
+  export const UpdateDeleteBtn = ({postId}) => {
+        console.log(postId);
     // const dispatch = useDispatch();
     // dispatch(deletPostId(postId));
     navigate = useNavigate();
@@ -55,9 +55,7 @@ const StPopover= (e, postId) =>  {
   return (
     <div style={{ textAlign: "right", marginBottom: "10px" }}>
       <StBtn>수정하기</StBtn>{" "}
-      <OverlayTrigger postId={postId} trigger="click" placement="bottom" overlay={StPopover(postId)}>
-        <StBtn del postId={postId}>삭제하기</StBtn>
-      </OverlayTrigger>
+        <StBtn del id="delBtn" onClick={onDelClick} value={postId}>삭제하기</StBtn>
     </div>
   );
 };
