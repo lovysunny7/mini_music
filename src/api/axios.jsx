@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getCookie } from '../shared/Cookie';
 // import { getCookie } from "../shared/Cookie";
 // 1. Axios instance생성
 export const api = axios.create({
@@ -16,10 +17,16 @@ export const apiForm = axios.create({
 
 // 2. request interceptor
 api.interceptors.request.use(
-  (config) => {
     // const token = getCookie("token");
     // config.headers.Authorization = token;
-    return config;
+    (config) => {
+        const accessToken = getCookie('accessToken');
+        const refreshToken = getCookie('refreshToken');
+        config.headers['Authorization'] = `Bearer ${accessToken}`;
+        config.headers['Refresh-token'] = refreshToken;
+        // config.headers['Access-Token-Expire-Time'] = 1234263763542;
+        // 이 만료시간 어케야되지....
+        return config;
   },
   (error) => {
     console.log(error);
@@ -45,7 +52,7 @@ const apis = {
  post_del2:  async (postId) => await api.delete(`/posts/${postId}`,postId),
 
   // local용
-  post_view:  async (postId) => await api.get(`/posts/${postId}`),
+  post_view:  async (id) => await api.get(`/posts/${id}`,id),
   post_write: async (payload) => await api.post('/posts', payload),
   post_del:  async (id) => await api.delete(`/posts/${id}`),
   post_reWr:  (postId, payload) =>  api.put(`/posts/?postId=${postId}`, postId, payload),
