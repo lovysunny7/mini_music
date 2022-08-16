@@ -7,10 +7,11 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    const token = getCookie('token');
-    config.headers['Authorization'] = `Bearer ${token}`;
-    config.headers['Refresh-token'] = token;
-    config.headers['Access-Token-Expire-Time'] = 1234263763542;
+    const accessToken = getCookie('accessToken');
+    const refreshToken = getCookie('refreshToken');
+    config.headers['Authorization'] = `Bearer ${accessToken}`;
+    config.headers['Refresh-token'] = refreshToken;
+    // config.headers['Access-Token-Expire-Time'] = 1234263763542;
     // 이 만료시간 어케야되지....
     return config;
   },

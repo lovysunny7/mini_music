@@ -49,10 +49,10 @@ const Login = ({ login, handleCloseLogin }) => {
     const res2 = apis.loginUser(state, { withCredentials: true });
     // console.log('apis', await res2);
     const token = (await res2).data.data.token;
-    console.log(token);
-    // setCookie('token', token);
-    setCookie('accessToken', token.accessToken);
-    setCookie('refreshToken', token.refreshToken);
+    // console.log(token);
+    setCookie('accessToken', token.accessToken, token.accessTokenExpiresIn);
+    setCookie('refreshToken', token.refreshToken, token.accessTokenExpiresIn);
+    // console.log(getCookie('accessToken'));
   };
 
   return (

@@ -94,6 +94,7 @@ function Header() {
                   console.log('호출');
                   deleteCookie('refreshToken')
                   deleteCookie('accessToken')
+                  window.location.reload(true)
                 }}
               >
                 Log Out
