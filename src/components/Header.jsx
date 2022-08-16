@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Login from './Login';
 import SignUp from './SignUp';
-import { deleteCookie } from '../shared/Cookie';
+import { getCookie, deleteCookie } from '../shared/Cookie';
+import apis from '../api/index';
 
 function Header() {
   const [login, setLogin] = useState(false);
@@ -15,6 +16,24 @@ function Header() {
   const handleShowSignup = () => setSignup(true);
 
   const navigate = useNavigate();
+
+  const cookie = getCookie('accessToken');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (cookie !== undefined) {
+      return setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    apis.logoutUser(); // 여기 뭐 넣어야됨??..
+    deleteCookie('refreshToken');
+    deleteCookie('accessToken');
+    alert('로그아웃이 완료되었습니다!');
+    window.location.reload(true);
+  };
+
   return (
     <>
       <Navbar
@@ -78,27 +97,25 @@ function Header() {
               </Nav.Link>
             </Nav>
             <Nav>
-              {/* 비로그인시 */}
-              <Nav.Link onClick={handleShowLogin}>Log In</Nav.Link>
-              <Nav.Link onClick={handleShowSignup}>Sign Up</Nav.Link>
-              {/* 로그인시 */}
-              <Nav.Link
-                onClick={() => {
-                  navigate('/mypage');
-                }}
-              >
-                My Page
-              </Nav.Link>
-              <Nav.Link
-                onClick={() => {
-                  console.log('호출');
-                  deleteCookie('refreshToken')
-                  deleteCookie('accessToken')
-                  window.location.reload(true)
-                }}
-              >
-                Log Out
-              </Nav.Link>
+              {isLoggedIn ? (
+                <>
+                  {/* 로그인시 */}
+                  <Nav.Link
+                    onClick={() => {
+                      navigate('/mypage');
+                    }}
+                  >
+                    My Page
+                  </Nav.Link>
+                  <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
+                </>
+              ) : (
+                <>
+                  {/* 비로그인시 */}
+                  <Nav.Link onClick={handleShowLogin}>Log In</Nav.Link>
+                  <Nav.Link onClick={handleShowSignup}>Sign Up</Nav.Link>
+                </>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

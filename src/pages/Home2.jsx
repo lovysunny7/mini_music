@@ -6,12 +6,11 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { updateIshidden } from '../redux/modules/postSlice';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import ViewModal from '../components/ViewModal';
-import { __getOnePost,__getAll } from '../redux/asyncThunk/asyncPost';
+import { __getOnePost, __getAll } from '../redux/asyncThunk/asyncPost';
 import apis from '../api/axios';
 import ErrorBoundary from '../components/ErrorBoundary';
-
 
 const Home2 = () => {
   const navigate = useNavigate();
@@ -35,29 +34,24 @@ const Home2 = () => {
   //   const {data} = await dispatch(__getAll());
   //   console.log(data);
   // }
-  
+
   useEffect(() => {
     showAll();
     // payload2();
     // setPosts(dispatch(__getAll()));
     // console.log()
-    
   }, []);
-  
+
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-  const handleModal = (postId) =>{
-    console.log(postId);
+  const handleModal = (post) => {
     handleShow();
     setPostId(postId);
-    // return (
-    //     <ViewModal show={show} handleShow={handleShow} handleClose={handleClose} post={post}/>
-    // )
   }
-  
+ 
 
-  return (
+ return (
     <>
       <StLayout>
         <StSecTitle>All Genre 🎂</StSecTitle>
@@ -78,6 +72,6 @@ const Home2 = () => {
       <WriteFixedBtn />
     </>
   );
-};
+}
 
 export default Home2;

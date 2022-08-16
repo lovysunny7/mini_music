@@ -12,7 +12,6 @@ api.interceptors.request.use(
     config.headers['Authorization'] = `Bearer ${accessToken}`;
     config.headers['Refresh-token'] = refreshToken;
     // config.headers['Access-Token-Expire-Time'] = 1234263763542;
-    // 이 만료시간 어케야되지....
     return config;
   },
   (error) => {
@@ -26,23 +25,23 @@ const apis = {
   loginUser: (userData) => api.post('/api/users/login', userData),
   logoutUser: (userData) => api.post('/api/auth/users/logout', userData),
 
-  // //post
-  // getPosts: () => api.get('/api/posts'),
-  // addPost: (contents) => api.post('/api/posts', contents),
-  // editPost: (postId, contents) => api.post(`/posts/${postId}`, contents),
-  // delPost: (postId) => api.delete(`/api/posts/${postId}`),
-  // getDetail: (postId) => api.get(`/api/posts/${postId}`),
+  //post
+  getPosts: () => api.get('/api/posts'),
+  addPost: (contents) => api.post('/api/posts', contents),
+  editPost: (postId, contents) => api.post(`/posts/${postId}`, contents),
+  delPost: (postId) => api.delete(`/api/posts/${postId}`),
+  getDetail: (postId) => api.get(`/api/posts/${postId}`),
 
-  // //comment
-  // addComment: (postId, comment) => api.post(`/api/comments/${postId}`, comment),
-  // editComment: (postId, commentId, comments) =>
-  //   api.post(`/api/comments/${postId}/comment/${commentId}`, comments),
-  // delComment: (id, commentId) =>
-  //   api.delete(`/api/board/${id}/comment/${commentId}`),
-  // getComments: (id) => api.get(`/api/board/${id}/comments`),
+  //comment
+  addComment: (postId, comment) => api.post(`/api/comments/${postId}`, comment),
+  editComment: (postId, commentId, comments) =>
+    api.post(`/api/comments/${postId}/comment/${commentId}`, comments),
+  delComment: (id, commentId) =>
+    api.delete(`/api/board/${id}/comment/${commentId}`),
+  getComments: (id) => api.get(`/api/board/${id}/comments`),
 
-  // //heart
-  // addheart: (postId) => api.post(`/api/likes/${postId}`),
+  //heart
+  addheart: (postId) => api.post(`/api/likes/${postId}`),
 };
 
 export default apis;

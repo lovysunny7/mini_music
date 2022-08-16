@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import apis from '../api/index';
-import { getCookie, setCookie, deleteCookie } from '../shared/Cookie';
+import { setCookie } from '../shared/Cookie';
 
 const Login = ({ login, handleCloseLogin }) => {
   const [state, setState] = useState({
@@ -45,14 +45,17 @@ const Login = ({ login, handleCloseLogin }) => {
     //   { withCredentials: true }
     // );
     // console.log(await res);
-
-    const res2 = apis.loginUser(state, { withCredentials: true });
-    // console.log('apis', await res2);
-    const token = (await res2).data.data.token;
-    // console.log(token);
-    setCookie('accessToken', token.accessToken, token.accessTokenExpiresIn);
-    setCookie('refreshToken', token.refreshToken, token.accessTokenExpiresIn);
-    // console.log(getCookie('accessToken'));
+    try {
+      const res = await apis.loginUser(state, { withCredentials: true });
+      const token = res.data.data.token;
+      console.log(res);
+      setCookie('accessToken', token.accessToken, token.accessTokenExpiresIn);
+      setCookie('refreshToken', token.refreshToken, token.accessTokenExpiresIn);
+      alert('로그인 성공 :)');
+      window.location.reload(true);
+    } catch (error) {
+      alert('아이디와 비밀번호를 확인해주세요 :(');
+    }
   };
 
   return (
