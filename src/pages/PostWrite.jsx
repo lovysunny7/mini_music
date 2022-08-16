@@ -21,6 +21,7 @@ const PostWrite = () => {
   // const [createdAt, setCreatedAt] = useState('');
   // const [modifiedAt, setModifiedAt] = useState('');
   const [userData, setUserData] = useState();
+  let formData = new FormData();
 
   const titleRef = useRef();
   const artistRef = useRef();
@@ -31,6 +32,9 @@ const PostWrite = () => {
 
   //파일 미리볼 url을 저장해줄 state - copy & paste
   const [fileImage, setFileImage] = useState("");
+
+  //보내줄 파일을 저장해줄 state
+  const [imageUrl, setImage] = useState();
 
   // 파일 저장 - 로컬에서만 볼 수 있다
   const saveFileImage = (e) => {
@@ -44,6 +48,9 @@ const PostWrite = () => {
     imageRef.current.value="";    
     // console.log(imageRef.current.value);
   };
+
+  // const formData = new FormData();
+ 
 
   const handleSubmit = (e) => {
     const form = e.currentTarget;
@@ -59,7 +66,7 @@ const PostWrite = () => {
           // username: username,
           title: titleRef.current.value,
           artist: artistRef.current.value,
-          genre: genreRef.current.value,
+          genre: e.target.genre.value,
           content: contentRef.current.value,
           // imageUrl: imageRef.current,
           videoUrl: videoRef.current.value,
@@ -69,41 +76,93 @@ const PostWrite = () => {
           // createdAt: new Date().toUTCString(),
           // modifiedAt: null
         })
-        e.preventDefault();
+
+      // formData = new URLSearchParams({
+      //     title: titleRef.current.value,
+      //     artist: artistRef.current.value, 
+      //     genre: e.target.genre.value,
+      //     content: contentRef.current.value,
+      //     videoUrl: videoRef.current.value,
+      // })
+      // e.preventDefault()
+      // formData.append('title', titleRef.current.value);
+      // formData.append('artist', artistRef.current.value);
+      // formData.append('content', contentRef.current.value);
+      // formData.append('videoUrl', videoRef.current.value);
+      
+      // formData.append('genre',e.target.genre.value);
+      // formData.append('imageUrl',imageUrl);
+      // console.log(imageUrl);
+      // formData.append('imageUrl',imageRef.current)
+      
+      e.preventDefault();
     
       }
       setValidated(true);
     };
+
+
+
   
     // unused func
   const userFunc = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
-    console.log(userData);
+    // console.log(userData);
   };
 
   const onChangeGenre = (e) => {
     setGenre(e.target.value);
   };
 
+  const onChangeImage = (e) =>{
+    setImage(e.target.files[0])
+    console.log(imageUrl);
+  }
+
   const postWrite = (payload) => {
     apis.post_write(payload)
    }
+  const postWrite2 = (payload) => {
+    apis.post_write2(payload)
+  }
 
-
+ 
 
   useEffect(() => {
     if(userData===undefined){
       console.log("값 노노")
     }else{
-      console.log(userData)
-      postWrite(userData);
+      console.log(userData);
+      // postWrite(userData);
+      formData.append('title', titleRef.current.value);
+      formData.append('artist', artistRef.current.value);
+      formData.append('content', contentRef.current.value);
+      formData.append('videoUrl', videoRef.current.value);
+      formData.append('genre', genre);
+      formData.append('imageUrl',imageUrl);
+      for (var key of formData.keys()) {
+        
+        console.log(key);
+        
+      }
+      for (var value of formData.values()) {
+        
+        console.log(value);
+        
+      }
+      console.log(formData);
+      postWrite2(formData)
       setTimeout(()=>{
-        deleteFileImage();
-        navigate('/mypage')
+        // deleteFileImage();
+        // navigate('/mypage')
       },500)
+   
     }
-  }, [userData])
+    console.log(imageRef.current);
+    // console.log(imageUrl);
+
+  }, [userData,genreRef.value])
 
   const GenreRadio = () => {
     return (
@@ -119,7 +178,7 @@ const PostWrite = () => {
             type='radio'
             value={type}
             onChange={onChangeGenre}
-            checked={`genre===${type}`}
+            checked={genre===type}
           />
         ))}
       </Form.Group>
@@ -187,6 +246,7 @@ const PostWrite = () => {
                  accept="image/*"
                  src={fileImage}
                  rounded={true}
+                 onChange={onChangeImage}
                />
               </Card>
               <InputGroup hasValidation>
