@@ -33,7 +33,7 @@ const WriteFixedBtn = () => {
         onClick={() => {
           isLoggedIn
             ? navigate('/postwrite')
-            : alert('로그인 사용자만 접근이 가능합니다!');
+            : alert('로그인 사용자만 접근이 가능합니다');
         }}
       >
         <span style={{ fontSize: '36px' }} className='material-icons'>

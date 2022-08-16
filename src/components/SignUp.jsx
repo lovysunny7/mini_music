@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
+import apis from '../api/index';
 
 const SignUp = ({ signup, handleCloseSignup }) => {
   const [state, setState] = useState({
-    userId: '',
     username: '',
     password: '',
     passwordConfirm: '',
   });
 
   const handleChangeState = (event) => {
-    console.log(event.target.name);
-    console.log(event.target.value);
+    // console.log(event.target.name);
+    // console.log(event.target.value);
     setState({
       ...state,
       [event.target.name]: event.target.value,
@@ -20,11 +20,20 @@ const SignUp = ({ signup, handleCloseSignup }) => {
   const handleClose = () => {
     handleCloseSignup(); // 실제 모달 닫는 함수
     setState({
-      userId: '',
       username: '',
       password: '',
       passwordConfirm: '',
     }); // 인풋 초기화
+  };
+
+  const handleSignup = async (event) => {
+    event.preventDefault();
+    try {
+      const res = await apis.registerUser(state);
+      console.log(res);
+    } catch (error) {
+      alert('회원가입 실패');
+    }
   };
   return (
     <>
@@ -34,23 +43,23 @@ const SignUp = ({ signup, handleCloseSignup }) => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className='mb-3' controlId='userId'>
+            {/* <Form.Group className='mb-3' controlId='userId'>
               <Form.Label>아이디</Form.Label>
               <Form.Control
                 type='text'
-                placeholder='영어로 시작하며 소문자와 숫자만 사용이 가능합니다'
+                placeholder='영어로 시작하며 소문자와 숫자 조합으로 3-12 자리'
                 autoFocus
                 required
                 name='userId'
                 value={state.userId}
                 onChange={handleChangeState}
               />
-            </Form.Group>
+            </Form.Group> */}
             <Form.Group className='mb-3' controlId='username'>
               <Form.Label>사용자명</Form.Label>
               <Form.Control
                 type='text'
-                placeholder='닉네임을 입력해주세요'
+                placeholder='영어로 시작하며 소문자와 숫자 조합으로 3-12 자리'
                 autoFocus
                 required
                 name='username'
@@ -88,7 +97,7 @@ const SignUp = ({ signup, handleCloseSignup }) => {
           <Button variant='secondary' onClick={handleClose}>
             Close
           </Button>
-          <Button variant='primary' onClick={() => {}}>
+          <Button variant='primary' onClick={handleSignup}>
             Sign Up
           </Button>
         </Modal.Footer>
