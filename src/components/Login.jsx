@@ -13,8 +13,8 @@ const Login = ({ login, handleCloseLogin }) => {
   });
 
   const handleChangeState = (event) => {
-    console.log(event.target.name);
-    console.log(event.target.value);
+    // console.log(event.target.name);
+    // console.log(event.target.value);
     setState({
       ...state,
       [event.target.name]: event.target.value,
@@ -51,10 +51,10 @@ const Login = ({ login, handleCloseLogin }) => {
       console.log(res);
       setCookie('accessToken', token.accessToken, token.accessTokenExpiresIn);
       setCookie('refreshToken', token.refreshToken, token.accessTokenExpiresIn);
-      alert('로그인 성공 :)');
+      alert('로그인 성공');
       window.location.reload(true);
     } catch (error) {
-      alert('아이디와 비밀번호를 확인해주세요 :(');
+      alert('아이디와 비밀번호를 확인해주세요');
     }
   };
 
@@ -70,7 +70,7 @@ const Login = ({ login, handleCloseLogin }) => {
               <Form.Label>아이디</Form.Label>
               <Form.Control
                 type='text'
-                placeholder='아이디를 입력하세요.'
+                placeholder='아이디를 입력하세요'
                 autoFocus
                 name='username'
                 value={state.username}
@@ -82,7 +82,7 @@ const Login = ({ login, handleCloseLogin }) => {
               <Form.Label>비밀번호</Form.Label>
               <Form.Control
                 type='password'
-                placeholder='비밀번호를 입력하세요.'
+                placeholder='비밀번호를 입력하세요'
                 autoFocus
                 name='password'
                 value={state.password}

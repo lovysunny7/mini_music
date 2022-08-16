@@ -30,7 +30,7 @@ function Header() {
     apis.logoutUser(); // 여기 뭐 넣어야됨??..
     deleteCookie('refreshToken');
     deleteCookie('accessToken');
-    alert('로그아웃이 완료되었습니다!');
+    alert('로그아웃이 완료되었습니다');
     window.location.reload(true);
   };
 
