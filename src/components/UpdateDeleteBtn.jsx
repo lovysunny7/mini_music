@@ -2,12 +2,23 @@ import {  OverlayTrigger, Popover } from "react-bootstrap";
 import styled from "styled-components";
 import apis from "../api/axios";
 import { useNavigate, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { deletPostId } from "../redux/modules/postSlice";
+import { getCookie } from "../shared/Cookie";
+
 
 let navigate = null;
 // width: '80px', height: '23px', lineHeight:'70%', textSizeAdjust:'inherit', fontSize:'13px'
+
+// const cookie = getCookie('accessToken');
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+//   useEffect(() => {
+//     if (cookie !== undefined) {
+//       return setIsLoggedIn(true);
+//     }
+//   }, []);
 export const StBtn = styled.button`
   width: 80px;
   height: 23px;
@@ -55,7 +66,7 @@ const StPopover= (postId) =>  {
   return (
     <div style={{ textAlign: "right", marginBottom: "10px" }}>
       <StBtn>수정하기</StBtn>{" "}
-        <StBtn del id="delBtn" onClick={onDelClick} value={postId}>삭제하기</StBtn>
+        <StBtn del id="delBtn" value={postId}>삭제하기</StBtn>
     </div>
   );
 };

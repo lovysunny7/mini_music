@@ -7,26 +7,19 @@ const initialState = {
   ishiddenPost: false,
   postList: [],
   tmp: {},
-  delPostId : '',
+  loginStatus :false,
 };
 
 const postSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {
-    showIshidden: (state) => {
-      //  return(ishiddenPost);
-    },
     updateIshidden: (state, action) => {
       state.ishiddenPost = action.payload;
     },
-    createPost: (state, action) => {
-      state.cafeList.push(action.payload);
-    },
-    deletPostId: (state, action) => {
-      state.delPostId = action.payload;
-     ;
-    },
+    updateLogin:(state, action) => {
+      state.loginStatus = action.payload;
+    }
   },
   
   extraReducers:  (builder) => {
@@ -41,5 +34,5 @@ const postSlice = createSlice({
 },
 });
 
-export const {showIshidden, updateIshidden, deletPostId}= postSlice.actions;
+export const {updateIshidden, updateLogin}= postSlice.actions;
 export default postSlice.reducer;

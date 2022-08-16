@@ -9,26 +9,33 @@ import { showIshidden, updateIshidden } from '../redux/modules/postSlice';
 import { UpdateDeleteBtn } from './UpdateDeleteBtn';
 import apis from '../api/axios';
 import ErrorBoundary from './ErrorBoundary';
+import { getCookie } from '../shared/Cookie';
 
 const ViewModal = ({ show, handleShow, handleClose, postId }) => {
   // const dispatch = useDispatch();
   const [post, setPost] = useState();
-  const showOne = (postId) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [heart, setHeart] = useState(false);
 
-    try{
+
+
+  const username = getCookie('username');
+  // console.log(username);
+  const heartOn = { uid: 1 };
+  const heartOff = { uid: 0 };
+  
+  const showOne = (postId) => {
       apis.post_view(postId).then((res)=>
       {
         // console.log(postId);
-        // console.log(res?.data);
+        // console.log(res?.data.data);
         setPost(res?.data.data);
       }
       )
-    }catch(err){
-      console.log('첫 실행시 나타나는 문제');
     }
-
-   }
-
+ const pushHeart = () =>{
+     apis.post_heart(heart?heartOn:heartOff).then((res)=>console.log(res))
+ }
 
   // const [show, setShow] = useState(false);
   // const handleShow = () => setShow(true);
@@ -39,24 +46,15 @@ const ViewModal = ({ show, handleShow, handleClose, postId }) => {
   // const handleClose = () => dispatch(updateIshidden(false))
 
   // console.log(post);
+  // console.log(user.username);
 
   useEffect(() => {
     showOne(postId);
+    if (username !== undefined) {
+            return setIsLoggedIn(true);
+          }
   }, [show]);
-  /////////////////////////////////////////////
-  const [title, setTitle] = useState('');
-  const [username, setUsername] = useState('');
-  const [artisit, setArtisit] = useState('');
-  const [genre, setGenre] = useState('');
-  const [content, setContent] = useState('');
-  const [imageURL, setImage] = useState('');
-  const [viedoURL, setVideo] = useState('');
-  const [likeCnt, setLikeCnt] = useState('');
-  const [commentList, setCommentList] = useState('');
-  const [createdAt, setCreatedAt] = useState('');
-  const [modifiedAt, setModifiedAt] = useState('');
-
-  const [heart, setHeart] = useState(false);
+  ////////////////////////////////////////////
 
   return (
     <>
@@ -77,7 +75,7 @@ const ViewModal = ({ show, handleShow, handleClose, postId }) => {
         </Modal.Header>
         <Modal.Body>
           <Container>
-            <UpdateDeleteBtn postId={post?.postId} />
+           {(username===post?.user?.username) && <UpdateDeleteBtn postId={post?.postId} />}
             <ReactPlayer
               controls={true}
               width={'100%'}

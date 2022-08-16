@@ -4,7 +4,7 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import apis from '../api/index';
-import { setCookie } from '../shared/Cookie';
+import { getCookie, setCookie } from '../shared/Cookie';
 
 const Login = ({ login, handleCloseLogin }) => {
   const [state, setState] = useState({
@@ -51,6 +51,8 @@ const Login = ({ login, handleCloseLogin }) => {
       console.log(res);
       setCookie('accessToken', token.accessToken, token.accessTokenExpiresIn);
       setCookie('refreshToken', token.refreshToken, token.accessTokenExpiresIn);
+      setCookie('userId', res.data.data.id);
+      setCookie('username', res.data.data.username)
       alert('로그인 성공');
       window.location.reload(true);
     } catch (error) {
