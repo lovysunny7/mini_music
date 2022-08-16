@@ -3,7 +3,9 @@ import { useEffect, useRef, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setCookie } from '../shared/Cookie';
+import { useCookies } from 'react-cookie';
+// import { setCookie } from '../shared/Cookie';
+import apis from '../api/index';
 
 const Login = ({ login, handleCloseLogin }) => {
   const [state, setState] = useState({
@@ -33,49 +35,42 @@ const Login = ({ login, handleCloseLogin }) => {
   const idRef = useRef();
   const passwordRef = useRef();
 
-  // const handleLogin = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     const response = await apis.postLogin({
-  //       userId: idRef.current.value,
-  //       password: passwordRef.current.value,
-  //     });
+  const [cookies, setCookie] = useCookies('id');
 
-  //     const AccessToken = response.headers.authorization.split(' ')[1];
-
-  //     setCookie('token', AccessToken);
-  //     alert('로그인 되었습니다!');
-  //     navigate('/');
-  //   } catch (error) {
-  //     alert('정보를 확인해주세요.');
-  //   }
-  // };
-
-  const [users, setUsers] = useState(null);
-  const fetchUser = async () => {
-    const { data } = await axios.get('http://localhost:3001/users');
-    setUsers(data);
+  const handleLogin = (event) => {
+    event.preventDefault();
+    axios
+      .post('http://52.79.226.242/api/users/login', {
+        username: state.username,
+        password: state.password,
+      })
+      .then((res) => {
+        setCookie('id', res.data.token);
+      });
   };
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
-  console.log(users);
-
-  const [user, setUser] = useState(null);
-  const authenticated = user != null;
-
-  // function handleLogin({ userId, password }) {
-  //   const user = users.find(
-  //     (user) => user.userId === userId && user.password === password
-  //   );
-  //   if (user === undefined) throw new Error();
-  //   return user;
-  // }
-
-  // const login = ({ userId, password }) =>
-  //   setUser(handleLogin({ userId, password }));
-  // const logout = () => setUser(null);
+  const onLogin = () => {
+    // const data = {
+    //   username,
+    //   password,
+    // };
+    axios
+      .post('http://52.79.226.242/api/users/login', state)
+      .then((response) => {
+        const { accessToken } = response.data;
+        console.log(accessToken);
+        // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
+        // axios.defaults.headers.common[
+        //   'Authorization'
+        // ] = `Bearer ${accessToken}`;
+        // axios.defaults.headers.common['Refresh-Token'] = `${accessToken}`;
+        // axios.defaults.headers.common['Access-Token-Expire-Time'] = `???`;
+        // accessToken을 localStorage, cookie 등에 저장하지 않는다!
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
 
   return (
     <>
@@ -115,7 +110,7 @@ const Login = ({ login, handleCloseLogin }) => {
           <Button variant='secondary' onClick={handleClose}>
             Close
           </Button>
-          <Button variant='primary' onClick={() => {}}>
+          <Button variant='primary' onClick={onLogin}>
             Log In
           </Button>
         </Modal.Footer>
