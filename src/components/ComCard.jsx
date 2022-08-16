@@ -10,8 +10,8 @@ const ComCard = ({ post }) => {
   };
 
   const Heart = () => {
-    const heartOn ={"uid": 1};
-    const heartOff = {"uid": 0};
+    const heartOn = { uid: 1 };
+    const heartOff = { uid: 0 };
 
     return heart ? (
       <span
@@ -31,7 +31,7 @@ const ComCard = ({ post }) => {
       </span>
     );
   };
-  
+
   // console.log(post);
   return (
     <>
@@ -41,9 +41,10 @@ const ComCard = ({ post }) => {
           {post?.likeCnt} <Heart />
         </Card.Header>
         <ListGroup variant='flush'>
-          {post?.commentList && post?.commentList.map((cmt, idx) => (
-            <ListGroup.Item key={idx}>{cmt}</ListGroup.Item>
-          ))}
+          {post?.commentList &&
+            post?.commentList.map((cmt, idx) => (
+              <ListGroup.Item key={idx}>{cmt}</ListGroup.Item>
+            ))}
         </ListGroup>
       </Card>
       {/* <Card size='lg'> */}

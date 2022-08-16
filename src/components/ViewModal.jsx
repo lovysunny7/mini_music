@@ -3,17 +3,18 @@ import { useEffect } from 'react';
 import { Button, Card, Col, Container, Modal, Row } from 'react-bootstrap';
 import ReactPlayer from 'react-player/youtube';
 import ComCard from './ComCard';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { __getOnePost } from '../redux/asyncThunk/asyncPost';
 import { showIshidden, updateIshidden } from '../redux/modules/postSlice';
 import { UpdateDeleteBtn } from './UpdateDeleteBtn';
 import apis from '../api/axios';
 import ErrorBoundary from './ErrorBoundary';
 
-const ViewModal = ({show, handleShow, handleClose, postId}) => {
+const ViewModal = ({ show, handleShow, handleClose, postId }) => {
   // const dispatch = useDispatch();
   const [post, setPost] = useState();
   const showOne = (postId) => {
+
     try{
       apis.post_view(postId).then((res)=>
       {
@@ -28,19 +29,19 @@ const ViewModal = ({show, handleShow, handleClose, postId}) => {
 
    }
 
+
   // const [show, setShow] = useState(false);
   // const handleShow = () => setShow(true);
   // const handleClose = () => setShow(false);
-  
+
   // const show = useSelector(db=>db.ishiddenPost);
   // const handleShow = () => dispatch(updateIshidden(true))
   // const handleClose = () => dispatch(updateIshidden(false))
-  
+
   // console.log(post);
-  
+
   useEffect(() => {
     showOne(postId);
-  
   }, [show]);
   /////////////////////////////////////////////
   const [title, setTitle] = useState('');
@@ -54,7 +55,7 @@ const ViewModal = ({show, handleShow, handleClose, postId}) => {
   const [commentList, setCommentList] = useState('');
   const [createdAt, setCreatedAt] = useState('');
   const [modifiedAt, setModifiedAt] = useState('');
-  
+
   const [heart, setHeart] = useState(false);
 
   return (
@@ -76,12 +77,12 @@ const ViewModal = ({show, handleShow, handleClose, postId}) => {
         </Modal.Header>
         <Modal.Body>
           <Container>
-            <UpdateDeleteBtn postId={post?.postId}/>
+            <UpdateDeleteBtn postId={post?.postId} />
             <ReactPlayer
               controls={true}
               width={'100%'}
               url={post?.videoUrl}
-              host= {'https://www.youtube.com'}
+              host={'https://www.youtube.com'}
             />
           </Container>
           <Container>
@@ -100,7 +101,7 @@ const ViewModal = ({show, handleShow, handleClose, postId}) => {
             <Card>
               <Card.Body>
                 감상평/추천이유
-                <br/>
+                <br />
                 {post?.content}
               </Card.Body>
             </Card>
