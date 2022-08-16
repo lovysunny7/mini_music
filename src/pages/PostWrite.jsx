@@ -49,9 +49,6 @@ const PostWrite = () => {
     // console.log(imageRef.current.value);
   };
 
-  // const formData = new FormData();
- 
-
   const handleSubmit = (e) => {
     const form = e.currentTarget;
 
@@ -119,6 +116,7 @@ const PostWrite = () => {
     setGenre(e.target.value);
   };
 
+  // 이미지 파일 저장
   const onChangeImage = (e) =>{
     setImage(e.target.files[0])
     console.log(imageUrl);
@@ -145,7 +143,7 @@ const PostWrite = () => {
       formData.append('content', contentRef.current.value);
       formData.append('videoUrl', videoRef.current.value);
       formData.append('genre', genre);
-      formData.append('imageFile',imageUrl);
+      formData.append('imageFile',imageRef.current);
       for (var key of formData.keys()) {
         
         console.log(key);
@@ -157,7 +155,7 @@ const PostWrite = () => {
         
       }
       console.log(formData);
-      // postWrite2(formData)
+      postWrite2(formData)
       setTimeout(()=>{
         // deleteFileImage();
         // navigate('/mypage')
@@ -172,7 +170,7 @@ const PostWrite = () => {
   const GenreRadio = () => {
     return (
       <Form.Group >
-        {['BALLAD', 'DANCE', 'HiPHOP', 'ROCK', 'ETC'].map((type) => (
+        {['BALLAD', 'DANCE', 'HIPHOP', 'ROCK', 'ETC'].map((type) => (
           <Form.Check
             inline
             key={type}
@@ -260,7 +258,7 @@ const PostWrite = () => {
                   type="file"
                   required
                   id="imageUrl"
-                  name="file"
+                  name="imageFile"
                   onChange={saveFileImage}
                   ref={imageRef}
                 />

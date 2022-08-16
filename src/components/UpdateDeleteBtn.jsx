@@ -28,7 +28,7 @@ const onDelClick = (e) => {
 //   const postId = useSelector(db=>db.deletPostId);
 const tmp = (e.target.value).toString();
 console.log(tmp);
-  apis.post_del(tmp)
+  apis.post_del2(tmp)
    navigate('/mypage');
 };
 
