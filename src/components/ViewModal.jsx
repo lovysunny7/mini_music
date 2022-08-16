@@ -19,11 +19,11 @@ const ViewModal = ({show, handleShow, handleClose, postId}) => {
       {
         // console.log(postId);
         // console.log(res?.data);
-        setPost(res?.data);
+        setPost(res?.data.data);
       }
       )
     }catch(err){
-      console.log('첫 실행시 나타나는 문제')
+      console.log('첫 실행시 나타나는 문제');
     }
 
    }

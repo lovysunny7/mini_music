@@ -17,7 +17,7 @@ const Home2 = () => {
   const dispatch = useDispatch();
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState({});
-  const [postId, setPostId] = useState(null);
+  const [postId, setPostId] = useState('');
 
   // const fetchPosts = async () => {
   //   const { data } = await axios.get('http://localhost:3001/posts');
@@ -26,8 +26,8 @@ const Home2 = () => {
 
   const showAll = () => {
    apis.post_all().then((res)=> 
-   {console.log(res?.data)
-   setPosts(res?.data)})
+   {console.log(res?.data.data)
+   setPosts(res?.data.data)})
   }
   
   // const payload2 = async () => {
