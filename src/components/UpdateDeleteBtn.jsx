@@ -26,10 +26,10 @@ export const StBtn = styled.button`
 const onDelClick = (e) => {
 //   const navigate = useNavigate();
 //   const postId = useSelector(db=>db.deletPostId);
-console.log(e.target.value);
-  apis.post_del(e.target.value);
+const tmp = (e.target.value).toString();
+console.log(tmp);
+  apis.post_del(tmp)
    navigate('/mypage');
-
 };
 
 // overlTrigger 때문인지, styled component 선선언 필요
@@ -47,7 +47,7 @@ const StPopover= (postId) =>  {
   
   
   export const UpdateDeleteBtn = ({postId}) => {
-        console.log(postId);
+        // console.log(postId);
     // const dispatch = useDispatch();
     // dispatch(deletPostId(postId));
     navigate = useNavigate();
