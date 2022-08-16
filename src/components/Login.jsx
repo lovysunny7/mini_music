@@ -3,8 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
-// import { setCookie } from '../shared/Cookie';
 import apis from '../api/index';
 
 const Login = ({ login, handleCloseLogin }) => {
@@ -35,48 +33,20 @@ const Login = ({ login, handleCloseLogin }) => {
   const idRef = useRef();
   const passwordRef = useRef();
 
-  const [cookies, setCookie] = useCookies('id');
-
   const handleLogin = async (event) => {
     event.preventDefault();
-    const res = axios.post(
-      'http://52.78.235.109/api/users/login',
-      {
-        username: state.username,
-        password: state.password,
-      },
-      { withCredentials: true }
-    );
-    console.log(res);
+    // const res = axios.post(
+    //   'http://52.78.235.109/api/users/login',
+    //   {
+    //     username: state.username,
+    //     password: state.password,
+    //   },
+    //   { withCredentials: true }
+    // );
+    // console.log(await res);
 
-    let data = await res;
-    console.log(data);
-  };
-
-  const onLogin = () => {
-    // const data = {
-    //   username,
-    //   password,
-    // };
-    axios
-      .post('http://52.79.226.242/api/users/login', state)
-      .then((response) => {
-        const { accessToken } = response.data;
-        console.log(accessToken);
-
-        // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
-        axios.defaults.headers.common[
-          'Authorization'
-        ] = `Bearer ${accessToken}`;
-        axios.defaults.headers.common['Refresh-Token'] = `${accessToken}`;
-        axios.defaults.headers.common[
-          'Access-Token-Expire-Time'
-        ] = 148357239458;
-        // accessToken을 localStorage, cookie 등에 저장하지 않는다!
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    const res2 = apis.loginUser(state, { withCredentials: true });
+    console.log('apis', await res2);
   };
 
   return (
