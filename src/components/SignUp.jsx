@@ -30,8 +30,10 @@ const SignUp = ({ signup, handleCloseSignup }) => {
     event.preventDefault();
     try {
       const res = await apis.registerUser(state);
-      res.data.errorCode === 200 ? alert('로그인 완') : alert('회원가입 실패');
-      window.location.reload(true);
+      res.data.errorCode.status === 200
+        ? alert('회원가입이 완료되었습니다')
+        : alert(res.data.errorCode.message);
+      // window.location.reload(true);
     } catch (error) {
       console.log('error', error);
       alert('회원가입 실패');
