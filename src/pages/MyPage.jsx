@@ -8,9 +8,9 @@ import ViewModal from '../components/ViewModal';
 import apis from '../api/index';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { getCookie } from '../shared/Cookie';
+import { Card, Col, Container, Modal, Row } from 'react-bootstrap';
 
 const MyPage = () => {
-  // const dispatch = useDispatch();
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
@@ -27,10 +27,11 @@ const MyPage = () => {
 
   const showMine = () => {
     apis.getMypage().then((res) => {
-      // console.log(res?.data.data);
+      console.log(res?.data.data);
       setPosts(res?.data.data.PostList);
       setComments(res?.data.data.CommentList);
       setLikes(res?.data.data.LikedPostList);
+      console.log(res?.data.data.CommentList);
     });
     console.log('posts', posts);
     console.log('comments', comments);
@@ -51,63 +52,84 @@ const MyPage = () => {
 
   return (
     <>
-      <StLayout>
-        {/* 내 포스팅 */}
-        <StSection>
-          <StSecTitle>My Posting ✨</StSecTitle>
-          <ErrorBoundary>
-            <ViewModal
-              show={show}
-              handleShow={handleShow}
-              handleClose={handleClose}
-              postId={postId}
-            />
-          </ErrorBoundary>
-          <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
-            {posts.map((post) => (
-              <div key={post.postId} onClick={() => handleModal(post.postId)}>
-                <MyCard
-                  post={post}
-                  show={show}
-                  handleShow={handleShow}
-                  handleClose={handleClose}
-                />
-              </div>
-            ))}
-          </div>
-        </StSection>
+      {isLoggedIn ? (
+        <StLayout>
+          {/* 내 포스팅 */}
+          <StSection>
+            <StSecTitle>My Posting ✨</StSecTitle>
+            <ErrorBoundary>
+              <ViewModal
+                show={show}
+                handleShow={handleShow}
+                handleClose={handleClose}
+                postId={postId}
+              />
+            </ErrorBoundary>
+            <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
+              {posts.map((post) => (
+                <div key={post.postId} onClick={() => handleModal(post.postId)}>
+                  <MyCard
+                    post={post}
+                    show={show}
+                    handleShow={handleShow}
+                    handleClose={handleClose}
+                  />
+                </div>
+              ))}
+            </div>
+          </StSection>
 
-        {/* 내 댓글 */}
-        <StSection>
-          <StSecTitle>My Comments 🐱‍🚀</StSecTitle>
-        </StSection>
+          {/* 내 댓글 */}
+          <StSection>
+            <StSecTitle>My Comments 🐱‍🚀</StSecTitle>
+            <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
+              {comments.map((comment) => (
+                <StCom key={comment.commentId}>
+                  <Card>
+                    <Card.Body>
+                      <Row>
+                        <Col>{comment.comment}</Col>
+                      </Row>
+                      <Row>
+                        <Col>{comment.createdAt}</Col>
+                      </Row>
+                      {/* <Row>{comment.createdAt}</Row> */}
+                    </Card.Body>
+                  </Card>
+                </StCom>
+              ))}
+            </div>
+          </StSection>
 
-        {/* 내가 좋아한 포스팅들 */}
-        <StSection>
-          <StSecTitle>My Likes 💖</StSecTitle>
-          <ErrorBoundary>
-            <ViewModal
-              show={show}
-              handleShow={handleShow}
-              handleClose={handleClose}
-              postId={postId}
-            />
-          </ErrorBoundary>
-          <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
-            {likes.map((post) => (
-              <div key={post.postId} onClick={() => handleModal(post.postId)}>
-                <MyCard
-                  post={post}
-                  show={show}
-                  handleShow={handleShow}
-                  handleClose={handleClose}
-                />
-              </div>
-            ))}
-          </div>
-        </StSection>
-      </StLayout>
-      {isLoggedIn ? <WriteFixedBtn /> : null}
+          {/* 내가 좋아한 포스팅들 */}
+          <StSection>
+            <StSecTitle>My Likes 💖</StSecTitle>
+            <ErrorBoundary>
+              <ViewModal
+                show={show}
+                handleShow={handleShow}
+                handleClose={handleClose}
+                postId={postId}
+              />
+            </ErrorBoundary>
+            <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
+              {likes.map((post) => (
+                <div key={post.postId} onClick={() => handleModal(post.postId)}>
+                  <MyCard
+                    post={post}
+                    show={show}
+                    handleShow={handleShow}
+                    handleClose={handleClose}
+                  />
+                </div>
+              ))}
+            </div>
+          </StSection>
+          <WriteFixedBtn />
+        </StLayout>
+      ) : (
+        <div>로그인 유저만 접근이 가능합니다.</div>
+      )}
     </>
   );
 };
@@ -120,4 +142,10 @@ const StSection = styled.div`
 export const StSecTitle = styled.p`
   font-size: 22px;
 `;
+
+const StCom = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export default MyPage;
