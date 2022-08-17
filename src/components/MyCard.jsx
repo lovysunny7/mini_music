@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import ViewModal from './ViewModal';
 
-const PostCard = ({ post }) => {
+const MyCard = ({ post }) => {
   const shorts = (sentence) => {
     if (sentence.length > 18) {
       return sentence + '...';
@@ -12,33 +12,17 @@ const PostCard = ({ post }) => {
     }
   };
 
-  // const [postTmp, setPost] = useState({});
-  // const [postId, setPostId] = useState(0);
-  // const [show, setShow] = useState(false);
-  // const handleShow = () => setShow(true);
-  // const handleClose = () => setShow(false);
-  // const handleModal = (postId) =>{
-  //   console.log(postId);
-  //   handleShow();
-  //   setPostId(postId);
-  //   // return (
-  //   //     <ViewModal show={show} handleShow={handleShow} handleClose={handleClose} post={post}/>
-  //   // )
-  // }
-
   return (
     <>
       <div className='col'>
-        <div
-          className='card'
-        >
+        <div className='card'>
           <img
             src={post.imageUrl}
             className='card-img-top'
             alt='앨범 이미지 설명글'
           />
           <div className='card-body'>
-            <p className='card-text'>{post.user.username}님의 Pick!</p>
+            <p className='card-text'>{post.userDto.username}님의 Pick!</p>
             <StTitle>{post.title}</StTitle>
             <StArtist>{post.artist}</StArtist>
             <StContent className='card-text'>
@@ -52,7 +36,7 @@ const PostCard = ({ post }) => {
   );
 };
 
-export default PostCard;
+export default MyCard;
 
 export const StTitle = styled.div`
   font-size: 22px;
