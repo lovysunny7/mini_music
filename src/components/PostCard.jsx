@@ -29,9 +29,7 @@ const PostCard = ({ post }) => {
   return (
     <>
       <div className='col'>
-        <div
-          className='card'
-        >
+        <div className='card'>
           <img
             src={post.imageUrl}
             className='card-img-top'
@@ -57,6 +55,10 @@ export default PostCard;
 export const StTitle = styled.div`
   font-size: 22px;
   margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
 `;
 
 export const StArtist = styled.div`
@@ -67,5 +69,9 @@ export const StArtist = styled.div`
 
 export const StContent = styled.p`
   margin: 10px auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
   /* border: 1px solid rebeccapurple; */
 `;
