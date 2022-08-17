@@ -17,11 +17,11 @@ import NotFound from './NotFound';
 const PostWrite = () => {
   const [validated, setValidated] = useState(false);
   const navigate = useNavigate();
-
-  const cookie = getCookie('accessToken');
+  
+  const username = getCookie('username');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    if (cookie !== undefined) {
+    if (username !== undefined) {
       return setIsLoggedIn(true);
     }
   }, []);
@@ -30,7 +30,6 @@ const PostWrite = () => {
   const [userData, setUserData] = useState();
   let formData = new FormData();
 
-  const username = getCookie('username');
   const titleRef = useRef();
   const artistRef = useRef();
   const genreRef = useRef();
@@ -123,9 +122,6 @@ const PostWrite = () => {
   };
 
   useEffect(() => {
-    if (username === '') {
-      navigate('/');
-    }
     if (userData === undefined) {
     } else {
       // console.log(userData);
@@ -284,7 +280,9 @@ const PostWrite = () => {
           </StDetailWrap>
         </div>
       ) : (
-        <NotFound />
+        <>
+        <NotFound/>
+        </>
       )}
     </>
   );
