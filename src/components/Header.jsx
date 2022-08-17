@@ -36,7 +36,9 @@ function Header() {
     window.location.replace('/');
   };
 
-  const showGenre = (genre) => {
+
+  // 장르
+  const showGenrePosts = (genre) => {
     apis
       .getGenrePosts(`${genre}`)
       .then((res) => {
@@ -45,6 +47,7 @@ function Header() {
       })
       .catch((err) => console.log(err));
   };
+  showGenrePosts('BALLAD');
 
   return (
     <>

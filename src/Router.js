@@ -10,7 +10,6 @@ import Detail from './pages/Detail';
 import MyPage from './pages/MyPage';
 import PostUpdate from './pages/PostUpdate';
 import PostWrite from './pages/PostWrite';
-import Home2 from './pages/Home2';
 import NotFound from './pages/NotFound';
 import Etc from './pages/Etc';
 
@@ -19,8 +18,7 @@ const Router = () => {
     <BrowserRouter>
       <Header />
       <Routes>
-        {/* <Route exact path='/' element={<Home />} /> */}
-        <Route exact path='/' element={<Home2 />} />
+        <Route exact path='/' element={<Home />} />
         <Route path='/ballad' element={<Ballad />} />
         <Route path='/dance' element={<Dance />} />
         <Route path='/hiphop' element={<Hiphop />} />
