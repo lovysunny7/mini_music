@@ -23,8 +23,8 @@ export const __getAll = createAsyncThunk(
   async () => {
       try {
       const data = await apis.post_all();
-          // console.log(data)
-          return data.data;
+          console.log("asyncThunk", data.data)
+          return data.data.data;
       }catch(error){
         // return thunkAPI.rejectWithValue;
         console.log('실패')

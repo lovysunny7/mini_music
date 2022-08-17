@@ -18,6 +18,7 @@ const Home2 = () => {
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState({});
   const [postId, setPostId] = useState("");
+  const dispatch = useDispatch();
 
   const cookie = getCookie('accessToken');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,21 +29,30 @@ const Home2 = () => {
     }
   }, []);
 
-  const showAll = () => {
-    apis.post_all().then((res) => {
-      console.log(res?.data.data)
-      setPosts(res?.data.data);
-    });
-  };
+  // const showAll = () => {
+  //   apis.post_all().then((res) => {
+  //     console.log(res?.data.data)
+  //     setPosts(res?.data.data);
+  //   });
+  // };
 
-  // const payload2 = async () => {
-  //   const {data} = await dispatch(__getAll());
-  //   console.log(data);
-  // }
+  const payload2 = async () => {
+    const {data} = await dispatch(__getAll());
+    console.log("home", data);
+  }
+
+  const payload3 = () => {
+    dispatch(__getAll()).then((res)=>
+    {
+      console.log("home2",res);
+    }
+    )
+  }
 
   useEffect(() => {
-    showAll();
-    // payload2();
+    // showAll();
+    payload2();
+    payload3();
     // setPosts(dispatch(__getAll()));
     // console.log()
   }, []);

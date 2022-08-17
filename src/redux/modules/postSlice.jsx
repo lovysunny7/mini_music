@@ -25,7 +25,8 @@ const postSlice = createSlice({
     })
     builder.addCase(__getAll.fulfilled, (state, action) => {
         // state.postList = [...state.postList,action.payload];
-        // return state.postList;
+        // console.log('redux', action.payload);
+        // return action.payload;
     })
 },
 });
