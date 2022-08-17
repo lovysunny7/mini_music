@@ -22,11 +22,19 @@ const ComCard = ({ post }) => {
     if (heart){
       setHeart(false)
       console.log('하트를 눌렀을 때', heartOn)
-      apis.post_heart2(postId, heartOn).then((res)=>console.log(res))
+      apis.post_heart2(postId, heartOn).then((res)=>
+     { console.log(res.data.data.likeCnt)
+      setLikeCnt(res.data.data.likeCnt);
+     }
+      )
     }else{
       setHeart(true)
       console.log('빈 하트를 눌렀을 때', heartOff)
-      apis.post_heart2(postId, heartOff).then((res)=>console.log(res))
+      apis.post_heart2(postId, heartOff).then((res)=>
+      { console.log(res.data.data.likeCnt)
+        setLikeCnt(res.data.data.likeCnt);
+       }
+      )
     }
   };
   // heart ? setHeart(false) : setHeart(true);
@@ -43,7 +51,7 @@ const handleCom = (e) =>{
    
     useEffect(() => {
       // console.log(JSON.stringify(post))
-      }, [heart])
+      }, [heart, post.likeCnt])
 
     return heart ? (
       <span
@@ -84,7 +92,7 @@ const handleCom = (e) =>{
       <br />
       <Card size='lg'>
         <Card.Header style={{ display: 'flex', justifyContent: 'end' }}>
-          {post?.likeCnt} <Heart />
+          {likeCnt?likeCnt:post.likeCnt} <Heart />
         </Card.Header>
         <ListGroup variant='flush'>
           {post?.commentList &&
