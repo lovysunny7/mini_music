@@ -18,19 +18,13 @@ const ViewModal = ({ show, handleShow, handleClose, postId }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [heart, setHeart] = useState(false);
 
-
-
-  
   const showOne = (postId) => {
-    apis.post_view(postId).then((res)=>
-    {
+    apis.post_view(postId).then((res) => {
       // console.log(postId);
       // console.log(res?.data.data);
       setPost(res?.data.data);
-    }
-    )
-  }
- 
+    });
+  };
 
   // const [show, setShow] = useState(false);
   // const handleShow = () => setShow(true);
@@ -46,10 +40,9 @@ const ViewModal = ({ show, handleShow, handleClose, postId }) => {
   useEffect(() => {
     showOne(postId);
     if (username !== undefined) {
-            return setIsLoggedIn(true);
-          }
+      return setIsLoggedIn(true);
+    }
   }, [show]);
-  ////////////////////////////////////////////
 
   return (
     <>
@@ -65,12 +58,17 @@ const ViewModal = ({ show, handleShow, handleClose, postId }) => {
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            {post?.title} - {post?.artist} / {post?.genre}
+            {post?.title} - {post?.artist} :: {post?.genre} ::
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container>
-           {(username===post?.user?.username) && <UpdateDeleteBtn postId={post?.postId} userId={post?.user?.userId} />}
+            {username === post?.user?.username && (
+              <UpdateDeleteBtn
+                postId={post?.postId}
+                userId={post?.user?.userId}
+              />
+            )}
             <ReactPlayer
               controls={true}
               width={'100%'}
@@ -82,18 +80,18 @@ const ViewModal = ({ show, handleShow, handleClose, postId }) => {
             <Card>
               <Card.Body>
                 <Row>
-                  <Col xs={12} md={8}>
+                  <Col xs={12} md={6}>
                     작성자: {post?.user?.username}
                   </Col>
-                  <Col xs={6} md={4}>
-                    작성시간: {post?.user?.createdAt}
+                  <Col xs={6} md={6}>
+                    작성시각: {post?.user?.createdAt}
                   </Col>
                 </Row>
               </Card.Body>
             </Card>
             <Card>
               <Card.Body>
-                감상평/추천이유
+                {post?.user?.username}님의 한마디🎹
                 <br />
                 {post?.content}
               </Card.Body>

@@ -145,8 +145,8 @@ export const StSecTitle = styled.p`
 `;
 
 const StCom = styled.div`
-  display: flex;
-  justify-content: space-between;
+  /* width: 300px; */
+  /* border: 1px solid red; */
 `;
 
 export default MyPage;
