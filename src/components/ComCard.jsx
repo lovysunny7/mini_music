@@ -1,9 +1,9 @@
-import { useEffect, useState, useRef } from "react";
-import { Button, Card, Form, InputGroup, ListGroup } from "react-bootstrap";
-import apis from "../api/axios";
+import { useEffect, useState, useRef } from 'react';
+import { Button, Card, Form, InputGroup, ListGroup } from 'react-bootstrap';
+import apis from '../api/axios';
 
 const ComCard = ({ post }) => {
-  const [likeCnt, setLikeCnt] = useState("");
+  const [likeCnt, setLikeCnt] = useState('');
   const [heart, setHeart] = useState(false);
   const comRef = useRef();
   const heartOn = { uid: 1 };
@@ -34,10 +34,11 @@ const ComCard = ({ post }) => {
   const handleCom = (e) => {
     const comment = comRef.current.value;
     const commentJson = {
-      comment: comment,
+      comment,
     };
     apis.com_write2(postId, commentJson).then((res) => {
       // console.log(res);
+      alert('댓글이 등록되었습니다');
     });
   };
 
@@ -49,17 +50,17 @@ const ComCard = ({ post }) => {
 
     return heart ? (
       <span
-        style={{ cursor: "pointer", color: "red", marginLeft: "5px" }}
+        style={{ cursor: 'pointer', color: 'red', marginLeft: '5px' }}
         onClick={handleHeart}
-        className="material-icons"
+        className='material-icons'
       >
         favorite
       </span>
     ) : (
       <span
-        style={{ cursor: "pointer", marginLeft: "5px" }}
+        style={{ cursor: 'pointer', marginLeft: '5px' }}
         onClick={handleHeart}
-        className="material-icons"
+        className='material-icons'
       >
         favorite_border
       </span>
@@ -70,8 +71,8 @@ const ComCard = ({ post }) => {
   const CommentInput = () => {
     return (
       <InputGroup>
-        <Form.Control id="comAdd" ref={comRef} />
-        <Button aria-describedby="comAdd" onClick={handleCom}>
+        <Form.Control id='comAdd' ref={comRef} />
+        <Button aria-describedby='comAdd' onClick={handleCom}>
           댓글등록
         </Button>
       </InputGroup>
@@ -82,11 +83,11 @@ const ComCard = ({ post }) => {
   return (
     <>
       <br />
-      <Card size="lg">
-        <Card.Header style={{ display: "flex", justifyContent: "end" }}>
+      <Card size='lg'>
+        <Card.Header style={{ display: 'flex', justifyContent: 'end' }}>
           {likeCnt ? likeCnt : post?.likeCnt} <Heart />
         </Card.Header>
-        <ListGroup variant="flush">
+        <ListGroup variant='flush'>
           {post?.commentList &&
             post?.commentList.map((cmt, idx) => (
               <ListGroup.Item key={idx}>{cmt}</ListGroup.Item>

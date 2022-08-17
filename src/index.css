@@ -1,21 +1,17 @@
 *::-webkit-scrollbar {
   width: 15px; /* scroll width */
 }
-
 *::-webkit-scrollbar-thumb {
   height: 30%; /* scrollbar height*/
   background: #ca7df9; /* scrollbar color */
   border-radius: 10px;
 }
-
 *::-webkit-scrollbar-track {
   background: none; /*scollbar background color*/
 }
-
 .btn {
   border: none;
 }
-
 .btn-primary {
   background-color: #ca7df9;
 }
@@ -23,12 +19,10 @@
   background-color: #564592;
   box-shadow: #ca7df9;
 }
-
 .form-check-input:checked {
   background-color: #ca7df9;
   border-color: #ca7df9;
 }
-
 .form-check-input.is-valid:checked,
 .was-validated .form-check-input:valid:checked {
   background-color: #f896d8;
@@ -37,8 +31,11 @@
 .was-validated .form-check-input:valid {
   border-color: #f896d8;
 }
-
 .form-check-input.is-valid ~ .form-check-label,
 .was-validated .form-check-input:valid ~ .form-check-label {
   color: #212529;
+}
+
+* {
+  font-family: 'IBM Plex Sans KR', sans-serif;
 }
