@@ -17,32 +17,6 @@ const MyPage = () => {
   const [likes, setLikes] = useState([]);
   const [postId, setPostId] = useState('');
 
-  const cookie = getCookie('accessToken');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    if (cookie !== undefined) {
-      return setIsLoggedIn(true);
-    }
-  }, []);
-
-  const showMine = () => {
-    apis.getMypage().then((res) => {
-      console.log(res?.data.data);
-      setPosts(res?.data.data.PostList);
-      setComments(res?.data.data.CommentList);
-      setLikes(res?.data.data.LikedPostList);
-      console.log(res?.data.data.CommentList);
-    });
-    console.log('posts', posts);
-    console.log('comments', comments);
-    console.log('mylikes', likes);
-  };
-
-  useEffect(() => {
-    showMine();
-  }, []);
-
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -50,6 +24,35 @@ const MyPage = () => {
     handleShow();
     setPostId(postId);
   };
+
+  const cookie = getCookie('accessToken');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const showMine = () => {
+    apis.getMypage().then((res) => {
+      // console.log(res.data.data);
+      setPosts(res.data.data.PostList);
+      setComments(res.data.data.CommentList);
+      setLikes(res.data.data.LikedPostList);
+    });
+  };
+  // console.log('myposts', posts);
+  console.log('mycomments', comments);
+  // console.log('mylikes', likes);
+
+  useEffect(() => {
+    showMine();
+    if (cookie !== undefined) {
+      return setIsLoggedIn(true);
+    }
+  }, []);
+
+  // postId로 게시글 정보 가져오기
+  const showCommentPost = async (postId) => {
+    const res = await apis.getDetail(postId);
+    console.log(res.data.data);
+  };
+  showCommentPost(22);
 
   return (
     <>
@@ -89,12 +92,14 @@ const MyPage = () => {
                   <Card>
                     <Card.Body>
                       <Row>
+                        <Col>{comment.postId}</Col>
+                      </Row>
+                      <Row>
                         <Col>{comment.comment}</Col>
                       </Row>
                       <Row>
                         <Col>{comment.createdAt}</Col>
                       </Row>
-                      {/* <Row>{comment.createdAt}</Row> */}
                     </Card.Body>
                   </Card>
                 </StCom>
