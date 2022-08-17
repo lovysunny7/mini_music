@@ -1,51 +1,95 @@
 import styled from 'styled-components';
-import PostCard from '../components/PostCard';
+import MyCard from '../components/MyCard';
 import StLayout from '../components/layout/Layout';
-import { StArtist, StTitle, StContent } from '../components/PostCard';
+import WriteFixedBtn from '../components/WriteFixedBtn';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import ViewModal from '../components/ViewModal';
+import apis from '../api/index';
+import ErrorBoundary from '../components/ErrorBoundary';
+import { getCookie } from '../shared/Cookie';
 
 const MyPage = () => {
   // const dispatch = useDispatch();
+  const [posts, setPosts] = useState([]);
+  const [comments, setComments] = useState([]);
+  const [likes, setLikes] = useState([]);
+  const [postId, setPostId] = useState('');
+
+  const cookie = getCookie('accessToken');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (cookie !== undefined) {
+      return setIsLoggedIn(true);
+    }
+  }, []);
+
+  const showMine = () => {
+    apis.getMypage().then((res) => {
+      console.log(res?.data);
+      console.log(res?.data.data);
+      setPosts(res?.data.data.PostList);
+      setComments(res?.data.data.CommentList);
+      setLikes(res?.data.data.LikedPostList);
+      console.log('posts', posts);
+      console.log('comments', comments);
+      console.log('mylikes', likes);
+    });
+  };
+
+  useEffect(() => {
+    showMine();
+  }, []);
+
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+  const handleModal = (postId) => {
+    handleShow();
+    setPostId(postId);
+  };
 
   return (
-    <StLayout>
-      {/* 내 포스팅 */}
-      <StSection>
-        <StSecTitle>My Posting ✨</StSecTitle>
-        <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
-          {/* <PostCard /> */}
-          {/* 카드 하나 */}
-          <div className='col'>
-            <div className='card'>
-              <img
-                src='https://w.namu.la/s/db95e8529db90e3ad7c75b6d7ea8506b7a4a6f0d547810cc6ab1aa8c7f063f848a56c4f93636c7fa53e81f5fe00a3374df82f3d4b38372669e466cad41c3ea9f6d8599a7e1cc92e480151edd39e8d11f9fe8f557a20aca3229ccf1ece31b874b'
-                className='card-img-top'
-                alt='앨범 이미지 설명글'
-              />
-              <div className='card-body'>
-                <p className='card-text'>cocobang님의 Pick!</p>
-                {/* <StTop> */}
-                <StTitle>epliogue</StTitle>
-                <StArtist>IU</StArtist>
-                {/* </StTop> */}
-                <StContent className='card-text'>
-                  퇴사할 즈음에 많이 들었어요
-                </StContent>
+    <>
+      <StLayout>
+        {/* 내 포스팅 */}
+        <StSection>
+          <StSecTitle>My Posting ✨</StSecTitle>
+          <ErrorBoundary>
+            <ViewModal
+              show={show}
+              handleShow={handleShow}
+              handleClose={handleClose}
+              postId={postId}
+            />
+          </ErrorBoundary>
+          <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
+            {posts.map((post) => (
+              <div key={post.postId} onClick={() => handleModal(post.postId)}>
+                <MyCard
+                  post={post}
+                  show={show}
+                  handleShow={handleShow}
+                  handleClose={handleClose}
+                />
               </div>
-            </div>
+            ))}
           </div>
-        </div>
-      </StSection>
+        </StSection>
 
-      {/* 내 댓글 */}
-      <StSection>
-        <StSecTitle>My Comments 🐱‍🚀</StSecTitle>
-      </StSection>
+        {/* 내 댓글 */}
+        <StSection>
+          <StSecTitle>My Comments 🐱‍🚀</StSecTitle>
+        </StSection>
 
-      {/* 내 좋아요 */}
-      <StSection>
-        <StSecTitle>My Likes 💖</StSecTitle>
-      </StSection>
-    </StLayout>
+        {/* 내 좋아요 */}
+        <StSection>
+          <StSecTitle>My Likes 💖</StSecTitle>
+        </StSection>
+      </StLayout>
+      {isLoggedIn ? <WriteFixedBtn /> : null}
+    </>
   );
 };
 
@@ -57,5 +101,4 @@ const StSection = styled.div`
 export const StSecTitle = styled.p`
   font-size: 22px;
 `;
-
 export default MyPage;

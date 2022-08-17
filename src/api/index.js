@@ -21,12 +21,14 @@ api.interceptors.request.use(
 
 const apis = {
   //user
-  registerUser: (newUser) => api.post('/api/users/signup', newUser),
+  registerUser: (userData) => api.post('/api/users/signup', userData),
   loginUser: (userData) => api.post('/api/users/login', userData),
   logoutUser: (userData) => api.post('/api/auth/users/logout', userData),
+  getMypage: (userData) => api.get('/api/mypage', userData),
 
   //post
   getPosts: () => api.get('/api/posts'),
+  getGenrePosts: () => api.get('/api/posts?genre=:genre'),
   addPost: (contents) => api.post('/api/posts', contents),
   editPost: (postId, contents) => api.post(`/posts/${postId}`, contents),
   delPost: (postId) => api.delete(`/api/posts/${postId}`),
