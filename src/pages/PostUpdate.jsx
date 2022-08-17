@@ -133,7 +133,7 @@ const PostUpdate = () => {
       postWrite2(postId, formData)
       setTimeout(()=>{
       deleteFileImage();
-        // navigate('/mypage')
+      navigate('/mypage')
       },500)
     }
   }, [userData,genreRef.value])
