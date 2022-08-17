@@ -126,16 +126,16 @@ const PostWrite = () => {
       formData.append('videoUrl', videoRef.current.value);
       formData.append('genre', genre);
       formData.append('imageFile',fileImgUp);
-      for (var key of formData.keys()) {
-        console.log(key);
-      }
-      for (var value of formData.values()) {
-        console.log(value);
-      }
+      // for (var key of formData.keys()) {
+      //   console.log(key);
+      // }
+      // for (var value of formData.values()) {
+      //   console.log(value);
+      // }
       postWrite2(formData)
       setTimeout(()=>{
-        // deleteFileImage();
-        // navigate('/mypage')
+        deleteFileImage();
+        navigate('/mypage')
       },500)
     }
   }, [userData,genreRef.value])

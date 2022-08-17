@@ -1,36 +1,49 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Button, Card, Form, InputGroup, ListGroup } from 'react-bootstrap';
 import apis from '../api/axios';
 
 const ComCard = ({ post }) => {
-  const [username, setUsername] = useState('');
   const [likeCnt, setLikeCnt] = useState('');
   const [heart, setHeart] = useState(false);
+  const comRef = useRef();
   const heartOn = { uid: 1 };
   const heartOff = { uid: 0 };
   
   
+ const numberHert = () => {
+
+
+
+ }
   
   const handleHeart = () => {
+    // console.log(post.postId)
+    const postId = post.postId;
     if (heart){
       setHeart(false)
-      apis.post_heart(post.postIId, heartOff).then((res)=>console.log(res))
+      console.log('하트를 눌렀을 때', heartOn)
+      apis.post_heart2(postId, heartOn).then((res)=>console.log(res))
     }else{
       setHeart(true)
-      apis.post_heart(post.postId, heartOn).then((res)=>console.log(res))
+      console.log('빈 하트를 눌렀을 때', heartOff)
+      apis.post_heart2(postId, heartOff).then((res)=>console.log(res))
     }
   };
   // heart ? setHeart(false) : setHeart(true);
   
 
+const handleCom = (e) =>{
+  console.log(comRef.current.value);
+}
+
+
+
+  // heart compo
   const Heart = () => {
    
     useEffect(() => {
-      console.log(JSON.stringify(post))
-      // statusHeart();
-    
+      // console.log(JSON.stringify(post))
       }, [heart])
-    
 
     return heart ? (
       <span
@@ -51,6 +64,20 @@ const ComCard = ({ post }) => {
     );
   };
 
+  // commentInput compo
+  const CommentInput = () =>{
+
+
+    return (
+      <InputGroup>
+      <Form.Control id='comAdd' ref={comRef} />
+      <Button aria-describedby='comAdd' onClick={handleCom}>댓글등록</Button>
+    </InputGroup>
+    );
+  }
+
+
+
   // console.log(post);
   return (
     <>
@@ -68,10 +95,7 @@ const ComCard = ({ post }) => {
       </Card>
       {/* <Card size='lg'> */}
       <br />
-      <InputGroup>
-        <Form.Control aria-describedby='comAdd' />
-        <Button id='comAdd'>댓글등록</Button>
-      </InputGroup>
+      <CommentInput/>
       {/* </Card> */}
     </>
   );
