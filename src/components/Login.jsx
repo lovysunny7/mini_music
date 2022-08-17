@@ -1,10 +1,7 @@
-import axios from 'axios';
 import { useRef, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import apis from '../api/index';
-import { getCookie, setCookie } from '../shared/Cookie';
+import { setCookie } from '../shared/Cookie';
 
 const Login = ({ login, handleCloseLogin }) => {
   const [state, setState] = useState({
@@ -29,34 +26,24 @@ const Login = ({ login, handleCloseLogin }) => {
     }); // 인풋 초기화
   };
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const idRef = useRef();
-  const passwordRef = useRef();
+  // const idRef = useRef();
+  // const passwordRef = useRef();
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    // const res = axios.post(
-    //   'http://52.78.235.109/api/users/login',
-    //   {
-    //     username: state.username,
-    //     password: state.password,
-    //   },
-    //   { withCredentials: true }
-    // );
-    // console.log(await res);
+
+    const res = await apis.loginUser(state, { withCredentials: true });
     try {
-      const res = await apis.loginUser(state, { withCredentials: true });
       const token = res.data.data.token;
-      console.log(res);
       setCookie('accessToken', token.accessToken, token.accessTokenExpiresIn);
       setCookie('refreshToken', token.refreshToken, token.accessTokenExpiresIn);
       setCookie('userId', res.data.data.id, token.accessTokenExpiresIn);
-      setCookie('username', res.data.data.username, token.accessTokenExpiresIn)
+      setCookie('username', res.data.data.username, token.accessTokenExpiresIn);
       alert('로그인 성공');
       window.location.reload(true);
     } catch (error) {
-      alert('아이디와 비밀번호를 확인해주세요');
+      alert(res.data.errorCode.message);
+      console.log(error);
     }
   };
 
@@ -77,7 +64,7 @@ const Login = ({ login, handleCloseLogin }) => {
                 name='username'
                 value={state.username}
                 onChange={handleChangeState}
-                ref={idRef}
+                // ref={idRef}
               />
             </Form.Group>
             <Form.Group className='mb-3' controlId='password'>
@@ -89,7 +76,7 @@ const Login = ({ login, handleCloseLogin }) => {
                 name='password'
                 value={state.password}
                 onChange={handleChangeState}
-                ref={passwordRef}
+                // ref={passwordRef}
               />
             </Form.Group>
           </Form>
