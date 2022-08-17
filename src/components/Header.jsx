@@ -36,18 +36,16 @@ function Header() {
     window.location.replace('/');
   };
 
-
-  // 장르
-  const showGenrePosts = (genre) => {
-    apis
-      .getGenrePosts(`${genre}`)
-      .then((res) => {
-        console.log(res);
-        // setPosts(res?.data.data);
-      })
-      .catch((err) => console.log(err));
-  };
-  showGenrePosts('BALLAD');
+  // 장르별 데이터 호출 테스트
+  // const showGenrePosts = (genre) => {
+  //   apis
+  //     .getGenrePosts(`${genre}`)
+  //     .then((res) => {
+  //       console.log(genre, res?.data.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+  // showGenrePosts('BALLAD');
 
   return (
     <>

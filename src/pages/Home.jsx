@@ -30,7 +30,7 @@ const Home = () => {
 
   const showAll = () => {
     apis.post_all().then((res) => {
-      console.log(res?.data.data)
+      console.log('All Posts',res?.data.data)
       setPosts(res?.data.data);
     });
   };
