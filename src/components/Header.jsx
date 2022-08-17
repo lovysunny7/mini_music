@@ -36,17 +36,15 @@ function Header() {
     window.location.replace('/');
   };
 
-  // const showAll = () => {
-  //   apis
-  //     .getGenrePosts()
-  //     .then((res) => {
-  //       console.log(res);
-  //       // setPosts(res?.data.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
-  // showAll();
+  const showGenre = (genre) => {
+    apis
+      .getGenrePosts(`${genre}`)
+      .then((res) => {
+        console.log(res);
+        // setPosts(res?.data.data);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
