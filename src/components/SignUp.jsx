@@ -33,7 +33,7 @@ const SignUp = ({ signup, handleCloseSignup }) => {
       res.data.errorCode.status === 200
         ? alert('회원가입이 완료되었습니다')
         : alert(res.data.errorCode.message);
-      // window.location.reload(true);
+      window.location.reload(true);
     } catch (error) {
       console.log('error', error);
       alert('회원가입 실패');

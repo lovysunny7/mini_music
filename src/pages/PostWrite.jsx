@@ -146,7 +146,7 @@ const PostWrite = () => {
       postWrite2(formData);
       setTimeout(() => {
         deleteFileImage();
-        // alert('추천 음악이 등록되었습니다');
+        alert('추천 음악이 등록되었습니다');
         navigate('/mypage');
       }, 500);
     }
