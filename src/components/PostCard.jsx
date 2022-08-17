@@ -12,20 +12,6 @@ const PostCard = ({ post }) => {
     }
   };
 
-  // const [postTmp, setPost] = useState({});
-  // const [postId, setPostId] = useState(0);
-  // const [show, setShow] = useState(false);
-  // const handleShow = () => setShow(true);
-  // const handleClose = () => setShow(false);
-  // const handleModal = (postId) =>{
-  //   console.log(postId);
-  //   handleShow();
-  //   setPostId(postId);
-  //   // return (
-  //   //     <ViewModal show={show} handleShow={handleShow} handleClose={handleClose} post={post}/>
-  //   // )
-  // }
-
   return (
     <>
       <div className='col'>

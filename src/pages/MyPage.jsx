@@ -37,7 +37,7 @@ const MyPage = () => {
     });
   };
   // console.log('myposts', posts);
-  console.log('mycomments', comments);
+  // console.log('mycomments', comments);
   // console.log('mylikes', likes);
 
   useEffect(() => {
@@ -48,11 +48,12 @@ const MyPage = () => {
   }, []);
 
   // postId로 게시글 정보 가져오기
-  const showCommentPost = async (postId) => {
-    const res = await apis.getDetail(postId);
-    console.log(res.data.data);
-  };
-  showCommentPost(22);
+  // const showCommentPost = async (postId) => {
+  //   const res = await apis.getDetail(postId);
+  //   console.log(res.data.data);
+  // };
+  // showCommentPost(22);
+  // 이걸 아래 html에 넣으려고 한 야심찬 시도..?
 
   return (
     <>
@@ -88,11 +89,14 @@ const MyPage = () => {
             <StSecTitle>My Comments 🐱‍🚀</StSecTitle>
             <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
               {comments.map((comment) => (
-                <StCom key={comment.commentId}>
+                <StCom
+                  key={comment.commentId}
+                  onClick={() => handleModal(comment.postId)}
+                >
                   <Card>
                     <Card.Body>
                       <Row>
-                        <Col>{comment.postId}</Col>
+                        <Col>postId {comment.postId}</Col>
                       </Row>
                       <Row>
                         <Col>{comment.comment}</Col>
