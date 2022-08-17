@@ -9,6 +9,7 @@ import apis from '../api/index';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { getCookie } from '../shared/Cookie';
 import { Card, Col, Container, Modal, Row } from 'react-bootstrap';
+import NotFound from './NotFound';
 
 const MyPage = () => {
   const [posts, setPosts] = useState([]);
@@ -128,7 +129,7 @@ const MyPage = () => {
           <WriteFixedBtn />
         </StLayout>
       ) : (
-        <div>로그인 유저만 접근이 가능합니다.</div>
+        <NotFound />
       )}
     </>
   );

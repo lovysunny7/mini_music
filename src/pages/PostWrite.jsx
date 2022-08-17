@@ -12,11 +12,20 @@ import { useNavigate } from 'react-router-dom';
 import apis from '../api/axios';
 import { StDetailWrap } from '../components/layout/Layout';
 import { getCookie } from '../shared/Cookie';
+import NotFound from './NotFound';
 
 const PostWrite = () => {
   const [validated, setValidated] = useState(false);
   const navigate = useNavigate();
-  ///////////////////////////////////////////////
+
+  const cookie = getCookie('accessToken');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    if (cookie !== undefined) {
+      return setIsLoggedIn(true);
+    }
+  }, []);
+
   const [genre, setGenre] = useState('');
   const [userData, setUserData] = useState();
   let formData = new FormData();
@@ -86,8 +95,6 @@ const PostWrite = () => {
       e.preventDefault();
     }
     setValidated(true);
-    // alert('추천 음악이 등록되었습니다');
-    // navigate('/');
   };
 
   // unused func
@@ -129,18 +136,19 @@ const PostWrite = () => {
       formData.append('content', contentRef.current.value);
       formData.append('videoUrl', videoRef.current.value);
       formData.append('genre', genre);
-      formData.append('imageFile',fileImgUp);
+      formData.append('imageFile', fileImgUp);
       // for (var key of formData.keys()) {
       //   console.log(key);
       // }
       // for (var value of formData.values()) {
       //   console.log(value);
       // }
-      postWrite2(formData)
-      setTimeout(()=>{
+      postWrite2(formData);
+      setTimeout(() => {
         deleteFileImage();
-        navigate('/mypage')
-      },500)
+        // alert('추천 음악이 등록되었습니다');
+        navigate('/mypage');
+      }, 500);
     }
   }, [userData, genreRef.value]);
 
@@ -166,108 +174,119 @@ const PostWrite = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center', margin: '30px' }}>
-      <StDetailWrap>
-        <Container style={{ margin: 'auto' }}>
-          <h1>What's your Favorite Song?</h1>
-          <br />
-          <h3>{username}'s MUSIC PICK!</h3>
-          <Form
-            // style={{ width: '80%', margin: 'auto' }}
-            noValidate
-            validated={validated}
-            onSubmit={handleSubmit}
-          >
-            <Form.Group style={{ margin: '30px' }}>
-              <InputGroup hasValidation>
-                <InputGroup.Text>음악제목</InputGroup.Text>
-                <Form.Control type='text' required id='title' ref={titleRef} />
-                <Form.Control.Feedback type='invalid'>
-                  음악제목을 적어주세요
-                </Form.Control.Feedback>
-              </InputGroup>
-            </Form.Group>
-            <Form.Group style={{ margin: '30px' }}>
-              <InputGroup hasValidation>
-                <InputGroup.Text>가수</InputGroup.Text>
-                <Form.Control
-                  type='text'
-                  required
-                  id='artist'
-                  ref={artistRef}
-                  // onChange={userFunc}
-                />
-                <Form.Control.Feedback type='invalid'>
-                  가수를 적어주세요
-                </Form.Control.Feedback>
-              </InputGroup>
-            </Form.Group>
-            <GenreRadio />
+    <>
+      {isLoggedIn ? (
+        <div style={{ textAlign: 'center', margin: '30px' }}>
+          <StDetailWrap>
+            <Container style={{ margin: 'auto' }}>
+              <h1>What's your Favorite Song?</h1>
+              <br />
+              <h3>{username}'s MUSIC PICK!</h3>
+              <Form
+                // style={{ width: '80%', margin: 'auto' }}
+                noValidate
+                validated={validated}
+                onSubmit={handleSubmit}
+              >
+                <Form.Group style={{ margin: '30px' }}>
+                  <InputGroup hasValidation>
+                    <InputGroup.Text>음악제목</InputGroup.Text>
+                    <Form.Control
+                      type='text'
+                      required
+                      id='title'
+                      ref={titleRef}
+                    />
+                    <Form.Control.Feedback type='invalid'>
+                      음악제목을 적어주세요
+                    </Form.Control.Feedback>
+                  </InputGroup>
+                </Form.Group>
+                <Form.Group style={{ margin: '30px' }}>
+                  <InputGroup hasValidation>
+                    <InputGroup.Text>가수</InputGroup.Text>
+                    <Form.Control
+                      type='text'
+                      required
+                      id='artist'
+                      ref={artistRef}
+                      // onChange={userFunc}
+                    />
+                    <Form.Control.Feedback type='invalid'>
+                      가수를 적어주세요
+                    </Form.Control.Feedback>
+                  </InputGroup>
+                </Form.Group>
+                <GenreRadio />
 
-            <Form.Group style={{ margin: '30px' }}>
-              <Form.Control
-                type='text'
-                required
-                id='contents'
-                // onChange={userFunc}
-                ref={contentRef}
-                placeholder='추천이유와 감상평은 어떻게 되시나요?'
-                style={{ height: '300px' }}
-              />
-              <Form.Control.Feedback type='invalid'>
-                추천 이유를 적어주세요
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group style={{ margin: '30px' }}>
-              <Card>
-                {!fileImage && (
-                  <p style={{ paddingTop: '15px' }}>이미지 미리보기💾</p>
-                )}
-                <Image
-                  //  alt="이미지 미리보기💾"
-                  accept='image/*'
-                  src={fileImage}
-                  rounded={true}
-                />
-              </Card>
-              <InputGroup hasValidation>
-                <InputGroup.Text>이미지</InputGroup.Text>
-                <Form.Control
-                  type='file'
-                  required
-                  id='imageUrl'
-                  name='imageFile'
-                  onChange={saveFileImage}
-                  ref={imageRef}
-                />
-                <InputGroup.Text onClick={deleteFileImage}>
-                  삭제
-                </InputGroup.Text>
-                <Form.Control.Feedback type='invalid'>
-                  이미지 파일을 업로드 해주세요
-                </Form.Control.Feedback>
-              </InputGroup>
-            </Form.Group>
-            <Form.Group style={{ margin: '30px' }}>
-              <InputGroup hasValidation>
-                <InputGroup.Text>Youtube URL</InputGroup.Text>
-                <Form.Control
-                  type='url'
-                  required
-                  id='videoUrl'
-                  ref={videoRef}
-                />
-                <Form.Control.Feedback type='invalid'>
-                  Youtube URL을 입력해주세요
-                </Form.Control.Feedback>
-              </InputGroup>
-            </Form.Group>
+                <Form.Group style={{ margin: '30px' }}>
+                  <Form.Control
+                    type='text'
+                    required
+                    id='contents'
+                    // onChange={userFunc}
+                    ref={contentRef}
+                    placeholder='추천이유와 감상평은 어떻게 되시나요?'
+                    style={{ height: '300px' }}
+                  />
+                  <Form.Control.Feedback type='invalid'>
+                    추천 이유를 적어주세요
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group style={{ margin: '30px' }}>
+                  <Card>
+                    {!fileImage && (
+                      <p style={{ paddingTop: '15px' }}>이미지 미리보기💾</p>
+                    )}
+                    <Image
+                      //  alt="이미지 미리보기💾"
+                      accept='image/*'
+                      src={fileImage}
+                      rounded={true}
+                    />
+                  </Card>
+                  <InputGroup hasValidation>
+                    <InputGroup.Text>이미지</InputGroup.Text>
+                    <Form.Control
+                      type='file'
+                      required
+                      id='imageUrl'
+                      name='imageFile'
+                      onChange={saveFileImage}
+                      ref={imageRef}
+                    />
+                    <InputGroup.Text onClick={deleteFileImage}>
+                      삭제
+                    </InputGroup.Text>
+                    <Form.Control.Feedback type='invalid'>
+                      이미지 파일을 업로드 해주세요
+                    </Form.Control.Feedback>
+                  </InputGroup>
+                </Form.Group>
+                <Form.Group style={{ margin: '30px' }}>
+                  <InputGroup hasValidation>
+                    <InputGroup.Text>Youtube URL</InputGroup.Text>
+                    <Form.Control
+                      type='url'
+                      required
+                      id='videoUrl'
+                      ref={videoRef}
+                    />
+                    <Form.Control.Feedback type='invalid'>
+                      Youtube URL을 입력해주세요
+                    </Form.Control.Feedback>
+                  </InputGroup>
+                </Form.Group>
 
-            <Button type='submit'>작성하기</Button>
-          </Form>
-        </Container>
-      </StDetailWrap>
-    </div>
+                <Button type='submit'>작성하기</Button>
+              </Form>
+            </Container>
+          </StDetailWrap>
+        </div>
+      ) : (
+        <NotFound />
+      )}
+    </>
   );
 };
 
