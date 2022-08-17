@@ -28,7 +28,8 @@ const apis = {
 
   //post
   getPosts: () => api.get('/api/posts'),
-  getGenrePosts: () => api.get('/api/posts?genre=:genre'),
+  getGenrePosts: (genre) => api.get(`/api/posts?genre=${genre}`),
+  
   addPost: (contents) => api.post('/api/posts', contents),
   editPost: (postId, contents) => api.post(`/posts/${postId}`, contents),
   delPost: (postId) => api.delete(`/api/posts/${postId}`),
