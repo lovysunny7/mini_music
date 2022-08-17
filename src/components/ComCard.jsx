@@ -1,17 +1,36 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Card, Form, InputGroup, ListGroup } from 'react-bootstrap';
+import apis from '../api/axios';
 
 const ComCard = ({ post }) => {
   const [username, setUsername] = useState('');
   const [likeCnt, setLikeCnt] = useState('');
   const [heart, setHeart] = useState(false);
+  const heartOn = { uid: 1 };
+  const heartOff = { uid: 0 };
+  
+  
+  
   const handleHeart = () => {
-    heart ? setHeart(false) : setHeart(true);
+    if (heart){
+      setHeart(false)
+      apis.post_heart(post.postIId, heartOff).then((res)=>console.log(res))
+    }else{
+      setHeart(true)
+      apis.post_heart(post.postId, heartOn).then((res)=>console.log(res))
+    }
   };
+  // heart ? setHeart(false) : setHeart(true);
+  
 
   const Heart = () => {
-    const heartOn = { uid: 1 };
-    const heartOff = { uid: 0 };
+   
+    useEffect(() => {
+      console.log(JSON.stringify(post))
+      // statusHeart();
+    
+      }, [heart])
+    
 
     return heart ? (
       <span

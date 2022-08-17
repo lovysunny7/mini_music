@@ -4,7 +4,7 @@ import { Button, Card, Container, Form, InputGroup, Image} from 'react-bootstrap
 import { useNavigate, useParams } from 'react-router-dom';
 import apis from '../api/axios';
 import { StDetailWrap } from '../components/layout/Layout';
-import { getCookie } from '../shared/Cookie';
+import { getCookie, setCookie } from '../shared/Cookie';
 
 const PostUpdate = () => {
   const [validated, setValidated] = useState(false);
@@ -16,17 +16,16 @@ const PostUpdate = () => {
   // cookie get
   const username = getCookie('username');
   const myUserId = getCookie('userId');
-
+  // parameter get
+  const {postId} = useParams();
+  const {userId} = useParams();
+  
   const titleRef = useRef();
   const artistRef = useRef();
   const genreRef = useRef();
   const contentRef = useRef();
   const imageRef = useRef();
   const videoRef = useRef();
-
-  // parameter get
-  const {postId} = useParams();
-  const {userId} = useParams();
 
   //파일 미리볼 url을 저장해줄 state - copy & paste
   const [fileImage, setFileImage] = useState("");
@@ -106,8 +105,8 @@ const PostUpdate = () => {
     apis.post_reWr(payload)
    }
 
-  const postWrite2 = (payload) => {
-    apis.post_reWr2(payload)
+  const postWrite2 = (postId, payload) => {
+    apis.post_reWr2(postId, payload)
   }
 
   useEffect(() => {
@@ -125,12 +124,12 @@ const PostUpdate = () => {
       formData.append('videoUrl', videoRef.current.value);
       formData.append('genre', genre);
       formData.append('imageFile',fileImgUp);
-      for (var key of formData.keys()) {
-        console.log(key);
-      }
-      for (var value of formData.values()) {
-        console.log(value);
-      }
+      // for (var key of formData.keys()) {
+      //   console.log(key);
+      // }
+      // for (var value of formData.values()) {
+      //   console.log(value);
+      // }
       postWrite2(postId, formData)
       setTimeout(()=>{
       deleteFileImage();

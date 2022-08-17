@@ -13,29 +13,24 @@ import { getCookie } from '../shared/Cookie';
 
 const ViewModal = ({ show, handleShow, handleClose, postId }) => {
   // const dispatch = useDispatch();
+  const username = getCookie('username');
   const [post, setPost] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [heart, setHeart] = useState(false);
 
 
 
-  const username = getCookie('username');
-  // console.log(username);
-  const heartOn = { uid: 1 };
-  const heartOff = { uid: 0 };
   
   const showOne = (postId) => {
-      apis.post_view(postId).then((res)=>
-      {
-        // console.log(postId);
-        // console.log(res?.data.data);
-        setPost(res?.data.data);
-      }
-      )
+    apis.post_view(postId).then((res)=>
+    {
+      // console.log(postId);
+      // console.log(res?.data.data);
+      setPost(res?.data.data);
     }
- const pushHeart = () =>{
-     apis.post_heart(heart?heartOn:heartOff).then((res)=>console.log(res))
- }
+    )
+  }
+ 
 
   // const [show, setShow] = useState(false);
   // const handleShow = () => setShow(true);
