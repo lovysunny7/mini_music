@@ -84,7 +84,7 @@ const ComCard = ({ post }) => {
       <br />
       <Card size="lg">
         <Card.Header style={{ display: "flex", justifyContent: "end" }}>
-          {likeCnt ? likeCnt : post.likeCnt} <Heart />
+          {likeCnt ? likeCnt : post?.likeCnt} <Heart />
         </Card.Header>
         <ListGroup variant="flush">
           {post?.commentList &&

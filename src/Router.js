@@ -9,7 +9,6 @@ import Rock from './pages/Rock';
 import Detail from './pages/Detail';
 import MyPage from './pages/MyPage';
 import PostUpdate from './pages/PostUpdate';
-import PostView from './pages/PostView';
 import PostWrite from './pages/PostWrite';
 import Home2 from './pages/Home2';
 import NotFound from './pages/NotFound';
@@ -29,7 +28,6 @@ const Router = () => {
         <Route path='/etc' element={<Etc />} />
         <Route exact path='/mypage' element={<MyPage />} />
         <Route path='/posts/:id' element={<Detail />} />
-        {/* <Route exact path='/postview' element={<PostView />} /> */}
         <Route exact path='/postwrite' element={<PostWrite />} />
         <Route path='/postupdate/:userId/:postId' element={<PostUpdate />} />
         <Route path='*' element={<NotFound />} />
