@@ -73,7 +73,7 @@ const ComCard = ({ post }) => {
       <InputGroup>
         <Form.Control id='comAdd' ref={comRef} />
         <Button aria-describedby='comAdd' onClick={handleCom}>
-          댓글등록
+          Comment +
         </Button>
       </InputGroup>
     );
