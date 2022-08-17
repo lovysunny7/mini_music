@@ -35,6 +35,7 @@ const apis = {
   delPost: (postId) => api.delete(`/api/posts/${postId}`),
   getDetail: (postId) => api.get(`/api/posts/${postId}`),
 
+
   //comment
   addComment: (postId, comment) => api.post(`/api/comments/${postId}`, comment),
   editComment: (postId, commentId, comments) =>

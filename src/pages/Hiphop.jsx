@@ -26,10 +26,10 @@ const Hiphop = () => {
   };
 
   useEffect(() => {
+    showGenrePosts('HIPHOP');
     if (cookie !== undefined) {
       return setIsLoggedIn(true);
     }
-    showGenrePosts('HIPHOP');
   }, []);
 
   const [show, setShow] = useState(false);

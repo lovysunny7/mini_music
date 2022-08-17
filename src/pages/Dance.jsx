@@ -26,10 +26,10 @@ const Dance = () => {
   };
 
   useEffect(() => {
+    showGenrePosts('DANCE');
     if (cookie !== undefined) {
       return setIsLoggedIn(true);
     }
-    showGenrePosts('DANCE');
   }, []);
 
   const [show, setShow] = useState(false);

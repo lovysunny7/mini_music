@@ -26,10 +26,10 @@ const Rock = () => {
   };
 
   useEffect(() => {
+    showGenrePosts('ETC');
     if (cookie !== undefined) {
       return setIsLoggedIn(true);
     }
-    showGenrePosts('ETC');
   }, []);
 
   const [show, setShow] = useState(false);
