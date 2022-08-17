@@ -1,71 +1,65 @@
-import { useEffect, useState, useRef } from 'react';
-import { Button, Card, Form, InputGroup, ListGroup } from 'react-bootstrap';
-import apis from '../api/axios';
+import { useEffect, useState, useRef } from "react";
+import { Button, Card, Form, InputGroup, ListGroup } from "react-bootstrap";
+import apis from "../api/axios";
 
 const ComCard = ({ post }) => {
-  const [likeCnt, setLikeCnt] = useState('');
+  const [likeCnt, setLikeCnt] = useState("");
   const [heart, setHeart] = useState(false);
   const comRef = useRef();
   const heartOn = { uid: 1 };
   const heartOff = { uid: 0 };
-  
-  
- const numberHert = () => {
+  const postId = post.postId;
 
+  const numberHeart = () => {};
 
-
- }
-  
   const handleHeart = () => {
     // console.log(post.postId)
-    const postId = post.postId;
-    if (heart){
-      setHeart(false)
-      console.log('하트를 눌렀을 때', heartOn)
-      apis.post_heart2(postId, heartOn).then((res)=>
-     { console.log(res.data.data.likeCnt)
-      setLikeCnt(res.data.data.likeCnt);
-     }
-      )
-    }else{
-      setHeart(true)
-      console.log('빈 하트를 눌렀을 때', heartOff)
-      apis.post_heart2(postId, heartOff).then((res)=>
-      { console.log(res.data.data.likeCnt)
+    if (heart) {
+      setHeart(false);
+      // console.log('하트를 눌렀을 때', heartOn, 서버기준)
+      apis.post_heart2(postId, heartOn).then((res) => {
+        // console.log(res.data.data.likeCnt)
         setLikeCnt(res.data.data.likeCnt);
-       }
-      )
+      });
+    } else {
+      setHeart(true);
+      // console.log('빈 하트를 눌렀을 때', heartOff, 서버기준)
+      apis.post_heart2(postId, heartOff).then((res) => {
+        // console.log(res.data.data.likeCnt)
+        setLikeCnt(res.data.data.likeCnt);
+      });
     }
   };
-  // heart ? setHeart(false) : setHeart(true);
-  
 
-const handleCom = (e) =>{
-  console.log(comRef.current.value);
-}
-
-
+  const handleCom = (e) => {
+    const comment = comRef.current.value;
+    const commentJson = {
+      comment: comment,
+    };
+    apis.com_write2(postId, commentJson).then((res) => {
+      // console.log(res);
+    });
+  };
 
   // heart compo
   const Heart = () => {
-   
     useEffect(() => {
       // console.log(JSON.stringify(post))
-      }, [heart, post.likeCnt])
+    }, [heart, likeCnt]);
 
     return heart ? (
       <span
-        style={{ cursor: 'pointer', color: 'red', marginLeft: '5px' }}
+        style={{ cursor: "pointer", color: "red", marginLeft: "5px" }}
         onClick={handleHeart}
-        className='material-icons'
+        className="material-icons"
       >
         favorite
       </span>
     ) : (
       <span
-        style={{ cursor: 'pointer', marginLeft: '5px' }}
+        style={{ cursor: "pointer", marginLeft: "5px" }}
         onClick={handleHeart}
-        className='material-icons'
+        className="material-icons"
       >
         favorite_border
       </span>
@@ -73,28 +67,26 @@ const handleCom = (e) =>{
   };
 
   // commentInput compo
-  const CommentInput = () =>{
-
-
+  const CommentInput = () => {
     return (
       <InputGroup>
-      <Form.Control id='comAdd' ref={comRef} />
-      <Button aria-describedby='comAdd' onClick={handleCom}>댓글등록</Button>
-    </InputGroup>
+        <Form.Control id="comAdd" ref={comRef} />
+        <Button aria-describedby="comAdd" onClick={handleCom}>
+          댓글등록
+        </Button>
+      </InputGroup>
     );
-  }
-
-
+  };
 
   // console.log(post);
   return (
     <>
       <br />
-      <Card size='lg'>
-        <Card.Header style={{ display: 'flex', justifyContent: 'end' }}>
-          {likeCnt?likeCnt:post.likeCnt} <Heart />
+      <Card size="lg">
+        <Card.Header style={{ display: "flex", justifyContent: "end" }}>
+          {likeCnt ? likeCnt : post.likeCnt} <Heart />
         </Card.Header>
-        <ListGroup variant='flush'>
+        <ListGroup variant="flush">
           {post?.commentList &&
             post?.commentList.map((cmt, idx) => (
               <ListGroup.Item key={idx}>{cmt}</ListGroup.Item>
@@ -103,7 +95,7 @@ const handleCom = (e) =>{
       </Card>
       {/* <Card size='lg'> */}
       <br />
-      <CommentInput/>
+      <CommentInput />
       {/* </Card> */}
     </>
   );
