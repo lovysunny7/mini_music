@@ -98,7 +98,7 @@ const PostUpdate = () => {
   // 이미지 파일 저장
   const onChangeImage = (e) =>{
     setImage(e.target.files[0])
-    console.log(fileImgUp);
+    // console.log(fileImgUp);
   }
 
   const postWrite = (payload) => {
@@ -175,7 +175,7 @@ const PostUpdate = () => {
             <Form.Group style={{ margin: "30px" }}>
               <InputGroup hasValidation>
                 <InputGroup.Text>음악제목</InputGroup.Text>
-                <Form.Control type="text" required id="title" ref={titleRef} />
+                <Form.Control type="text" required id="title" ref={titleRef}/>
                 <Form.Control.Feedback type="invalid">
                   음악제목을 적어주세요
                 </Form.Control.Feedback>

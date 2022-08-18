@@ -23,11 +23,9 @@ export const deleteCommentAX = (postId, commentId) => {
   return function (dispatch, getState) {
     apis.com_del2(postId, commentId).then((res) => console.log(res)); 
     const comment_list = getState().post.comments;
-    console.log('삭제용 코멘트 작성중', comment_list);
+    // console.log('삭제용 코멘트 작성중', comment_list);
     const comment_index = comment_list.findIndex((c) => {
-
       return c.commentId === commentId;
-
     });
     // console.log(comment_index)
     dispatch(deleteComment(comment_index));
@@ -53,11 +51,11 @@ const postSlice = createSlice({
       state.comments = action.payload;
     },
     deleteComment: (state, action) => {
-      console.log('deleteComment의 액션',action);
+      // console.log('deleteComment의 액션',action);
       const new_comments_list = state.comments.filter((c, idx) => {
         return parseInt(action.comment_id) !== idx;
       });
-      console.log('deleteComment의 코멘트 리스트',new_comments_list)
+      // console.log('deleteComment의 코멘트 리스트',new_comments_list)
       state.comments = new_comments_list;
     },
     createComment: (state, action) => {

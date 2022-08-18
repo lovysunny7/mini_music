@@ -51,7 +51,6 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
   const heartOnUid = { uid: 1 };
   const heartOffUid = { uid: 0 };
 
-
   // 현재 댓글, 좋아요 부분의 동적인 화면 구성을 위해 화면 다시 짜야함.
   // 리덕스를 사용하는 것으로 반영이 되어야함
 
@@ -74,16 +73,13 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
       userId: username,
       comment: comment,
     };
-    const jsonComment = {
-      comment,
-    };
 
-    // apis.com_write2(postId, new_comment).then((res) => {
-    //   // console.log(res);
-    //   // alert('댓글이 등록되었습니다');
-    // });
-
-    dispatch(createCommentAX(postId, new_comment));
+    if(username!==undefined) {
+      dispatch(createCommentAX(postId, new_comment));
+    }else{
+      alert('로그인 후 사용해 주세요!')
+    }
+    
     setChangeState((Prev) => {
       return !Prev;
     });
@@ -93,7 +89,9 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
 
   const handleHeart = () => {
     // console.log(post.postId)
-    if (heart) {
+    if (userId === undefined) {
+      alert("로그인 후 이용하세요!");
+    } else if (heart) {
       setHeart(false);
       // console.log('하트를 눌렀을 때', heartOn, 서버기준)
       apis.post_heart2(postId, heartOnUid).then((res) => {
@@ -147,8 +145,8 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
   const CommentInput = () => {
     return (
       <InputGroup>
-        <Form.Control id="comAdd" ref={comRef} />
-        <Button aria-describedby="comAdd" onClick={handleCom}>
+        <Form.Control disabled={username===undefined} id="comAdd" ref={comRef} />
+       <Button aria-describedby="comAdd" onClick={handleCom} disabled={userId===undefined}>
           댓글등록
         </Button>
       </InputGroup>
@@ -161,7 +159,6 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
       <Card size="lg">
         <Card.Header style={{ display: "flex", justifyContent: "end" }}>
           {likeCnt ? likeCnt : post?.likeCnt}
-          {/* <DefaultHeart/> */}
           <Heart />
           {/* {post?.likeCnt} <Heart /> */}
         </Card.Header>
@@ -174,17 +171,17 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
             ))}
         </ListGroup>) */}
         <ListGroup>
-          {comments?.map((c,i) => {
+          {comments?.map((c, i) => {
             return (
               <ListGroup.Item key={i}>
                 <Row>
                   <Col>{c?.username}</Col>
                   <Col xs={7}>{c?.comment}</Col>
                   <Col>
-                    {(c?.userId == userId) && (
+                    {c?.userId == userId && (
                       <StBtn
                         onClick={() => {
-                          dispatch(deleteCommentAX(postId,c?.commentId));
+                          dispatch(deleteCommentAX(postId, c?.commentId));
                           setChangeState((Prev) => !Prev);
                         }}
                       >

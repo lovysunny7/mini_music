@@ -38,19 +38,6 @@ const onUpClick = (postId, userId) => {
   navigate(`/postupdate/${userId}/${postId}`);
 };
 
-// overlTrigger 때문인지, styled component 선선언 필요
-const StPopover = (postId) => {
-  console.log(postId);
-  return (
-    <Popover id='popover-basic'>
-      <Popover.Body>정말 삭제하시겠어요❓</Popover.Body>
-      <StBtn del pop>
-        네
-      </StBtn>
-    </Popover>
-  );
-};
-
 export const UpdateDeleteBtn = ({ postId, userId }) => {
   // console.log(postId);
   // const dispatch = useDispatch();
