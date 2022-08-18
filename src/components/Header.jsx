@@ -21,8 +21,11 @@ function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    console.log(cookie);
     if (cookie !== undefined) {
       return setIsLoggedIn(true);
+    } else {
+      return setIsLoggedIn(false);
     }
   }, []);
 

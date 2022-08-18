@@ -26,10 +26,10 @@ const Rock = () => {
   };
 
   useEffect(() => {
+    showGenrePosts('ROCK');
     if (cookie !== undefined) {
       return setIsLoggedIn(true);
     }
-    showGenrePosts('ROCK');
   }, []);
 
   const [show, setShow] = useState(false);
@@ -43,7 +43,7 @@ const Rock = () => {
   return (
     <>
       <StLayout>
-        <StSecTitle>Rock 🥁</StSecTitle>
+        <StSecTitle>R O C K 🥁</StSecTitle>
         <ErrorBoundary>
           <ViewModal
             show={show}

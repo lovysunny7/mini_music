@@ -17,32 +17,6 @@ const MyPage = () => {
   const [likes, setLikes] = useState([]);
   const [postId, setPostId] = useState('');
 
-  const cookie = getCookie('accessToken');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    if (cookie !== undefined) {
-      return setIsLoggedIn(true);
-    }
-  }, []);
-
-  const showMine = () => {
-    apis.getMypage().then((res) => {
-      console.log(res?.data.data);
-      setPosts(res?.data.data.PostList);
-      setComments(res?.data.data.CommentList);
-      setLikes(res?.data.data.LikedPostList);
-      console.log(res?.data.data.CommentList);
-    });
-    console.log('posts', posts);
-    console.log('comments', comments);
-    console.log('mylikes', likes);
-  };
-
-  useEffect(() => {
-    showMine();
-  }, []);
-
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -50,6 +24,36 @@ const MyPage = () => {
     handleShow();
     setPostId(postId);
   };
+
+  const cookie = getCookie('accessToken');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const showMine = () => {
+    apis.getMypage().then((res) => {
+      // console.log(res.data.data);
+      setPosts(res.data.data.PostList);
+      setComments(res.data.data.CommentList);
+      setLikes(res.data.data.LikedPostList);
+    });
+  };
+  // console.log('myposts', posts);
+  // console.log('mycomments', comments);
+  // console.log('mylikes', likes);
+
+  useEffect(() => {
+    showMine();
+    if (cookie !== undefined) {
+      return setIsLoggedIn(true);
+    }
+  }, []);
+
+  // postId로 게시글 정보 가져오기
+  // const showCommentPost = async (postId) => {
+  //   const res = await apis.getDetail(postId);
+  //   console.log(res.data.data);
+  // };
+  // showCommentPost(22);
+  // 이걸 아래 html에 넣으려고 한 야심찬 시도..?
 
   return (
     <>
@@ -84,20 +88,31 @@ const MyPage = () => {
           <StSection>
             <StSecTitle>My Comments 🐱‍🚀</StSecTitle>
             <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4'>
-              {comments.map((comment) => (
-                <StCom key={comment.commentId}>
+              {comments.map((it) => (
+                <div
+                  key={it.commentId}
+                  onClick={() => handleModal(it.postDto.postId)}
+                >
                   <Card>
                     <Card.Body>
-                      <Row>
-                        <Col>{comment.comment}</Col>
+                      <Row style={{ marginBottom: '5px' }}>
+                        <Col>
+                          <StComTitle>{it.postDto.title}</StComTitle>
+                        </Col>
+                      </Row>
+                      <Row style={{ marginBottom: '10px' }}>
+                        <Col>
+                          <StComBody>{it.comment}</StComBody>
+                        </Col>
                       </Row>
                       <Row>
-                        <Col>{comment.createdAt}</Col>
+                        <Col>
+                          <StComTimestamp>{it.createdAt}</StComTimestamp>
+                        </Col>
                       </Row>
-                      {/* <Row>{comment.createdAt}</Row> */}
                     </Card.Body>
                   </Card>
-                </StCom>
+                </div>
               ))}
             </div>
           </StSection>
@@ -141,12 +156,26 @@ const StSection = styled.div`
 `;
 
 export const StSecTitle = styled.p`
-  font-size: 22px;
+  font-size: 24px;
+  font-weight: 500;
 `;
 
-const StCom = styled.div`
-  /* width: 300px; */
-  /* border: 1px solid red; */
+const StComTitle = styled.div`
+  font-size: 14px;
+  font-style: italic;
+  color: #969696;
+`;
+
+const StComBody = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+`;
+
+const StComTimestamp = styled.div`
+  font-size: 14px;
+  color: #b6b6b6;
 `;
 
 export default MyPage;

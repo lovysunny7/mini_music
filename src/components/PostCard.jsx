@@ -12,33 +12,20 @@ const PostCard = ({ post }) => {
     }
   };
 
-  // const [postTmp, setPost] = useState({});
-  // const [postId, setPostId] = useState(0);
-  // const [show, setShow] = useState(false);
-  // const handleShow = () => setShow(true);
-  // const handleClose = () => setShow(false);
-  // const handleModal = (postId) =>{
-  //   console.log(postId);
-  //   handleShow();
-  //   setPostId(postId);
-  //   // return (
-  //   //     <ViewModal show={show} handleShow={handleShow} handleClose={handleClose} post={post}/>
-  //   // )
-  // }
-
   return (
     <>
       <div className='col'>
-        <div
-          className='card'
-        >
+        <div className='card'>
           <img
             src={post.imageUrl}
             className='card-img-top'
             alt='앨범 이미지 설명글'
           />
           <div className='card-body'>
-            <p className='card-text'>{post.user.username}님의 Pick!</p>
+            <p className='card-text'>
+              <StUsername>{post.user.username}</StUsername>
+              <span>님의 Pick!</span>
+            </p>
             <StTitle>{post.title}</StTitle>
             <StArtist>{post.artist}</StArtist>
             <StContent className='card-text'>
@@ -55,17 +42,31 @@ const PostCard = ({ post }) => {
 export default PostCard;
 
 export const StTitle = styled.div`
-  font-size: 22px;
-  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
 `;
 
 export const StArtist = styled.div`
-  font-size: 16px;
   font-style: italic;
-  /* margin-left: 10px; */
+  color: #969696;
 `;
 
 export const StContent = styled.p`
-  margin: 10px auto;
-  /* border: 1px solid rebeccapurple; */
+  margin: 15px auto;
+  font-size: 17px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+`;
+
+export const StUsername = styled.span`
+  /* color: #969696; */
+  font-weight: 500;
 `;

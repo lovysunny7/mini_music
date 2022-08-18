@@ -42,6 +42,7 @@ const Home = () => {
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const handleModal = (postId) => {
+    console.log('Viewmodal핸들', postId);
     handleShow();
     setPostId(postId);
   };
@@ -61,6 +62,7 @@ const Home = () => {
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4">
           {posts.map((post) => (
             <div key={post.postId} onClick={() => handleModal(post.postId)}>
+
               <PostCard
                 post={post}
                 show={show}

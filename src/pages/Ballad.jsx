@@ -26,10 +26,10 @@ const Ballad = () => {
   };
 
   useEffect(() => {
+    showGenrePosts('BALLAD');
     if (cookie !== undefined) {
       return setIsLoggedIn(true);
     }
-    showGenrePosts('BALLAD');
   }, []);
 
   const [show, setShow] = useState(false);
@@ -43,7 +43,7 @@ const Ballad = () => {
   return (
     <>
       <StLayout>
-        <StSecTitle>Ballad 💌</StSecTitle>
+        <StSecTitle>B A L L A D 💌</StSecTitle>
         <ErrorBoundary>
           <ViewModal
             show={show}

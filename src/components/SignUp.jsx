@@ -87,7 +87,7 @@ const SignUp = ({ signup, handleCloseSignup }) => {
               <Form.Label>비밀번호 확인</Form.Label>
               <Form.Control
                 type='password'
-                placeholder='비밀번호를 동일하게 한 번 더 입력하세요.'
+                placeholder='비밀번호를 동일하게 한 번 더'
                 autoFocus
                 required
                 name='passwordConfirm'

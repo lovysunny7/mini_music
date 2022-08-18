@@ -2,15 +2,9 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import ViewModal from './ViewModal';
+import { StTitle, StArtist, StContent } from './PostCard';
 
 const MyCard = ({ post }) => {
-  const shorts = (sentence) => {
-    if (sentence.length > 18) {
-      return sentence + '...';
-    } else {
-      return sentence;
-    }
-  };
 
   return (
     <>
@@ -37,19 +31,3 @@ const MyCard = ({ post }) => {
 };
 
 export default MyCard;
-
-export const StTitle = styled.div`
-  font-size: 22px;
-  margin-bottom: 5px;
-`;
-
-export const StArtist = styled.div`
-  font-size: 16px;
-  font-style: italic;
-  /* margin-left: 10px; */
-`;
-
-export const StContent = styled.p`
-  margin: 10px auto;
-  /* border: 1px solid rebeccapurple; */
-`;

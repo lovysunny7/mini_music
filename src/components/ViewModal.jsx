@@ -21,20 +21,21 @@ const ViewModal = ({ show, handleShow, handleClose, postId}) => {
 
   // 다시 한 번 postId 별로 재검색
   const showOne = (postId) => {
-    apis.post_view(postId).then((res) => {
-      // console.log(postId);
+    apis.post_view2(postId).then((res) => {
+      // console.log('modal PostId', postId);
       console.log('modal postId 별 불러오기', res?.data.data);
       setPost(res?.data.data);
     });
   };
 
+  // comments state
   const comments = useSelector((state)=>state.post.comments)
 
   useEffect(() => {
     showOne(postId);
-    if (username !== undefined) {
-      return setIsLoggedIn(true);
-    }
+    // if (username !== undefined) {
+    //   return setIsLoggedIn(true);
+    // }
     dispatch(loadCommentAX(postId))
   }, [show, changeState]);
 
@@ -76,10 +77,10 @@ const ViewModal = ({ show, handleShow, handleClose, postId}) => {
             <Card>
               <Card.Body>
                 <Row>
-                  <Col xs={12} md={6}>
+                  <Col xs={12} md={12} lg={6}>
                     작성자: {post?.user?.username}
                   </Col>
-                  <Col xs={6} md={6}>
+                  <Col xs={12} md={12} lg={6}>
                     작성시각: {post?.user?.createdAt}
                   </Col>
                 </Row>
@@ -87,7 +88,7 @@ const ViewModal = ({ show, handleShow, handleClose, postId}) => {
             </Card>
             <Card>
               <Card.Body>
-                {post?.user?.username}님의 한마디🎹
+                {post?.user?.username}님의 한마디 🎹
                 <br />
                 {post?.content}
               </Card.Body>
