@@ -5,7 +5,6 @@ import ViewModal from './ViewModal';
 import { StTitle, StArtist, StContent } from './PostCard';
 
 const MyCard = ({ post }) => {
-
   return (
     <>
       <div className='col'>

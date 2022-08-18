@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Button,
   Card,
@@ -9,17 +9,17 @@ import {
   ListGroup,
   ListGroupItem,
   Row,
-} from "react-bootstrap";
-import AbstractModalHeader from "react-bootstrap/esm/AbstractModalHeader";
-import apis from "../api/axios";
+} from 'react-bootstrap';
+import AbstractModalHeader from 'react-bootstrap/esm/AbstractModalHeader';
+import apis from '../api/axios';
 import {
   createCommentAX,
   deleteCommentAX,
   loadCommentAX,
-} from "../redux/modules/postSlice";
-import { getCookie } from "../shared/Cookie";
-import { Prev } from "react-bootstrap/esm/PageItem";
-import styled from "styled-components";
+} from '../redux/modules/postSlice';
+import { getCookie } from '../shared/Cookie';
+import { Prev } from 'react-bootstrap/esm/PageItem';
+import styled from 'styled-components';
 
 export const StBtn = styled.button`
   width: 70px;
@@ -31,10 +31,10 @@ export const StBtn = styled.button`
   border: none;
   &:hover {
     color: white;
-    background-color: ${(props) => (props.del ? "#564592" : "#ca7df9")};
+    background-color: ${(props) => (props.del ? '#564592' : '#ca7df9')};
   }
-  margin-bottom: ${(props) => (props.pop ? "15px" : "")};
-  margin-left: ${(props) => (props.pop ? "45px" : "")};
+  margin-bottom: ${(props) => (props.pop ? '15px' : '')};
+  margin-left: ${(props) => (props.pop ? '45px' : '')};
 `;
 
 const ComCard = ({ post, changeState, setChangeState, comments }) => {
@@ -45,8 +45,8 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
   // const uid = post?.uid;
   const postId = post?.postId;
   const comRef = useRef();
-  const username = getCookie("username");
-  const userId = getCookie("userId");
+  const username = getCookie('username');
+  const userId = getCookie('userId');
 
   const heartOnUid = { uid: 1 };
   const heartOffUid = { uid: 0 };
@@ -74,12 +74,12 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
       comment: comment,
     };
 
-    if(username!==undefined) {
+    if (username !== undefined) {
       dispatch(createCommentAX(postId, new_comment));
-    }else{
-      alert('로그인 후 사용해 주세요!')
+    } else {
+      alert('로그인 후 사용해 주세요!');
     }
-    
+
     setChangeState((Prev) => {
       return !Prev;
     });
@@ -90,7 +90,7 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
   const handleHeart = () => {
     // console.log(post.postId)
     if (userId === undefined) {
-      alert("로그인 후 이용하세요!");
+      alert('로그인 후 이용하세요!');
     } else if (heart) {
       setHeart(false);
       // console.log('하트를 눌렀을 때', heartOn, 서버기준)
@@ -115,9 +115,9 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
   const HeartOn = () => {
     return (
       <span
-        style={{ cursor: "pointer", color: "red", marginLeft: "5px" }}
+        style={{ cursor: 'pointer', color: 'red', marginLeft: '5px' }}
         onClick={handleHeart}
-        className="material-icons"
+        className='material-icons'
       >
         favorite
       </span>
@@ -127,9 +127,9 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
   const HeartOff = () => {
     return (
       <span
-        style={{ cursor: "pointer", marginLeft: "5px" }}
+        style={{ cursor: 'pointer', marginLeft: '5px' }}
         onClick={handleHeart}
-        className="material-icons"
+        className='material-icons'
       >
         favorite_border
       </span>
@@ -145,8 +145,16 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
   const CommentInput = () => {
     return (
       <InputGroup>
-        <Form.Control disabled={username===undefined} id="comAdd" ref={comRef} />
-       <Button aria-describedby="comAdd" onClick={handleCom} disabled={userId===undefined}>
+        <Form.Control
+          disabled={username === undefined}
+          id='comAdd'
+          ref={comRef}
+        />
+        <Button
+          aria-describedby='comAdd'
+          onClick={handleCom}
+          disabled={userId === undefined}
+        >
           댓글등록
         </Button>
       </InputGroup>
@@ -156,8 +164,8 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
   return (
     <>
       <br />
-      <Card size="lg">
-        <Card.Header style={{ display: "flex", justifyContent: "end" }}>
+      <Card size='lg'>
+        <Card.Header style={{ display: 'flex', justifyContent: 'end' }}>
           {likeCnt ? likeCnt : post?.likeCnt}
           <Heart />
           {/* {post?.likeCnt} <Heart /> */}

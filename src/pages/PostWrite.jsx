@@ -17,7 +17,7 @@ import NotFound from './NotFound';
 const PostWrite = () => {
   const [validated, setValidated] = useState(false);
   const navigate = useNavigate();
-  
+
   const username = getCookie('username');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
@@ -281,7 +281,7 @@ const PostWrite = () => {
         </div>
       ) : (
         <>
-        <NotFound/>
+          <NotFound />
         </>
       )}
     </>

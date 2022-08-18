@@ -5,13 +5,17 @@ import ReactPlayer from 'react-player/youtube';
 import ComCard from './ComCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { __getOnePost } from '../redux/asyncThunk/asyncPost';
-import { loadCommentAX, showIshidden, updateIshidden } from '../redux/modules/postSlice';
+import {
+  loadCommentAX,
+  showIshidden,
+  updateIshidden,
+} from '../redux/modules/postSlice';
 import { UpdateDeleteBtn } from './UpdateDeleteBtn';
 import apis from '../api/axios';
 import ErrorBoundary from './ErrorBoundary';
 import { getCookie } from '../shared/Cookie';
 
-const ViewModal = ({ show, handleShow, handleClose, postId}) => {
+const ViewModal = ({ show, handleShow, handleClose, postId }) => {
   const dispatch = useDispatch();
   const username = getCookie('username');
   const [post, setPost] = useState();
@@ -28,18 +32,16 @@ const ViewModal = ({ show, handleShow, handleClose, postId}) => {
     });
   };
 
-  
-   useEffect(() => {
+  useEffect(() => {
     showOne(postId);
-    dispatch(loadCommentAX(postId))
+    dispatch(loadCommentAX(postId));
     // if (username !== undefined) {
-      //   return setIsLoggedIn(true);
-      // }
-    }, [show, changeState]);
-    
-    // comments state
-    const comments = useSelector((state)=>state.post.comments)
+    //   return setIsLoggedIn(true);
+    // }
+  }, [show, changeState]);
 
+  // comments state
+  const comments = useSelector((state) => state.post.comments);
 
   return (
     <>
@@ -93,7 +95,12 @@ const ViewModal = ({ show, handleShow, handleClose, postId}) => {
                 {post?.content}
               </Card.Body>
             </Card>
-            <ComCard post={post} changeState={changeState} setChangeState={setChangeState} comments={comments}/>
+            <ComCard
+              post={post}
+              changeState={changeState}
+              setChangeState={setChangeState}
+              comments={comments}
+            />
           </Container>
         </Modal.Body>
         <Modal.Footer>

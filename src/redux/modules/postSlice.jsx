@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
-import apis from "../../api/axios";
-import { __getAll, __getOnePost } from "../asyncThunk/asyncPost";
+import { createSlice } from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
+import apis from '../../api/axios';
+import { __getAll, __getOnePost } from '../asyncThunk/asyncPost';
 
 const initialState = {
   comments: [],
@@ -12,7 +12,8 @@ const initialState = {
 export const loadCommentAX = (postId) => {
   // console.log("postId", postId);
   return function (dispatch) {
-    apis.post_view2(postId)
+    apis
+      .post_view2(postId)
       .then((res) => dispatch(loadComments(res.data.data.commentListSimple)));
   };
 };
@@ -21,7 +22,7 @@ export const loadCommentAX = (postId) => {
 export const deleteCommentAX = (postId, commentId) => {
   // console.log(postId, commentId);
   return function (dispatch, getState) {
-    apis.com_del2(postId, commentId).then((res) => console.log(res)); 
+    apis.com_del2(postId, commentId).then((res) => console.log(res));
     const comment_list = getState().post.comments;
     // console.log('삭제용 코멘트 작성중', comment_list);
     const comment_index = comment_list.findIndex((c) => {
@@ -31,19 +32,20 @@ export const deleteCommentAX = (postId, commentId) => {
     dispatch(deleteComment(comment_index));
   };
 };
-export const createCommentAX = (postId,new_comment) => {
+export const createCommentAX = (postId, new_comment) => {
   return function (dispatch) {
     const comment = {
-      comment : new_comment.comment,
-    }
+      comment: new_comment.comment,
+    };
     // console.log('입력', comment)
-      apis.com_write2(postId,comment)
-    .then(() => dispatch(createComment(new_comment)))
-  }
-}
+    apis
+      .com_write2(postId, comment)
+      .then(() => dispatch(createComment(new_comment)));
+  };
+};
 
 const postSlice = createSlice({
-  name: "post",
+  name: 'post',
   initialState,
   reducers: {
     loadComments: (state, action) => {
@@ -60,10 +62,9 @@ const postSlice = createSlice({
     },
     createComment: (state, action) => {
       console.log(action.comment);
-      const new_comment =[...state.comments, action.comment];
+      const new_comment = [...state.comments, action.comment];
       state.comments = new_comment;
-    }
-    
+    },
   },
 
   extraReducers: (builder) => {
@@ -78,5 +79,5 @@ const postSlice = createSlice({
   },
 });
 
-export const { loadComments,deleteComment,createComment } = postSlice.actions;
+export const { loadComments, deleteComment, createComment } = postSlice.actions;
 export default postSlice.reducer;

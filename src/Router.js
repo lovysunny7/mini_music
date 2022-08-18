@@ -14,7 +14,6 @@ import NotFound from './pages/NotFound';
 import Etc from './pages/Etc';
 
 const Router = () => {
-
   return (
     <BrowserRouter>
       <Header />
