@@ -45,7 +45,7 @@ export const StTitle = styled.div`
   font-size: 20px;
   font-weight: 500;
   margin-top: -5px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
