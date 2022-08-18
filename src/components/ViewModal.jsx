@@ -5,44 +5,40 @@ import ReactPlayer from 'react-player/youtube';
 import ComCard from './ComCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { __getOnePost } from '../redux/asyncThunk/asyncPost';
-import { showIshidden, updateIshidden } from '../redux/modules/postSlice';
+import { loadCommentAX, showIshidden, updateIshidden } from '../redux/modules/postSlice';
 import { UpdateDeleteBtn } from './UpdateDeleteBtn';
 import apis from '../api/axios';
 import ErrorBoundary from './ErrorBoundary';
 import { getCookie } from '../shared/Cookie';
 
-const ViewModal = ({ show, handleShow, handleClose, postId }) => {
-  // const dispatch = useDispatch();
+const ViewModal = ({ show, handleShow, handleClose, postId}) => {
+  const dispatch = useDispatch();
   const username = getCookie('username');
   const [post, setPost] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [heart, setHeart] = useState(false);
+  const [changeState, setChangeState] = useState(false);
 
+  // 다시 한 번 postId 별로 재검색
   const showOne = (postId) => {
     apis.post_view(postId).then((res) => {
       // console.log(postId);
-      // console.log(res?.data.data);
+      console.log('modal postId 별 불러오기', res?.data.data);
       setPost(res?.data.data);
     });
   };
 
-  // const [show, setShow] = useState(false);
-  // const handleShow = () => setShow(true);
-  // const handleClose = () => setShow(false);
-
-  // const show = useSelector(db=>db.ishiddenPost);
-  // const handleShow = () => dispatch(updateIshidden(true))
-  // const handleClose = () => dispatch(updateIshidden(false))
-
-  // console.log(post);
-  // console.log(user.username);
+  const comments = useSelector((state)=>state.post.comments)
 
   useEffect(() => {
     showOne(postId);
     if (username !== undefined) {
       return setIsLoggedIn(true);
     }
-  }, [show]);
+    dispatch(loadCommentAX(postId))
+  }, [show, changeState]);
+
+
 
   return (
     <>
@@ -96,7 +92,7 @@ const ViewModal = ({ show, handleShow, handleClose, postId }) => {
                 {post?.content}
               </Card.Body>
             </Card>
-            <ComCard post={post} />
+            <ComCard post={post} changeState={changeState} setChangeState={setChangeState} comments={comments}/>
           </Container>
         </Modal.Body>
         <Modal.Footer>

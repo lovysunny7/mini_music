@@ -90,10 +90,11 @@ const apis = {
     await apiForm.put(`/posts/${postId}`, payload),
   post_heart2: async (postId, payload) =>
     await api.post(`/likes/${postId}`, payload),
-  com_write2: async (postId, payload) =>
-    await apiJson.post(`/posts/${postId}/comments`, payload),
+  com_write2:  (postId, payload) =>
+    apiJson.post(`/posts/${postId}/comments`, payload),
+com_del2: async (postId, commentId) =>
+    api.delete(`/posts/${postId}/comments/${commentId}`),
 
-  
   // local json db용
   post_view: async (id) => await api.get(`/posts/${id}`, id),
   post_write: async (payload) => await api.post("/posts", payload),

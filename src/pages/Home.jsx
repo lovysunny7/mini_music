@@ -5,10 +5,7 @@ import { StSecTitle } from "./MyPage";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { updateIshidden } from "../redux/modules/postSlice";
-import { useDispatch } from "react-redux";
 import ViewModal from "../components/ViewModal";
-import { __getOnePost, __getAll } from "../redux/asyncThunk/asyncPost";
 import apis from "../api/axios";
 import ErrorBoundary from "../components/ErrorBoundary";
 import { getCookie } from "../shared/Cookie";
@@ -16,7 +13,7 @@ import { getCookie } from "../shared/Cookie";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
-  const [post, setPost] = useState({});
+  // const [post, setPost] = useState({});
   const [postId, setPostId] = useState("");
 
   const cookie = getCookie('accessToken');
@@ -30,21 +27,15 @@ const Home = () => {
 
   const showAll = () => {
     apis.post_all().then((res) => {
-      console.log('All Posts',res?.data.data)
+      // console.log('All Posts',res?.data.data)
       setPosts(res?.data.data);
     });
   };
 
-  // const payload2 = async () => {
-  //   const {data} = await dispatch(__getAll());
-  //   console.log(data);
-  // }
 
   useEffect(() => {
     showAll();
-    // payload2();
-    // setPosts(dispatch(__getAll()));
-    // console.log()
+
   }, []);
 
   const [show, setShow] = useState(false);
@@ -73,7 +64,6 @@ const Home = () => {
               <PostCard
                 post={post}
                 show={show}
-                handleShow={handleShow}
                 handleClose={handleClose}
               />
             </div>
