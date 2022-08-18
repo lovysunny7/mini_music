@@ -8,23 +8,26 @@ const ComCard = ({ post }) => {
   const comRef = useRef();
   const heartOn = { uid: 1 };
   const heartOff = { uid: 0 };
-  const postId = post.postId;
+  // const postId = post.postId;
 
-  const numberHeart = () => {};
+  console.log('post', post);
+  console.log('post.commentListSimple', post.commentListSimple);
+  const [comments, setComments] = useState(post.commentListSimple);
+  console.log('comments', comments);
 
   const handleHeart = () => {
     // console.log(post.postId)
     if (heart) {
       setHeart(false);
       // console.log('하트를 눌렀을 때', heartOn, 서버기준)
-      apis.post_heart2(postId, heartOn).then((res) => {
+      apis.post_heart2(post.postId, heartOn).then((res) => {
         // console.log(res.data.data.likeCnt)
         setLikeCnt(res.data.data.likeCnt);
       });
     } else {
       setHeart(true);
       // console.log('빈 하트를 눌렀을 때', heartOff, 서버기준)
-      apis.post_heart2(postId, heartOff).then((res) => {
+      apis.post_heart2(post.postId, heartOff).then((res) => {
         // console.log(res.data.data.likeCnt)
         setLikeCnt(res.data.data.likeCnt);
       });
@@ -36,9 +39,10 @@ const ComCard = ({ post }) => {
     const commentJson = {
       comment,
     };
-    apis.com_write2(postId, commentJson).then((res) => {
+    apis.com_write2(post.postId, commentJson).then((res) => {
       // console.log(res);
       alert('댓글이 등록되었습니다');
+      // setComments(...comments, comment);
     });
   };
 
@@ -79,7 +83,6 @@ const ComCard = ({ post }) => {
     );
   };
 
-  // console.log(post);
   return (
     <>
       <br />
@@ -88,16 +91,17 @@ const ComCard = ({ post }) => {
           {likeCnt ? likeCnt : post?.likeCnt} <Heart />
         </Card.Header>
         <ListGroup variant='flush'>
-          {post?.commentList &&
+          {/* {post?.commentList &&
             post?.commentList.map((cmt, idx) => (
               <ListGroup.Item key={idx}>{cmt}</ListGroup.Item>
-            ))}
+            ))} */}
+          {/* {comments.map((cmt) => (
+            <ListGroup.Item key={cmt.userId}>{cmt.comment}</ListGroup.Item>
+          ))} */}
         </ListGroup>
       </Card>
-      {/* <Card size='lg'> */}
       <br />
       <CommentInput />
-      {/* </Card> */}
     </>
   );
 };
