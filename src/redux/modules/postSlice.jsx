@@ -19,11 +19,11 @@ export const loadCommentAX = (postId) => {
 
 // 코멘트 정보 삭제하기
 export const deleteCommentAX = (postId, commentId) => {
-  console.log(postId, commentId);
+  // console.log(postId, commentId);
   return function (dispatch, getState) {
     apis.com_del2(postId, commentId).then((res) => console.log(res)); 
     const comment_list = useSelector((state)=>state.post.comments)
-    console.log('삭제용코멘트작성중', comment_list);
+    console.log('삭제용 코멘트 작성중', comment_list);
     const comment_index = comment_list.findIndex((c) => {
       return c.commentId === commentId;
     });
@@ -36,7 +36,7 @@ export const createCommentAX = (postId,new_comment) => {
     const comment = {
       comment : new_comment.comment,
     }
-    console.log('입력', comment)
+    // console.log('입력', comment)
       apis.com_write2(postId,comment)
     .then(() => dispatch(createComment(new_comment)))
   }
@@ -47,7 +47,7 @@ const postSlice = createSlice({
   initialState,
   reducers: {
     loadComments: (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.comments = action.payload;
     },
     deleteComment: (state, action) => {

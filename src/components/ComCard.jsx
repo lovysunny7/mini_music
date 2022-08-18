@@ -52,17 +52,17 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
   const heartOffUid = { uid: 0 };
 
   // const reload=()=> reload();
-  console.log("post", post);
+  // console.log("post", post);
   // console.log('post.commentListSimple', post.commentListSimple);
   // const [comments, setComments] = useState(post.commentListSimple);
-  console.log("comments", comments);
+  // console.log("comments", comments);
 
   // 현재 댓글, 좋아요 부분의 동적인 화면 구성을 위해 화면 다시 짜야함.
   // 리덕스를 사용하는 것으로 반영이 되어야함
 
   //댓글 데이터 가져오기 - 한박자씩 느림
 
-  console.log("댓글화면쪽", postId, comments);
+  // console.log("댓글화면쪽", postId, comments);
   // console.log(comments);
   useEffect(() => {
     if (post?.uid === 1) {
@@ -220,6 +220,7 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
                       <StBtn
                         onClick={() => {
                           dispatch(deleteCommentAX(postId,c?.commentId));
+                          setChangeState((Prev) => !Prev);
                         }}
                       >
                         삭제

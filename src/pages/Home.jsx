@@ -42,7 +42,7 @@ const Home = () => {
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const handleModal = (postId) => {
-    console.log('Viewmodal핸들', postId);
+    // console.log('Viewmodal핸들', postId);
     handleShow();
     setPostId(postId);
   };
