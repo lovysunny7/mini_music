@@ -80,10 +80,10 @@ const ViewModal = ({ show, handleShow, handleClose, postId }) => {
             <Card>
               <Card.Body>
                 <Row>
-                  <Col xs={12} md={6}>
+                  <Col xs={12} md={12} lg={6}>
                     작성자: {post?.user?.username}
                   </Col>
-                  <Col xs={6} md={6}>
+                  <Col xs={12} md={12} lg={6}>
                     작성시각: {post?.user?.createdAt}
                   </Col>
                 </Row>
@@ -91,7 +91,7 @@ const ViewModal = ({ show, handleShow, handleClose, postId }) => {
             </Card>
             <Card>
               <Card.Body>
-                {post?.user?.username}님의 한마디🎹
+                {post?.user?.username}님의 한마디 🎹
                 <br />
                 {post?.content}
               </Card.Body>

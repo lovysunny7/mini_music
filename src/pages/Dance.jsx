@@ -43,7 +43,7 @@ const Dance = () => {
   return (
     <>
       <StLayout>
-        <StSecTitle>Dance 🎉</StSecTitle>
+        <StSecTitle>D A N C E 🎉</StSecTitle>
         <ErrorBoundary>
           <ViewModal
             show={show}

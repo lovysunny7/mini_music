@@ -43,7 +43,7 @@ const Hiphop = () => {
   return (
     <>
       <StLayout>
-        <StSecTitle>Hiphop 🕶</StSecTitle>
+        <StSecTitle>H I P H O P 🕶</StSecTitle>
         <ErrorBoundary>
           <ViewModal
             show={show}

@@ -156,7 +156,8 @@ const StSection = styled.div`
 `;
 
 export const StSecTitle = styled.p`
-  font-size: 22px;
+  font-size: 24px;
+  font-weight: 500;
 `;
 
 const StComTitle = styled.div`

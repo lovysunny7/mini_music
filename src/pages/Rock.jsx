@@ -43,7 +43,7 @@ const Rock = () => {
   return (
     <>
       <StLayout>
-        <StSecTitle>Rock 🥁</StSecTitle>
+        <StSecTitle>R O C K 🥁</StSecTitle>
         <ErrorBoundary>
           <ViewModal
             show={show}

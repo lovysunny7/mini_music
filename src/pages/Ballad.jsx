@@ -43,7 +43,7 @@ const Ballad = () => {
   return (
     <>
       <StLayout>
-        <StSecTitle>Ballad 💌</StSecTitle>
+        <StSecTitle>B A L L A D 💌</StSecTitle>
         <ErrorBoundary>
           <ViewModal
             show={show}
