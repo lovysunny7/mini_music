@@ -51,6 +51,7 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
   const heartOnUid = { uid: 1 };
   const heartOffUid = { uid: 0 };
 
+  // const reload=()=> reload();
   console.log("post", post);
   // console.log('post.commentListSimple', post.commentListSimple);
   // const [comments, setComments] = useState(post.commentListSimple);
@@ -111,7 +112,7 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
       setHeart(true);
       // console.log('빈 하트를 눌렀을 때', heartOff, 서버기준)
       apis.post_heart2(postId, heartOffUid).then((res) => {
-        setLikeCnt(likeCnt + 1);
+        // setLikeCnt(likeCnt + 1);
         // console.log(res.data.data.likeCnt)
         setLikeCnt(res?.data.data.likeCnt);
         setChangeState((Prev) => !Prev);
@@ -194,10 +195,10 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
       <br />
       <Card size="lg">
         <Card.Header style={{ display: "flex", justifyContent: "end" }}>
-          {/* {likeCnt ? likeCnt : post?.likeCnt} */}
+          {likeCnt ? likeCnt : post?.likeCnt}
           {/* <DefaultHeart/> */}
-          {/* <Heart /> */}
-          {post?.likeCnt} <Heart />
+          <Heart />
+          {/* {post?.likeCnt} <Heart /> */}
         </Card.Header>
 
         {/* (<ListGroup variant="flush">
@@ -208,9 +209,9 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
             ))}
         </ListGroup>) */}
         <ListGroup>
-          {comments?.map((c) => {
+          {comments?.map((c,i) => {
             return (
-              <ListGroup.Item key={c?.commentId}>
+              <ListGroup.Item key={i}>
                 <Row>
                   <Col>{c?.username}</Col>
                   <Col xs={7}>{c?.comment}</Col>
@@ -218,7 +219,7 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
                     {(c?.userId == userId) && (
                       <StBtn
                         onClick={() => {
-                          dispatch(deleteCommentAX(c?.commentId));
+                          dispatch(deleteCommentAX(postId,c?.commentId));
                         }}
                       >
                         삭제
