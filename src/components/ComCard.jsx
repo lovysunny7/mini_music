@@ -51,26 +51,20 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
   const heartOnUid = { uid: 1 };
   const heartOffUid = { uid: 0 };
 
-  // const reload=()=> reload();
-  // console.log("post", post);
-  // console.log('post.commentListSimple', post.commentListSimple);
-  // const [comments, setComments] = useState(post.commentListSimple);
-  // console.log("comments", comments);
 
   // 현재 댓글, 좋아요 부분의 동적인 화면 구성을 위해 화면 다시 짜야함.
   // 리덕스를 사용하는 것으로 반영이 되어야함
 
-  //댓글 데이터 가져오기 - 한박자씩 느림
-
   // console.log("댓글화면쪽", postId, comments);
   // console.log(comments);
+  // post를 dependency 에 넣으니 버벅대지만 하트 작동!
   useEffect(() => {
     if (post?.uid === 1) {
       setHeart(true);
     } else if (post?.uid === 0) {
       setHeart(false);
     }
-  }, []);
+  }, [post]);
 
   //댓글 등록시 실행되는 함수
 
@@ -141,35 +135,6 @@ const ComCard = ({ post, changeState, setChangeState, comments }) => {
       >
         favorite_border
       </span>
-    );
-  };
-
-  const DefaultHeart = () => {
-    if (post?.uid === 1) {
-      return <HeartOn />;
-    } else if (post?.uid === 0) {
-      return <HeartOff />;
-    } else {
-      return <span>비회원</span>;
-    }
-  };
-
-  const CommentList = ({ commentListSimple }) => {
-    let comment = commentListSimple?.comment;
-    let userId = commentListSimple?.userId;
-    let usernames = commentListSimple.username;
-
-
-    return (
-      <ListGroup.Item>
-        <Row>
-          <Col>{usernames}</Col>
-          <Col xs={7}>{comment}</Col>
-          <Col cont>
-            <StBtn>삭제</StBtn>
-          </Col>
-        </Row>
-      </ListGroup.Item>
     );
   };
 

@@ -23,22 +23,22 @@ const ViewModal = ({ show, handleShow, handleClose, postId}) => {
   const showOne = (postId) => {
     apis.post_view2(postId).then((res) => {
       // console.log('modal PostId', postId);
-      console.log('modal postId 별 불러오기', res?.data.data);
+      // console.log('modal postId 별 불러오기', res?.data.data);
       setPost(res?.data.data);
     });
   };
 
-  // comments state
-  const comments = useSelector((state)=>state.post.comments)
-
-  useEffect(() => {
+  
+   useEffect(() => {
     showOne(postId);
-    // if (username !== undefined) {
-    //   return setIsLoggedIn(true);
-    // }
     dispatch(loadCommentAX(postId))
-  }, [show, changeState]);
-
+    // if (username !== undefined) {
+      //   return setIsLoggedIn(true);
+      // }
+    }, [show, changeState]);
+    
+    // comments state
+    const comments = useSelector((state)=>state.post.comments)
 
 
   return (
